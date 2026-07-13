@@ -91,19 +91,16 @@ canvas#fireflies {
 /* ============================================================
    TITLE + NAV
    ============================================================ */
-.title-wrap { text-align: center; margin-bottom: 14px; }
-.title-sigil { display: inline-block; margin-bottom: 6px; }
-.title-sigil svg { width: 34px; height: 34px; }
-.site-title {
-  font-family: 'Cinzel Decorative', var(--display);
-  font-weight: 700;
-  font-size: clamp(1.7rem, 4.5vw, 2.9rem);
-  letter-spacing: 0.06em;
-  color: var(--text-bright);
-  line-height: 1.05;
-  text-shadow: 0 2px 18px rgba(212, 176, 96, 0.18);
+.title-wrap { text-align: center; margin-bottom: 14px; position: relative; }
+.title-sigil-img { width: 52px; height: auto; display: block; margin: 0 auto 6px; opacity: 0.9; }
+.title-art { max-width: 480px; width: 82%; height: auto; display: block; margin: 0 auto; }
+.corner-fl, .corner-fr {
+  position: absolute; top: 0; width: 100px; height: auto;
+  opacity: 0.22; pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(138, 112, 48, 0.15));
 }
-.site-title .of { color: var(--hearth-text); }
+.corner-fl { left: 0; }
+.corner-fr { right: 0; }
 .sub {
   font-family: var(--display);
   font-size: 0.72rem;
@@ -162,7 +159,7 @@ canvas#fireflies {
   font-style: italic; color: var(--text-subtitle); margin-top: 4px; font-size: 0.95rem;
 }
 .leaf-divider { display: flex; justify-content: center; margin: 10px 0 0; }
-.leaf-divider svg { width: 180px; height: 12px; opacity: 0.6; }
+.vine-divider-img { max-width: 300px; width: 55%; height: auto; opacity: 0.55; }
 
 .breadcrumb { margin: 0 0 14px; font-size: 0.9rem; }
 .breadcrumb a { color: var(--text-muted); border: none; }
@@ -309,8 +306,15 @@ canvas#fireflies {
   margin: 30px 0 6px;
 }
 .section-indicator:first-child { margin-top: 0; }
-.section-indicator .sec-icon { color: var(--hearth-text); opacity: 0.85; flex-shrink: 0; }
-.section-indicator .sec-icon svg { width: 26px; height: 26px; display: block; }
+.section-indicator .sec-icon { flex-shrink: 0; display: flex; }
+.section-indicator .sec-icon img { height: 42px; width: auto; display: block; filter: drop-shadow(0 0 6px rgba(212, 176, 96, 0.28)); }
+.candle-img { animation: candleFlicker 3s ease-in-out infinite; }
+@keyframes candleFlicker {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(212, 176, 96, 0.3)); }
+  25% { filter: drop-shadow(0 0 10px rgba(212, 176, 96, 0.5)) drop-shadow(0 0 20px rgba(200, 140, 40, 0.2)); }
+  50% { filter: drop-shadow(0 0 6px rgba(212, 176, 96, 0.35)); }
+  75% { filter: drop-shadow(0 0 12px rgba(212, 176, 96, 0.55)) drop-shadow(0 0 25px rgba(200, 140, 40, 0.25)); }
+}
 .section-title {
   font-family: var(--display);
   font-size: 0.8rem; font-weight: 500;
@@ -337,7 +341,7 @@ canvas#fireflies {
    ============================================================ */
 .site-footer { text-align: center; margin: 46px 0 30px; }
 .footer-leaf { display: flex; justify-content: center; margin-bottom: 10px; }
-.footer-leaf svg { width: 220px; height: 16px; opacity: 0.5; }
+.footer-leaf .vine-divider-img { max-width: 360px; width: 70%; opacity: 0.5; }
 .footer-text { font-style: italic; color: var(--text-muted); font-size: 0.95rem; }
 .footer-meta { margin-top: 12px; font-size: 0.8rem; }
 .footer-meta a { color: var(--text-muted); border: none; }
@@ -351,6 +355,8 @@ canvas#fireflies {
   .full-width { grid-column: 1; }
   .text-nav { gap: 9px; font-size: 0.7rem; letter-spacing: 0.14em; }
   .page-heading h1 { font-size: 1.25rem; }
+  .corner-fl, .corner-fr { display: none; }
+  .title-art { width: 92%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

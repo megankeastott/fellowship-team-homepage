@@ -1,0 +1,10 @@
+---
+import LeafDivider from './LeafDivider.astro';
+interface Props { title: string; sub?: string }
+const { title, sub } = Astro.props;
+---
+<div class="page-heading">
+  <h1>{title}</h1>
+  {sub && <div class="page-sub">{sub}</div>}
+  <div class="leaf-divider"><LeafDivider /></div>
+</div>

@@ -1,0 +1,31 @@
+---
+import Icon from './Icon.astro';
+import type { DocContent } from '../lib/googleDocs';
+
+interface Props { content: DocContent }
+const { content } = Astro.props;
+---
+<div class="grid">
+  {content.sections.map((section) => (
+    <>
+      {section.title && (
+        <div class="section-indicator">
+          {section.assetKey && (
+            <span class="sec-icon"><Icon name={section.assetKey} /></span>
+          )}
+          <span class="section-title">{section.title}</span>
+          <span class="section-line"></span>
+        </div>
+      )}
+      {section.cards.map((card) => (
+        <div class={`card c-${card.color}${card.width === 'full' ? ' full-width' : ''}`}>
+          <div class="card-header">
+            <h2>{card.title}</h2>
+            <div class="line"></div>
+          </div>
+          <div class="card-body" set:html={card.bodyHtml}></div>
+        </div>
+      ))}
+    </>
+  ))}
+</div>

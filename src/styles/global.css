@@ -1,0 +1,359 @@
+/* ============================================================
+   THE FELLOWSHIP OF THE FIX — global styles
+   A lighter, cleaner take on the Shire aesthetic:
+   - fewer heavy layered gradients / shadows
+   - inline-SVG decoration instead of external images
+   - softer, rounder "parchment" cards
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cinzel+Decorative:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #141d10;
+  --bg-soft: #18220f;
+  --text: #c6bd94;
+  --text-bright: #e6e1c6;
+  --text-muted: #938b68;
+  --text-subtitle: #9aac80;
+  --text-section: #97865c;
+
+  --shire-border:   #4f8340;  --shire-text:   #93c77f;
+  --hearth-border:  #927632;  --hearth-text:  #dab766;
+  --evenstar-border:#4f8080;  --evenstar-text:#86bdb5;
+  --earthen-border: #815f33;  --earthen-text: #cea66c;
+  --shadow-border:  #71352c;  --shadow-text:  #c8766a;
+  --twilight-border:#5f4f77;  --twilight-text:#af9ec6;
+
+  --card-bg: rgba(24, 33, 17, 0.72);
+  --card-border: rgba(120, 140, 90, 0.22);
+  --radius: 10px;
+
+  --serif: 'Crimson Text', Georgia, serif;
+  --display: 'Cinzel', serif;
+}
+
+html { font-size: 17px; }
+
+body {
+  background:
+    radial-gradient(ellipse at 20% -10%, rgba(90, 128, 56, 0.06), transparent 55%),
+    radial-gradient(ellipse at 90% 0%, rgba(140, 120, 80, 0.05), transparent 45%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--serif);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--evenstar-text);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(134, 189, 181, 0.35);
+  transition: color 0.15s, border-color 0.15s;
+}
+a:hover { color: var(--text-bright); border-bottom-color: var(--evenstar-text); }
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85em;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(120, 140, 90, 0.2);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--hearth-text);
+}
+
+/* --- top vine strip --- */
+.vine-edge {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 100;
+  background: linear-gradient(90deg, transparent, rgba(90,128,56,0.5) 25%,
+    rgba(140,192,122,0.7) 50%, rgba(90,128,56,0.5) 75%, transparent);
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 34px 22px 0;
+}
+
+/* --- fireflies --- */
+canvas#fireflies {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0; opacity: 0.9;
+}
+
+/* ============================================================
+   TITLE + NAV
+   ============================================================ */
+.title-wrap { text-align: center; margin-bottom: 14px; }
+.title-sigil { display: inline-block; margin-bottom: 6px; }
+.title-sigil svg { width: 34px; height: 34px; }
+.site-title {
+  font-family: 'Cinzel Decorative', var(--display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 4.5vw, 2.9rem);
+  letter-spacing: 0.06em;
+  color: var(--text-bright);
+  line-height: 1.05;
+  text-shadow: 0 2px 18px rgba(212, 176, 96, 0.18);
+}
+.site-title .of { color: var(--hearth-text); }
+.sub {
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-subtitle);
+  margin-top: 10px;
+}
+.inscription {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin-top: 4px;
+}
+.title-rule {
+  width: 200px; height: 1px; margin: 14px auto 0;
+  background: linear-gradient(90deg, transparent, rgba(146, 118, 50, 0.55), transparent);
+}
+
+.text-nav {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  align-items: center; gap: 14px;
+  margin: 4px 0 6px;
+  font-family: var(--display);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.text-nav a {
+  color: var(--text-muted); border-bottom: none;
+  padding-bottom: 2px; border-bottom: 1px solid transparent;
+}
+.text-nav a:hover { color: var(--text-bright); }
+.text-nav a.current { color: var(--hearth-text); border-bottom-color: rgba(218, 183, 102, 0.6); }
+.text-nav .sep { color: rgba(146, 118, 50, 0.5); font-size: 0.6rem; }
+
+.flourish {
+  text-align: center; color: rgba(146, 118, 50, 0.5);
+  letter-spacing: 0.5em; font-size: 0.7rem; margin: 10px 0 20px;
+}
+
+/* ============================================================
+   PAGE HEADING + DIVIDERS
+   ============================================================ */
+.page-heading { text-align: center; margin: 8px 0 22px; }
+.page-heading h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hearth-text);
+}
+.page-heading .page-sub {
+  font-style: italic; color: var(--text-subtitle); margin-top: 4px; font-size: 0.95rem;
+}
+.leaf-divider { display: flex; justify-content: center; margin: 10px 0 0; }
+.leaf-divider svg { width: 180px; height: 12px; opacity: 0.6; }
+
+.breadcrumb { margin: 0 0 14px; font-size: 0.9rem; }
+.breadcrumb a { color: var(--text-muted); border: none; }
+.breadcrumb a:hover { color: var(--hearth-text); }
+
+/* ============================================================
+   GRID + CARDS (parchment surface)
+   ============================================================ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.full-width { grid-column: 1 / -1; }
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left-width: 3px;
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+.card-header { margin-bottom: 12px; }
+.card-header h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.12rem;
+  letter-spacing: 0.04em;
+  color: var(--text-bright);
+}
+.card-header .line {
+  height: 1px; margin-top: 8px;
+  background: linear-gradient(90deg, currentColor, transparent);
+  opacity: 0.35;
+}
+
+/* realm accents on cards */
+.c-shire    { border-left-color: var(--shire-border); }
+.c-shire .card-header h2    { color: var(--shire-text); }
+.c-hearth   { border-left-color: var(--hearth-border); }
+.c-hearth .card-header h2   { color: var(--hearth-text); }
+.c-evenstar { border-left-color: var(--evenstar-border); }
+.c-evenstar .card-header h2 { color: var(--evenstar-text); }
+.c-earthen  { border-left-color: var(--earthen-border); }
+.c-earthen .card-header h2  { color: var(--earthen-text); }
+.c-shadow   { border-left-color: var(--shadow-border); }
+.c-shadow .card-header h2   { color: var(--shadow-text); }
+.c-twilight { border-left-color: var(--twilight-border); }
+.c-twilight .card-header h2 { color: var(--twilight-text); }
+
+/* ============================================================
+   DOC BODY CONTENT
+   ============================================================ */
+.card-body { font-size: 1rem; }
+.card-body p { margin: 0 0 10px; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body .bold { font-weight: 600; color: var(--text-bright); }
+.card-body .italic { font-style: italic; }
+.card-body .subheading {
+  font-family: var(--display);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-section);
+  margin: 16px 0 6px;
+}
+.card-body ul, .card-body ol { margin: 0 0 10px 1.2em; }
+.card-body li { margin: 3px 0; }
+
+.card-body hr.divider {
+  border: none; height: 1px; margin: 14px 0;
+  background: linear-gradient(90deg, transparent, rgba(146, 118, 50, 0.4), transparent);
+}
+
+.callout {
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--shire-border);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px 14px;
+  margin: 12px 0;
+}
+.callout-shire    { border-left-color: var(--shire-border); }
+.callout-hearth   { border-left-color: var(--hearth-border); }
+.callout-evenstar { border-left-color: var(--evenstar-border); }
+.callout-earthen  { border-left-color: var(--earthen-border); }
+.callout-shadow   { border-left-color: var(--shadow-border); }
+.callout-twilight { border-left-color: var(--twilight-border); }
+
+.label {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  margin: 2px 0;
+}
+.label-shire { color: var(--shire-text); }
+.label-hearth { color: var(--hearth-text); }
+.label-evenstar { color: var(--evenstar-text); }
+.label-earthen { color: var(--earthen-text); }
+.label-shadow { color: var(--shadow-text); }
+.label-twilight { color: var(--twilight-text); }
+
+.macro-chip {
+  display: inline-block;
+  font-family: ui-monospace, monospace;
+  font-size: 0.82rem;
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px dashed rgba(120, 140, 90, 0.35);
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin: 4px 0;
+  color: var(--text-bright);
+}
+.macro-shire { border-color: var(--shire-border); }
+.macro-hearth { border-color: var(--hearth-border); }
+.macro-evenstar { border-color: var(--evenstar-border); }
+.macro-earthen { border-color: var(--earthen-border); }
+.macro-shadow { border-color: var(--shadow-border); }
+.macro-twilight { border-color: var(--twilight-border); }
+
+.inset-box {
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--card-border);
+  padding: 10px 14px;
+  margin: 12px 0;
+}
+
+/* ============================================================
+   SECTION INDICATOR (inline SVG icon + label)
+   ============================================================ */
+.section-indicator {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 12px;
+  margin: 30px 0 6px;
+}
+.section-indicator:first-child { margin-top: 0; }
+.section-indicator .sec-icon { color: var(--hearth-text); opacity: 0.85; flex-shrink: 0; }
+.section-indicator .sec-icon svg { width: 26px; height: 26px; display: block; }
+.section-title {
+  font-family: var(--display);
+  font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-section); white-space: nowrap;
+}
+.section-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(146,118,50,0.35), transparent); }
+
+/* ============================================================
+   HUB (choose-a-path landing)
+   ============================================================ */
+.hub-card {
+  display: block; text-decoration: none; border-bottom: none;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.hub-card:hover { transform: translateY(-2px); }
+.hub-card .card-header h2 { display: flex; justify-content: space-between; gap: 10px; }
+.hub-card .arrow { color: var(--text-muted); }
+.hub-card:hover .arrow { color: var(--hearth-text); }
+.hub-card p { color: var(--text); }
+
+/* ============================================================
+   FOOTER (light — no giant gif)
+   ============================================================ */
+.site-footer { text-align: center; margin: 46px 0 30px; }
+.footer-leaf { display: flex; justify-content: center; margin-bottom: 10px; }
+.footer-leaf svg { width: 220px; height: 16px; opacity: 0.5; }
+.footer-text { font-style: italic; color: var(--text-muted); font-size: 0.95rem; }
+.footer-meta { margin-top: 12px; font-size: 0.8rem; }
+.footer-meta a { color: var(--text-muted); border: none; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 720px) {
+  .container { padding: 22px 14px 0; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .full-width { grid-column: 1; }
+  .text-nav { gap: 9px; font-size: 0.7rem; letter-spacing: 0.14em; }
+  .page-heading h1 { font-size: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  canvas#fireflies { display: none; }
+  * { animation: none !important; transition: none !important; }
+}

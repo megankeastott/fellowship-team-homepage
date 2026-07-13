@@ -1,0 +1,15 @@
+---
+// Inline-SVG vine divider — replaces the repeated external imgur PNG.
+interface Props { class?: string }
+const { class: className } = Astro.props;
+---
+<svg class={className} viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true">
+  <path
+    d="M5,7 Q40,1 75,7 Q110,13 145,7 Q150,5 155,7 Q190,13 225,7 Q260,1 295,7"
+    fill="none" stroke="#97865c" stroke-width="1" opacity="0.85" />
+  <circle cx="150" cy="7" r="2" fill="#97865c" opacity="0.75" />
+  <circle cx="5" cy="7" r="1.4" fill="#97865c" opacity="0.6" />
+  <circle cx="295" cy="7" r="1.4" fill="#97865c" opacity="0.6" />
+  <path d="M70,5 Q73,1 76,4" fill="none" stroke="#5a8038" stroke-width="0.8" opacity="0.6" />
+  <path d="M224,9 Q227,13 230,8" fill="none" stroke="#5a8038" stroke-width="0.8" opacity="0.6" />
+</svg>

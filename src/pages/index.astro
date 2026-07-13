@@ -1,0 +1,257 @@
+---
+import Shell from '../layouts/Shell.astro';
+import '../styles/home.css';
+import {
+  TEAM_LEADS,
+  LOD_SCHEDULE,
+  AGENT_MEDALLIONS,
+  AGENT_COLORS,
+} from '../config/team';
+import { getLatestDispatches } from '../lib/googleDocs';
+import { routeUrl } from '../config/site';
+
+const leads = TEAM_LEADS.filter((p) => p.role === 'Team Lead');
+const seniors = TEAM_LEADS.filter((p) => p.role === 'Senior Specialist');
+const dispatches = await getLatestDispatches(4);
+
+const compact = (t: string) => t.replace(/:00/g, '').replace(/\s*[–-]\s*/, '–');
+---
+<Shell title="Home" activeSlug="home">
+  <!-- NOW ON DUTY -->
+  <div class="now-hero" id="now-hero">
+    <div class="now-medallion-wrap">
+      <img id="now-medallion-img" class="now-medallion" src="" alt="" style="display:none;" />
+      <div id="now-medallion-fallback" class="now-medallion-fallback">·</div>
+    </div>
+    <div class="now-text">
+      <div class="now-label">Now on Duty</div>
+      <div class="now-name" id="now-name">…</div>
+      <div class="now-meta" id="now-meta">&nbsp;</div>
+    </div>
+    <div class="now-clock">
+      <span class="clock-time" id="clock-time">—:—</span>
+      <span id="clock-day">—</span>
+    </div>
+  </div>
+
+  <!-- WEEK STRIP -->
+  <div class="week-heading">
+    <h2>LOD Schedule</h2>
+    <div class="home-sub">Leader on Duty — Weekly Rotation</div>
+    <div class="home-rule"></div>
+  </div>
+
+  <div class="week-strip">
+    {LOD_SCHEDULE.map((day) => (
+      <div class={`day-card realm-${day.color}`} data-day={day.day}>
+        <div class="day-name">{day.day.toUpperCase()}</div>
+        <div class="day-slots">
+          {day.slots.map((slot) => (
+            <div class="day-slot" data-time={slot.time}>
+              <span class="slot-time">{compact(slot.time)}</span>
+              <span class={`slot-name agent-${slot.agentKey}`}>{slot.agent}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- 3-COLUMN FOOTER -->
+  <div class="three-col">
+    <div class="col-card col-shire">
+      <div class="col-label">Team Leads</div>
+      {leads.map((lead) => (
+        <div class={`person-card person-${lead.color}`}>
+          <div class="person-row">
+            {lead.medallion && <img class="person-medallion" src={lead.medallion} alt="" loading="lazy" />}
+            <div class="person-info">
+              <div class="person-name">{lead.name}</div>
+              <div class="person-role">{lead.role}</div>
+            </div>
+            <div class="person-chevron" aria-hidden="true"></div>
+          </div>
+          <div class="person-detail">
+            {lead.bio?.map((p) => <p>{p}</p>)}
+            {lead.funFact && (
+              <div class="person-fun-fact">
+                <span class="person-fun-fact-label">Fun Fact</span>
+                <span>{lead.funFact}</span>
+              </div>
+            )}
+            {lead.link && (
+              <a class="person-link" href={lead.link.url} target="_blank" rel="noopener">{lead.link.text} →</a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="col-card col-twilight">
+      <div class="col-label">Senior Specialists</div>
+      {seniors.map((lead) => (
+        <div class={`person-card person-${lead.color}`}>
+          <div class="person-row">
+            {lead.medallion && <img class="person-medallion" src={lead.medallion} alt="" loading="lazy" />}
+            <div class="person-info">
+              <div class="person-name">{lead.name}</div>
+              <div class="person-role">{lead.role}</div>
+            </div>
+            <div class="person-chevron" aria-hidden="true"></div>
+          </div>
+          <div class="person-detail">
+            {lead.bio?.map((p) => <p>{p}</p>)}
+            {lead.funFact && (
+              <div class="person-fun-fact">
+                <span class="person-fun-fact-label">Fun Fact</span>
+                <span>{lead.funFact}</span>
+              </div>
+            )}
+            {lead.link && (
+              <a class="person-link" href={lead.link.url} target="_blank" rel="noopener">{lead.link.text} →</a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="col-card col-hearth">
+      <div class="col-label">Latest Dispatches</div>
+      {dispatches.length > 0 ? (
+        <>
+          {dispatches.map((d) => (
+            <div class="dispatch-row">
+              <div class={`dispatch-pip pip-${d.color}`}></div>
+              <div class="dispatch-title">{d.title}</div>
+            </div>
+          ))}
+          <a class="dispatch-link" href={routeUrl('announcements')}>View all →</a>
+        </>
+      ) : (
+        <div class="dispatch-empty">
+          Once the Announcements doc is wired into <code>src/config/docs.ts</code>, the latest dispatches appear here.
+        </div>
+      )}
+    </div>
+  </div>
+</Shell>
+
+<script define:vars={{ SCHEDULE: LOD_SCHEDULE, MEDALLIONS: AGENT_MEDALLIONS, AGENT_COLORS }}>
+  (function () {
+    const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+    function getCSTNow() {
+      const fmt = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Chicago', weekday: 'long', hour: '2-digit',
+        minute: '2-digit', hour12: false, month: 'short', day: 'numeric',
+      });
+      const parts = {};
+      fmt.formatToParts(new Date()).forEach((p) => { parts[p.type] = p.value; });
+      let hour = parseInt(parts.hour, 10);
+      if (hour === 24) hour = 0;
+      return {
+        dayName: parts.weekday, hour, minute: parseInt(parts.minute, 10),
+        hh: (hour < 10 ? '0' : '') + hour, mm: parts.minute,
+      };
+    }
+    function parseRange(timeStr) {
+      const m = timeStr.match(/(\d{2}):(\d{2})\s*[\u2013\u2014\-]\s*(\d{2}):(\d{2})/);
+      if (!m) return null;
+      return {
+        startMin: +m[1] * 60 + +m[2], endMin: +m[3] * 60 + +m[4],
+        startStr: m[1] + ':' + m[2], endStr: m[3] + ':' + m[4],
+      };
+    }
+    function findSlotInfo(dayName, hour, minute) {
+      const day = SCHEDULE.find((d) => d.day === dayName);
+      const nowMin = hour * 60 + minute;
+      if (day) {
+        for (let i = 0; i < day.slots.length; i++) {
+          const r = parseRange(day.slots[i].time);
+          if (r && nowMin >= r.startMin && nowMin < r.endMin) {
+            return { state: 'active', slot: day.slots[i], endStr: r.endStr, next: day.slots[i + 1] || null };
+          }
+        }
+        for (let i = 0; i < day.slots.length; i++) {
+          const r = parseRange(day.slots[i].time);
+          if (r && r.startMin > nowMin) {
+            return { state: 'off', next: day.slots[i], nextStartStr: r.startStr, nextDay: null };
+          }
+        }
+      }
+      const idx = DAY_NAMES.indexOf(dayName);
+      if (idx >= 0) {
+        for (let k = 1; k <= 7; k++) {
+          const d = SCHEDULE.find((x) => x.day === DAY_NAMES[(idx + k) % 7]);
+          if (d && d.slots && d.slots.length) {
+            const r = parseRange(d.slots[0].time);
+            return { state: 'off', next: d.slots[0], nextStartStr: r.startStr, nextDay: d.day };
+          }
+        }
+      }
+      return { state: 'off' };
+    }
+    function setMedallion(agentKey, agentName) {
+      const img = document.getElementById('now-medallion-img');
+      const fb = document.getElementById('now-medallion-fallback');
+      const url = MEDALLIONS[agentKey];
+      if (url) {
+        img.src = url; img.alt = agentName + ' medallion';
+        img.style.display = 'block'; fb.style.display = 'none';
+      } else {
+        img.style.display = 'none'; fb.style.display = 'flex';
+        const color = AGENT_COLORS[agentKey] || '#c6bd94';
+        fb.textContent = (agentName || '·').charAt(0).toUpperCase();
+        fb.style.color = color; fb.style.borderColor = color;
+      }
+    }
+    function highlightCurrent(dayName, slot) {
+      document.querySelectorAll('.day-card').forEach((card) => {
+        card.classList.toggle('current-day', card.dataset.day === dayName);
+      });
+      document.querySelectorAll('.day-slot.is-current-slot').forEach((el) => el.classList.remove('is-current-slot'));
+      if (slot) {
+        const card = document.querySelector('.day-card[data-day="' + dayName + '"]');
+        if (card) {
+          const s = card.querySelector('.day-slot[data-time="' + slot.time + '"]');
+          if (s) s.classList.add('is-current-slot');
+        }
+      }
+    }
+    function update() {
+      const now = getCSTNow();
+      document.getElementById('clock-time').textContent = now.hh + ':' + now.mm + ' CST';
+      document.getElementById('clock-day').textContent = now.dayName.toUpperCase();
+      const nameEl = document.getElementById('now-name');
+      const metaEl = document.getElementById('now-meta');
+      const info = findSlotInfo(now.dayName, now.hour, now.minute);
+      if (info.state === 'active') {
+        const slot = info.slot;
+        setMedallion(slot.agentKey, slot.agent);
+        nameEl.textContent = slot.agent;
+        nameEl.style.color = AGENT_COLORS[slot.agentKey] || '#e6e1c6';
+        let meta = 'until ' + info.endStr + ' CST';
+        if (info.next) meta += ' <span class="agent-next-label">· Next</span> ' + info.next.agent;
+        metaEl.innerHTML = meta;
+        highlightCurrent(now.dayName, slot);
+      } else {
+        setMedallion(null, '·');
+        nameEl.textContent = 'Off Duty';
+        nameEl.style.color = 'rgba(198,189,148,0.55)';
+        if (info.next) {
+          const dayBit = info.nextDay && info.nextDay !== now.dayName ? ' (' + info.nextDay + ')' : '';
+          metaEl.innerHTML = '<span class="agent-next-label">Next</span> ' + info.next.agent + ' at ' + info.nextStartStr + ' CST' + dayBit;
+        } else {
+          metaEl.textContent = '';
+        }
+        highlightCurrent(now.dayName, null);
+      }
+    }
+    update();
+    setInterval(update, 30000);
+
+    document.querySelectorAll('.person-card .person-row').forEach((row) => {
+      row.addEventListener('click', () => row.parentElement.classList.toggle('expanded'));
+    });
+  })();
+</script>

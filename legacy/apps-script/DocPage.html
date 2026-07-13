@@ -1,0 +1,38 @@
+<? if (parent) { ?>
+  <div class="breadcrumb">
+    <a href="<?= parent.url ?>">&larr; Back to <?= parent.title ?></a>
+  </div>
+<? } ?>
+
+<div class="page-heading">
+  <h1><?= pageTitle ?></h1>
+  <div class="vine-divider"><img src="https://i.imgur.com/1gL7gIb.png" alt=""></div>
+</div>
+
+<div class="grid">
+  <? for (var si = 0; si < content.sections.length; si++) { var section = content.sections[si]; ?>
+    <? if (section.title) {
+         var assetKey = section.assetKey;
+         var asset = { img: '', cls: '' };
+         if (assetKey === 'candle') asset = { img: 'https://i.imgur.com/ZNXhhfb.png', cls: 'candle-img' };
+         else if (assetKey === 'tome') asset = { img: 'https://i.imgur.com/u4SC2da.png', cls: '' };
+    ?>
+      <div class="section-indicator">
+        <? if (asset.img) { ?>
+          <img <? if (asset.cls) { ?>class="<?= asset.cls ?>"<? } ?> src="<?= asset.img ?>" alt="">
+        <? } ?>
+        <span class="section-title"><?= section.title ?></span>
+        <span class="section-line"></span>
+      </div>
+    <? } ?>
+    <? for (var ci = 0; ci < section.cards.length; ci++) { var card = section.cards[ci]; ?>
+      <div class="card c-<?= card.color ?><? if (card.width === 'full') { ?> full-width<? } ?>">
+        <div class="card-header">
+          <h2><?= card.title ?></h2>
+          <div class="line"></div>
+        </div>
+        <div class="card-body"><?!= card.bodyHtml ?></div>
+      </div>
+    <? } ?>
+  <? } ?>
+</div>

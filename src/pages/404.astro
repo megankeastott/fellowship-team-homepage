@@ -1,0 +1,16 @@
+---
+import Shell from '../layouts/Shell.astro';
+import PageHeading from '../components/PageHeading.astro';
+import { routeUrl } from '../config/site';
+---
+<Shell title="Not Found">
+  <PageHeading title="Not All Who Wander Are Lost" sub="…but this page is." />
+  <div class="grid">
+    <div class="card c-shadow full-width">
+      <div class="card-header"><h2>Page not found</h2><div class="line"></div></div>
+      <div class="card-body">
+        <p>The path you followed doesn't lead anywhere. Head back to the <a href={routeUrl('home')}>home page</a>.</p>
+      </div>
+    </div>
+  </div>
+</Shell>

@@ -1,0 +1,380 @@
+<style>
+  /* ============================================================
+     TEAM HUB
+       1. The Red Book — roster ledger (Leadership / Guardians / Wardens)
+       2. The Dragon's Hoard — current prizes & incentive structure
+       3. Bingo — link to Things Tutors Say
+       4. Tales Told at the Green Dragon — most recent superlative winners
+     ============================================================ */
+
+  /* --- The Red Book (roster) --- */
+  .red-book {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
+  }
+  .ledger-col {
+    position: relative;
+  }
+  .ledger-col + .ledger-col {
+    padding-left: 28px;
+    border-left: 1px solid rgba(140,120,80,0.18);
+  }
+  .ledger-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ledger-sub {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgba(192,184,144,0.55);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(140,120,80,0.15);
+  }
+  .ledger-heading.h-shire    { color: #8cc07a; }
+  .ledger-heading.h-evenstar { color: #80b8b0; }
+  .ledger-heading.h-earthen  { color: #c8a068; }
+  .ledger-heading.h-hearth   { color: #d4b060; }
+
+  .ledger-entry {
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(140,120,80,0.08);
+  }
+  .ledger-entry:last-child { border-bottom: none; }
+  .ledger-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.94rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #d4cba9;
+  }
+  .ledger-title {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.86rem;
+    color: rgba(192,184,144,0.65);
+    margin-top: 1px;
+  }
+  .ledger-empty {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    color: rgba(192,184,144,0.45);
+    font-size: 0.9rem;
+    padding: 14px 0;
+  }
+
+  /* --- Dragon's Hoard (incentives) --- */
+  .hoard-period {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(212,176,96,0.7);
+    margin-bottom: 12px;
+  }
+  .hoard-item {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(138,112,48,0.18);
+  }
+  .hoard-item:last-child { border-bottom: none; }
+  .hoard-item:first-child { padding-top: 0; }
+  .hoard-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 5px;
+  }
+  .hoard-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #d4b060;
+  }
+  .hoard-prize {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #e0dcc0;
+    text-shadow: 0 0 12px rgba(212,176,96,0.3);
+    white-space: nowrap;
+  }
+  .hoard-detail {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.92rem;
+    color: rgba(192,184,144,0.75);
+    line-height: 1.5;
+  }
+
+  /* --- Bingo --- */
+  .bingo-pitch {
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    color: rgba(192,184,144,0.85);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .bingo-link {
+    display: inline-block;
+    padding: 11px 22px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #c07060 !important;
+    border: 1px solid rgba(192,112,96,0.5);
+    border-radius: 2px;
+    text-decoration: none !important;
+    background: rgba(106,48,40,0.06);
+    transition: all 0.2s ease;
+  }
+  .bingo-link:hover {
+    background: rgba(106,48,40,0.15);
+    border-color: #c07060;
+    text-shadow: 0 0 12px rgba(192,112,96,0.4);
+  }
+  .bingo-todo {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    color: rgba(192,184,144,0.5);
+    font-size: 0.88rem;
+    padding: 10px 12px;
+    border: 1px dashed rgba(138,112,48,0.3);
+    border-radius: 2px;
+    background: rgba(160,140,100,0.03);
+  }
+  .bingo-todo code {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    color: #d4b060;
+    background: rgba(138,112,48,0.1);
+    padding: 1px 6px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  /* --- Tales Told at the Green Dragon (superlatives) --- */
+  .tales-meta {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(168,152,192,0.75);
+    margin-bottom: 4px;
+  }
+  .tales-prompt {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: rgba(192,184,144,0.65);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(140,120,80,0.15);
+  }
+  .tales-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .tale-badge {
+    position: relative;
+    background: rgba(168,152,192,0.05);
+    border: 1px solid rgba(168,152,192,0.3);
+    border-radius: 3px;
+    padding: 12px 16px;
+  }
+  .tale-text {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: rgba(192,184,144,0.75);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .tale-winner {
+    font-family: 'Cinzel', serif;
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #a898c0;
+    text-shadow: 0 0 12px rgba(168,152,192,0.25);
+  }
+  .tales-empty {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    color: rgba(192,184,144,0.5);
+    font-size: 0.95rem;
+    padding: 16px;
+    background: rgba(168,152,192,0.04);
+    border-left: 2px solid rgba(168,152,192,0.3);
+    border-radius: 0 3px 3px 0;
+    line-height: 1.5;
+  }
+  .tales-empty code {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: #a898c0;
+    background: rgba(90,74,112,0.18);
+    padding: 1px 6px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 900px) {
+    .red-book { grid-template-columns: 1fr 1fr; }
+    .ledger-col + .ledger-col { padding-left: 20px; }
+    .ledger-col:nth-child(3) {
+      grid-column: 1 / -1;
+      padding-left: 0;
+      padding-top: 18px;
+      border-left: none;
+      border-top: 1px solid rgba(140,120,80,0.18);
+    }
+    .tales-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    .red-book { grid-template-columns: 1fr; gap: 18px; }
+    .ledger-col + .ledger-col {
+      padding-left: 0;
+      padding-top: 18px;
+      border-left: none;
+      border-top: 1px solid rgba(140,120,80,0.18);
+    }
+    .ledger-col:nth-child(3) { padding-top: 18px; }
+  }
+</style>
+
+<div class="page-heading">
+  <h1>The Shire &mdash; Team Hub</h1>
+  <div class="vine-divider"><img src="https://i.imgur.com/1gL7gIb.png" alt=""></div>
+</div>
+
+<div class="grid">
+
+  <!-- ═════ THE RED BOOK ═════ -->
+  <div class="card c-earthen full-width">
+    <div class="card-header">
+      <h2>The Red Book</h2>
+      <div class="line"></div>
+    </div>
+    <div class="card-body">
+      <div class="red-book">
+
+        <div class="ledger-col">
+          <div class="ledger-heading h-shire">Leadership</div>
+          <div class="ledger-sub">Leads &amp; Senior Specialists</div>
+          <? for (var i = 0; i < roster.leadership.length; i++) { var p = roster.leadership[i]; ?>
+            <div class="ledger-entry">
+              <div class="ledger-name"><?= p.name ?></div>
+              <div class="ledger-title"><?= p.title ?></div>
+            </div>
+          <? } ?>
+        </div>
+
+        <div class="ledger-col">
+          <div class="ledger-heading h-evenstar">Guardians of the Living Platform</div>
+          <div class="ledger-sub">LLP Support</div>
+          <? var guardians = roster.fellowship.filter(function(p){ return p.team === 'guardians'; }); ?>
+          <? if (guardians.length === 0) { ?>
+            <div class="ledger-empty">No agents assigned yet.</div>
+          <? } ?>
+          <? for (var i = 0; i < guardians.length; i++) { var p = guardians[i]; ?>
+            <div class="ledger-entry">
+              <div class="ledger-name"><?= p.name ?></div>
+              <div class="ledger-title"><?= p.title ?></div>
+            </div>
+          <? } ?>
+        </div>
+
+        <div class="ledger-col">
+          <div class="ledger-heading h-hearth">Wardens of the Tutor Realm</div>
+          <div class="ledger-sub">TES Support</div>
+          <? var wardens = roster.fellowship.filter(function(p){ return p.team === 'wardens'; }); ?>
+          <? if (wardens.length === 0) { ?>
+            <div class="ledger-empty">No agents assigned yet.</div>
+          <? } ?>
+          <? for (var i = 0; i < wardens.length; i++) { var p = wardens[i]; ?>
+            <div class="ledger-entry">
+              <div class="ledger-name"><?= p.name ?></div>
+              <div class="ledger-title"><?= p.title ?></div>
+            </div>
+          <? } ?>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════ THE DRAGON'S HOARD ═════ -->
+  <div class="card c-hearth">
+    <div class="card-header">
+      <h2>The Dragon's Hoard</h2>
+      <div class="line"></div>
+    </div>
+    <div class="card-body">
+      <div class="hoard-period"><?= incentives.period ?> Prizes</div>
+      <? for (var i = 0; i < incentives.items.length; i++) { var item = incentives.items[i]; ?>
+        <div class="hoard-item">
+          <div class="hoard-row">
+            <div class="hoard-name"><?= item.name ?></div>
+            <div class="hoard-prize"><?= item.prize ?></div>
+          </div>
+          <div class="hoard-detail"><?= item.detail ?></div>
+        </div>
+      <? } ?>
+    </div>
+  </div>
+
+  <!-- ═════ BINGO ═════ -->
+  <div class="card c-shadow">
+    <div class="card-header">
+      <h2>Things Tutors Say</h2>
+      <div class="line"></div>
+    </div>
+    <div class="card-body">
+      <p class="bingo-pitch">Five rounds. Win three out of five to claim a prize &mdash; two winners take home <span class="bold">$25</span> each.</p>
+      <? if (bingoUrl && bingoUrl !== 'TODO') { ?>
+        <a class="bingo-link" href="<?= bingoUrl ?>" target="_blank" rel="noopener">Play Bingo &rarr;</a>
+      <? } else { ?>
+        <div class="bingo-todo">Set <code>BINGO_URL</code> in <code>Code.gs</code> to enable this link.</div>
+      <? } ?>
+    </div>
+  </div>
+
+  <!-- ═════ TALES TOLD AT THE GREEN DRAGON ═════ -->
+  <div class="card c-twilight full-width">
+    <div class="card-header">
+      <h2>Tales Told at the Green Dragon</h2>
+      <div class="line"></div>
+    </div>
+    <div class="card-body">
+      <div class="tales-meta">Round <?= superlatives.round ?> &mdash; Superlative Winners</div>
+      <div class="tales-prompt"><?= superlatives.prompt ?></div>
+      <? if (superlatives.winners && superlatives.winners.length > 0) { ?>
+        <div class="tales-grid">
+          <? for (var i = 0; i < superlatives.winners.length; i++) { var w = superlatives.winners[i]; ?>
+            <div class="tale-badge">
+              <div class="tale-text">&ldquo;<?= w.tale ?>&rdquo;</div>
+              <div class="tale-winner"><?= w.name ?></div>
+            </div>
+          <? } ?>
+        </div>
+      <? } else { ?>
+        <div class="tales-empty">
+          Tallying in progress. Once a round closes, fill in <code>SUPERLATIVES.winners</code> in <code>Code.gs</code> with the categories and winners and redeploy.
+        </div>
+      <? } ?>
+    </div>
+  </div>
+
+</div>

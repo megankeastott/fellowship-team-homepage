@@ -1,0 +1,49 @@
+/* Team Hub — Red Book roster, Dragon's Hoard, Bingo, and Superlatives. */
+
+.red-book { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.ledger-col { min-width: 0; }
+.ledger-heading {
+  font-family: var(--display); font-size: 0.82rem; font-weight: 700;
+  letter-spacing: 0.08em; margin-bottom: 2px;
+}
+.ledger-heading.h-shire { color: var(--shire-text); }
+.ledger-heading.h-evenstar { color: var(--evenstar-text); }
+.ledger-heading.h-hearth { color: var(--hearth-text); }
+.ledger-sub { font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-bottom: 12px; }
+.ledger-entry { padding: 6px 0; border-bottom: 1px solid rgba(120, 140, 90, 0.12); }
+.ledger-entry:last-child { border-bottom: none; }
+.ledger-name { color: var(--text-bright); font-size: 0.96rem; }
+.ledger-title { font-size: 0.8rem; color: var(--text-muted); }
+.ledger-empty { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+
+.hoard-period {
+  font-family: var(--display); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--hearth-text); margin-bottom: 12px;
+}
+.hoard-item { padding: 10px 0; border-bottom: 1px solid rgba(120, 140, 90, 0.12); }
+.hoard-item:last-child { border-bottom: none; }
+.hoard-row { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.hoard-name { color: var(--text-bright); font-weight: 600; }
+.hoard-prize { color: var(--hearth-text); font-family: var(--display); font-weight: 700; white-space: nowrap; }
+.hoard-detail { font-size: 0.88rem; color: var(--text); margin-top: 4px; }
+
+.bingo-pitch { margin-bottom: 12px; }
+.bingo-link { display: inline-block; font-family: var(--display); font-size: 0.82rem; letter-spacing: 0.08em; }
+.bingo-todo { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+
+.tales-meta {
+  font-family: var(--display); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--twilight-text); margin-bottom: 4px;
+}
+.tales-prompt { font-style: italic; color: var(--text-muted); margin-bottom: 12px; }
+.tales-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.tale-badge { background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: 8px; padding: 12px 14px; }
+.tale-text { font-style: italic; color: var(--text-bright); }
+.tale-winner {
+  font-family: var(--display); font-size: 0.85rem; color: var(--twilight-text); margin-top: 6px;
+}
+.tales-empty { font-size: 0.9rem; color: var(--text-muted); font-style: italic; }
+
+@media (max-width: 720px) {
+  .red-book { grid-template-columns: 1fr; gap: 24px; }
+}

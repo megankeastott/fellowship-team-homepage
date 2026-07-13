@@ -1,0 +1,831 @@
+<style>
+  /* ============================================================
+     HOME PAGE — Hearthside Dashboard
+       1. Now On Duty hero (live, recomputes every 30s)
+       2. Horizontal 7-day LOD week strip
+       3. 3-column footer: Team Leads | Senior Specialists | Latest Dispatches
+     ============================================================ */
+
+  /* Agent name colors */
+  .agent-andrezza { color: #a898c0; }
+  .agent-joao     { color: #80b8b0; }
+  .agent-megan    { color: #8cc07a; }
+  .agent-erika    { color: #d4b060; }
+  .agent-andro    { color: #c07060; }
+  .agent-gus      { color: #8E9680; }
+  .agent-lu       { color: #d4a0b0; }
+
+  /* --- NOW ON DUTY HERO --- */
+  .now-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 14px 0 26px;
+    padding: 22px 28px;
+    background:
+      linear-gradient(170deg,
+        rgba(180,160,120,0.08) 0%,
+        rgba(160,140,100,0.05) 50%,
+        rgba(140,120,80,0.07) 100%);
+    border: 1px solid rgba(212,176,96,0.32);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .now-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px,
+        rgba(160,140,100,0.015) 2px, rgba(160,140,100,0.015) 3px),
+      radial-gradient(ellipse at 20% 50%, rgba(180,160,120,0.04), transparent 70%),
+      radial-gradient(ellipse at 80% 30%, rgba(140,120,80,0.04), transparent 60%);
+  }
+  .now-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow:
+      inset 0 0 30px rgba(60,40,20,0.2),
+      inset 0 0 60px rgba(30,20,10,0.1);
+    border-radius: 4px;
+  }
+
+  .now-medallion-wrap {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .now-medallion {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 14px rgba(0,0,0,0.55));
+  }
+  .now-medallion-fallback {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(212,176,96,0.5);
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+  }
+
+  .now-text {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+  }
+  .now-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #d4b060;
+  }
+  .now-name {
+    font-family: 'Cinzel', serif;
+    font-size: 2.3rem;
+    color: #e0dcc0;
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+  }
+  .now-meta {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(192,184,144,0.85);
+    margin-top: 6px;
+  }
+  .now-meta .agent-next-label {
+    color: rgba(212,176,96,0.7);
+    font-style: normal;
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 2px 0 4px;
+  }
+  .now-clock {
+    text-align: right;
+    color: rgba(212,176,96,0.55);
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    padding-left: 22px;
+    border-left: 1px solid rgba(212,176,96,0.2);
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+  .clock-time {
+    color: #d4b060;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  /* --- WEEK STRIP --- */
+  .week-heading {
+    text-align: center;
+    margin: 28px 0 12px;
+  }
+  .week-heading h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #d4b060;
+    text-shadow: 0 0 14px rgba(212,176,96,0.2);
+  }
+  .week-heading .home-sub {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: #8a9e70;
+    margin-top: 3px;
+  }
+  .week-heading .home-rule {
+    width: 90px;
+    height: 1px;
+    margin: 12px auto 0;
+    background: linear-gradient(90deg, transparent, rgba(212,176,96,0.5), transparent);
+  }
+
+  .week-strip {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .day-card {
+    position: relative;
+    background:
+      linear-gradient(170deg,
+        rgba(180,160,120,0.06) 0%,
+        rgba(140,120,80,0.04) 100%);
+    border: 1px solid rgba(140,120,80,0.22);
+    border-radius: 3px;
+    padding: 12px 10px 14px;
+    overflow: hidden;
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+  .day-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px,
+        rgba(160,140,100,0.012) 2px, rgba(160,140,100,0.012) 3px),
+      radial-gradient(ellipse at 30% 20%, rgba(180,160,120,0.04), transparent 60%);
+  }
+  .day-card.current-day {
+    box-shadow:
+      0 0 22px rgba(212,176,96,0.18),
+      inset 0 0 12px rgba(212,176,96,0.04);
+  }
+  .day-name {
+    position: relative;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-align: center;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(140,120,80,0.18);
+  }
+  .day-slots {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .day-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 2px;
+    text-align: center;
+    border-bottom: 1px solid rgba(140,120,80,0.08);
+    border-radius: 2px;
+    transition: background 0.3s ease;
+  }
+  .day-slot:last-child { border-bottom: none; }
+  .day-slot.is-current-slot {
+    background: rgba(212,176,96,0.08);
+    box-shadow: inset 0 0 12px rgba(212,176,96,0.06);
+  }
+  .slot-time {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.78rem;
+    color: rgba(192,184,144,0.55);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .slot-name {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.98rem;
+    line-height: 1.2;
+  }
+
+  /* Realm color tint per day */
+  .realm-shire    .day-name { color: #8cc07a; }
+  .realm-shire              { border-color: rgba(74,122,58,0.32); }
+  .realm-hearth   .day-name { color: #d4b060; }
+  .realm-hearth             { border-color: rgba(138,112,48,0.32); }
+  .realm-evenstar .day-name { color: #80b8b0; }
+  .realm-evenstar           { border-color: rgba(74,120,120,0.32); }
+  .realm-earthen  .day-name { color: #c8a068; }
+  .realm-earthen            { border-color: rgba(122,90,48,0.32); }
+  .realm-shadow   .day-name { color: #c07060; }
+  .realm-shadow             { border-color: rgba(106,48,40,0.34); }
+  .realm-twilight .day-name { color: #a898c0; }
+  .realm-twilight           { border-color: rgba(90,74,112,0.32); }
+
+  /* --- 3-COL FOOTER --- */
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+  .col-card {
+    position: relative;
+    background:
+      linear-gradient(170deg,
+        rgba(180,160,120,0.06) 0%,
+        rgba(140,120,80,0.04) 100%);
+    border: 1px solid rgba(140,120,80,0.25);
+    border-radius: 3px;
+    padding: 18px 20px;
+    overflow: hidden;
+  }
+  .col-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px,
+        rgba(160,140,100,0.012) 2px, rgba(160,140,100,0.012) 3px),
+      radial-gradient(ellipse at 30% 20%, rgba(180,160,120,0.03), transparent 60%);
+  }
+  .col-label {
+    position: relative;
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(140,120,80,0.18);
+  }
+  .col-shire    .col-label { color: #8cc07a; }
+  .col-twilight .col-label { color: #a898c0; }
+  .col-hearth   .col-label { color: #d4b060; }
+
+  /* Person card (Team Leads, Seniors) — click row to expand bio */
+  .person-card {
+    position: relative;
+  }
+  .person-card + .person-card {
+    border-top: 1px solid rgba(140,120,80,0.1);
+  }
+  .person-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  .person-row:hover { opacity: 0.92; }
+  .person-medallion {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55));
+  }
+  .person-info { min-width: 0; flex: 1; }
+  .person-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+  }
+  .person-role {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.92rem;
+    font-style: italic;
+    color: rgba(192,184,144,0.65);
+    margin-top: 3px;
+  }
+  .person-chevron {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    opacity: 0.45;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+    color: rgba(212,176,96,0.85);
+  }
+  .person-chevron::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translate(-70%, -70%) rotate(-45deg);
+  }
+  .person-card.expanded .person-chevron {
+    transform: rotate(90deg);
+    opacity: 0.9;
+  }
+  .person-detail {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0 4px;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  }
+  .person-card.expanded .person-detail {
+    max-height: 600px;
+    opacity: 1;
+    padding: 4px 4px 14px;
+  }
+  .person-detail p {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: rgba(192,184,144,0.85);
+    margin: 0 0 10px;
+  }
+  .person-detail p:last-child { margin-bottom: 0; }
+  .person-fun-fact {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(212,176,96,0.05);
+    border-left: 2px solid rgba(212,176,96,0.35);
+    border-radius: 0 3px 3px 0;
+  }
+  .person-fun-fact-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #d4b060;
+    margin-bottom: 3px;
+  }
+  .person-fun-fact-text {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: rgba(192,184,144,0.85);
+    line-height: 1.5;
+  }
+  .person-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    border-radius: 2px;
+    border: 1px solid currentColor;
+    transition: background 0.2s ease, text-shadow 0.2s ease;
+  }
+  .person-shire    .person-name { color: #8cc07a; }
+  .person-evenstar .person-name { color: #80b8b0; }
+  .person-twilight .person-name { color: #a898c0; }
+  .person-hearth   .person-name { color: #d4b060; }
+  .person-earthen  .person-name { color: #c8a068; }
+  .person-shadow   .person-name { color: #c07060; }
+  .person-shire    .person-link { color: #8cc07a; }
+  .person-shire    .person-link:hover { background: rgba(140,192,122,0.1); text-shadow: 0 0 10px rgba(140,192,122,0.4); }
+  .person-evenstar .person-link { color: #80b8b0; }
+  .person-evenstar .person-link:hover { background: rgba(128,184,176,0.1); text-shadow: 0 0 10px rgba(128,184,176,0.4); }
+  .person-twilight .person-link { color: #a898c0; }
+  .person-twilight .person-link:hover { background: rgba(168,152,192,0.1); text-shadow: 0 0 10px rgba(168,152,192,0.4); }
+  .person-hearth   .person-link { color: #d4b060; }
+  .person-hearth   .person-link:hover { background: rgba(212,176,96,0.1); text-shadow: 0 0 10px rgba(212,176,96,0.4); }
+
+  /* Dispatch row (Latest Dispatches column) */
+  .dispatch-row {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .dispatch-row + .dispatch-row {
+    border-top: 1px solid rgba(140,120,80,0.1);
+  }
+  .dispatch-pip {
+    width: 3px;
+    align-self: stretch;
+    border-radius: 1px;
+    flex-shrink: 0;
+    margin: 3px 0;
+  }
+  .pip-shire    { background: #4a7a3a; }
+  .pip-hearth   { background: #8a7030; }
+  .pip-evenstar { background: #4a7878; }
+  .pip-earthen  { background: #7a5a30; }
+  .pip-shadow   { background: #6a3028; }
+  .pip-twilight { background: #5a4a70; }
+  .dispatch-title {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    color: rgba(224,220,192,0.85);
+    line-height: 1.35;
+  }
+  .dispatch-link {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #d4b060 !important;
+    border: none !important;
+    text-decoration: none !important;
+    position: relative;
+  }
+  .dispatch-link:hover {
+    text-shadow: 0 0 12px rgba(212,176,96,0.4);
+  }
+  .dispatch-empty {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: rgba(192,184,144,0.5);
+    line-height: 1.65;
+    position: relative;
+  }
+
+  @media (max-width: 1100px) {
+    .week-strip { grid-template-columns: repeat(4, 1fr); }
+    .week-strip > :nth-child(7) { grid-column: 1 / -1; }
+  }
+  @media (max-width: 900px) {
+    .three-col { grid-template-columns: 1fr 1fr; }
+    .three-col > :nth-child(3) { grid-column: 1 / -1; }
+  }
+  @media (max-width: 720px) {
+    .now-hero {
+      flex-direction: column;
+      text-align: center;
+      padding: 22px 18px;
+      gap: 16px;
+    }
+    .now-clock {
+      border-left: none;
+      border-top: 1px solid rgba(212,176,96,0.2);
+      padding-left: 0;
+      padding-top: 12px;
+      text-align: center;
+      width: 100%;
+    }
+    .now-name { font-size: 1.7rem; }
+    .week-strip { grid-template-columns: repeat(2, 1fr); }
+    .week-strip > :nth-child(7) { grid-column: 1 / -1; }
+    .three-col { grid-template-columns: 1fr; }
+    .three-col > :nth-child(3) { grid-column: auto; }
+  }
+</style>
+
+<!-- ═════ NOW ON DUTY HERO ═════ -->
+<div class="now-hero" id="now-hero">
+  <div class="now-medallion-wrap">
+    <img id="now-medallion-img" class="now-medallion" src="" alt="" style="display:none;">
+    <div id="now-medallion-fallback" class="now-medallion-fallback">&middot;</div>
+  </div>
+  <div class="now-text">
+    <div class="now-label" id="now-label">Now on Duty</div>
+    <div class="now-name" id="now-name">&hellip;</div>
+    <div class="now-meta" id="now-meta">&nbsp;</div>
+  </div>
+  <div class="now-clock">
+    <span class="clock-time" id="clock-time">&mdash;:&mdash;</span>
+    <span id="clock-day">&mdash;</span>
+  </div>
+</div>
+
+<!-- ═════ WEEK STRIP ═════ -->
+<div class="week-heading">
+  <h2>LOD Schedule</h2>
+  <div class="home-sub">Leader on Duty &mdash; Weekly Rotation</div>
+  <div class="home-rule"></div>
+</div>
+
+<div class="week-strip">
+  <? for (var i = 0; i < schedule.length; i++) { var day = schedule[i]; ?>
+    <div class="day-card realm-<?= day.color ?>" data-day="<?= day.day ?>">
+      <div class="day-name"><?= day.day.toUpperCase() ?></div>
+      <div class="day-slots">
+        <? for (var j = 0; j < day.slots.length; j++) {
+             var slot = day.slots[j];
+             var compactT = slot.time.replace(/:00/g, '').replace(/\s*[–\-]\s*/, '–');
+        ?>
+          <div class="day-slot" data-time="<?= slot.time ?>">
+            <span class="slot-time"><?= compactT ?></span>
+            <span class="slot-name agent-<?= slot.agentKey ?>"><?= slot.agent ?></span>
+          </div>
+        <? } ?>
+      </div>
+    </div>
+  <? } ?>
+</div>
+
+<!-- ═════ 3-COL FOOTER ═════ -->
+<div class="three-col">
+
+  <div class="col-card col-shire">
+    <div class="col-label">Team Leads</div>
+    <? for (var i = 0; i < leads.length; i++) {
+         var lead = leads[i];
+         if (lead.role !== 'Team Lead') continue;
+    ?>
+      <div class="person-card person-<?= lead.color ?>">
+        <div class="person-row">
+          <img class="person-medallion" src="<?= lead.medallion ?>" alt="">
+          <div class="person-info">
+            <div class="person-name"><?= lead.name ?></div>
+            <div class="person-role"><?= lead.role ?></div>
+          </div>
+          <div class="person-chevron" aria-hidden="true"></div>
+        </div>
+        <div class="person-detail">
+          <? if (lead.bio) { for (var k = 0; k < lead.bio.length; k++) { ?>
+            <p><?= lead.bio[k] ?></p>
+          <? } } ?>
+          <? if (lead.funFact) { ?>
+            <div class="person-fun-fact">
+              <span class="person-fun-fact-label">Fun Fact</span>
+              <span class="person-fun-fact-text"><?= lead.funFact ?></span>
+            </div>
+          <? } ?>
+          <? if (lead.link) { ?>
+            <a class="person-link" href="<?= lead.link.url ?>" target="_blank" rel="noopener"><?= lead.link.text ?> &rarr;</a>
+          <? } ?>
+        </div>
+      </div>
+    <? } ?>
+  </div>
+
+  <div class="col-card col-twilight">
+    <div class="col-label">Senior Specialists</div>
+    <? for (var i = 0; i < leads.length; i++) {
+         var lead = leads[i];
+         if (lead.role !== 'Senior Specialist') continue;
+    ?>
+      <div class="person-card person-<?= lead.color ?>">
+        <div class="person-row">
+          <img class="person-medallion" src="<?= lead.medallion ?>" alt="">
+          <div class="person-info">
+            <div class="person-name"><?= lead.name ?></div>
+            <div class="person-role"><?= lead.role ?></div>
+          </div>
+          <div class="person-chevron" aria-hidden="true"></div>
+        </div>
+        <div class="person-detail">
+          <? if (lead.bio) { for (var k = 0; k < lead.bio.length; k++) { ?>
+            <p><?= lead.bio[k] ?></p>
+          <? } } ?>
+          <? if (lead.funFact) { ?>
+            <div class="person-fun-fact">
+              <span class="person-fun-fact-label">Fun Fact</span>
+              <span class="person-fun-fact-text"><?= lead.funFact ?></span>
+            </div>
+          <? } ?>
+          <? if (lead.link) { ?>
+            <a class="person-link" href="<?= lead.link.url ?>" target="_blank" rel="noopener"><?= lead.link.text ?> &rarr;</a>
+          <? } ?>
+        </div>
+      </div>
+    <? } ?>
+  </div>
+
+  <div class="col-card col-hearth">
+    <div class="col-label">Latest Dispatches</div>
+    <? if (latestDispatches && latestDispatches.length > 0) { ?>
+      <? for (var i = 0; i < latestDispatches.length; i++) { var d = latestDispatches[i]; ?>
+        <div class="dispatch-row">
+          <div class="dispatch-pip pip-<?= d.color ?>"></div>
+          <div class="dispatch-title"><?= d.title ?></div>
+        </div>
+      <? } ?>
+      <a class="dispatch-link" href="<?= announcementsUrl ?>">View all &rarr;</a>
+    <? } else { ?>
+      <div class="dispatch-empty">Once the Announcements doc is wired into <code>DOC_IDS</code>, the latest dispatches will appear here.</div>
+    <? } ?>
+  </div>
+
+</div>
+
+<!-- ═════ LIVE "NOW ON DUTY" UPDATE ═════ -->
+<script>
+  (function() {
+    var SCHEDULE = <?!= JSON.stringify(schedule) ?>;
+    var MEDALLIONS = <?!= JSON.stringify(agentMedallions) ?>;
+    var AGENT_COLORS = {
+      andrezza: '#a898c0', joao: '#80b8b0', megan: '#8cc07a',
+      erika:    '#d4b060', andro: '#c07060', gus:   '#8E9680',
+      lu:       '#d4a0b0'
+    };
+    var DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+    // Get the current time as observed in America/Chicago (where the
+    // schedule is anchored). Works regardless of the viewer's locale.
+    function getCSTNow() {
+      var fmt = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Chicago',
+        weekday: 'long',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        month: 'short',
+        day: 'numeric'
+      });
+      var parts = {};
+      fmt.formatToParts(new Date()).forEach(function(p) { parts[p.type] = p.value; });
+      var hour = parseInt(parts.hour, 10);
+      if (hour === 24) hour = 0; // Some browsers report midnight as 24
+      return {
+        dayName:  parts.weekday,
+        hour:     hour,
+        minute:   parseInt(parts.minute, 10),
+        hh:       (hour < 10 ? '0' : '') + hour,
+        mm:       parts.minute,
+        monthDay: parts.month + ' ' + parts.day
+      };
+    }
+
+    function parseRange(timeStr) {
+      var m = timeStr.match(/(\d{2}):(\d{2})\s*[\u2013\u2014\-]\s*(\d{2}):(\d{2})/);
+      if (!m) return null;
+      return {
+        startMin: parseInt(m[1], 10) * 60 + parseInt(m[2], 10),
+        endMin:   parseInt(m[3], 10) * 60 + parseInt(m[4], 10),
+        startStr: m[1] + ':' + m[2],
+        endStr:   m[3] + ':' + m[4]
+      };
+    }
+
+    function findSlotInfo(dayName, hour, minute) {
+      var day = SCHEDULE.find(function(d) { return d.day === dayName; });
+      var nowMin = hour * 60 + minute;
+
+      // Active slot today?
+      if (day) {
+        for (var i = 0; i < day.slots.length; i++) {
+          var r = parseRange(day.slots[i].time);
+          if (!r) continue;
+          if (nowMin >= r.startMin && nowMin < r.endMin) {
+            return { state: 'active', slot: day.slots[i], endStr: r.endStr,
+                     next: day.slots[i + 1] || null };
+          }
+        }
+        // Off duty, but more slots today?
+        for (var i = 0; i < day.slots.length; i++) {
+          var r = parseRange(day.slots[i].time);
+          if (r && r.startMin > nowMin) {
+            return { state: 'off', next: day.slots[i], nextStartStr: r.startStr,
+                     nextDay: null };
+          }
+        }
+      }
+      // No more slots today — roll forward to next day with a slot.
+      var idx = DAY_NAMES.indexOf(dayName);
+      if (idx >= 0) {
+        for (var k = 1; k <= 7; k++) {
+          var d = SCHEDULE.find(function(x) {
+            return x.day === DAY_NAMES[(idx + k) % 7];
+          });
+          if (d && d.slots && d.slots.length) {
+            var r = parseRange(d.slots[0].time);
+            return { state: 'off', next: d.slots[0],
+                     nextStartStr: r.startStr, nextDay: d.day };
+          }
+        }
+      }
+      return { state: 'off' };
+    }
+
+    function setMedallion(agentKey, agentName) {
+      var img = document.getElementById('now-medallion-img');
+      var fb  = document.getElementById('now-medallion-fallback');
+      var url = MEDALLIONS[agentKey];
+      if (url) {
+        img.src = url;
+        img.alt = agentName + ' medallion';
+        img.style.display = 'block';
+        fb.style.display  = 'none';
+      } else {
+        img.style.display = 'none';
+        fb.style.display  = 'flex';
+        var color = AGENT_COLORS[agentKey] || '#c0b890';
+        fb.textContent     = (agentName || '\u00B7').charAt(0).toUpperCase();
+        fb.style.color     = color;
+        fb.style.borderColor = color;
+      }
+    }
+
+    function highlightCurrent(dayName, slot) {
+      document.querySelectorAll('.day-card').forEach(function(card) {
+        card.classList.toggle('current-day', card.dataset.day === dayName);
+      });
+      document.querySelectorAll('.day-slot.is-current-slot').forEach(function(el) {
+        el.classList.remove('is-current-slot');
+      });
+      if (slot) {
+        var card = document.querySelector('.day-card[data-day="' + dayName + '"]');
+        if (card) {
+          var s = card.querySelector('.day-slot[data-time="' + slot.time + '"]');
+          if (s) s.classList.add('is-current-slot');
+        }
+      }
+    }
+
+    function update() {
+      var now = getCSTNow();
+
+      document.getElementById('clock-time').textContent = now.hh + ':' + now.mm + ' CST';
+      document.getElementById('clock-day').textContent  = now.dayName.toUpperCase();
+
+      var nameEl = document.getElementById('now-name');
+      var metaEl = document.getElementById('now-meta');
+      var info   = findSlotInfo(now.dayName, now.hour, now.minute);
+
+      if (info.state === 'active') {
+        var slot = info.slot;
+        setMedallion(slot.agentKey, slot.agent);
+        nameEl.textContent = slot.agent;
+        nameEl.style.color = AGENT_COLORS[slot.agentKey] || '#e0dcc0';
+
+        var meta = 'until ' + info.endStr + ' CST';
+        if (info.next) {
+          meta += ' <span class="agent-next-label">&middot; Next</span> ' + info.next.agent;
+        }
+        metaEl.innerHTML = meta;
+        highlightCurrent(now.dayName, slot);
+      } else {
+        setMedallion(null, '\u00B7');
+        nameEl.textContent = 'Off Duty';
+        nameEl.style.color = 'rgba(192,184,144,0.55)';
+        if (info.next) {
+          var dayBit = info.nextDay && info.nextDay !== now.dayName
+            ? ' (' + info.nextDay + ')' : '';
+          metaEl.innerHTML = '<span class="agent-next-label">Next</span> ' + info.next.agent
+                           + ' at ' + info.nextStartStr + ' CST' + dayBit;
+        } else {
+          metaEl.textContent = '';
+        }
+        highlightCurrent(now.dayName, null);
+      }
+    }
+
+    update();
+    setInterval(update, 30000); // refresh every 30s
+
+    // Click-to-expand bio rows
+    document.querySelectorAll('.person-card .person-row').forEach(function(row) {
+      row.addEventListener('click', function() {
+        row.parentElement.classList.toggle('expanded');
+      });
+    });
+  })();
+</script>

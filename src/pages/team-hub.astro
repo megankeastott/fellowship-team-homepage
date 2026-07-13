@@ -1,0 +1,116 @@
+---
+import Shell from '../layouts/Shell.astro';
+import PageHeading from '../components/PageHeading.astro';
+import '../styles/team-hub.css';
+import { TEAM_ROSTER, INCENTIVES, SUPERLATIVES } from '../config/team';
+import { EXTERNAL } from '../config/site';
+
+const guardians = TEAM_ROSTER.fellowship.filter((p) => p.team === 'guardians');
+const wardens = TEAM_ROSTER.fellowship.filter((p) => p.team === 'wardens');
+const bingoUrl = EXTERNAL.bingoUrl?.trim();
+---
+<Shell title="The Shire — Team Hub" activeSlug="team-hub">
+  <PageHeading title="The Shire — Team Hub" />
+
+  <div class="grid">
+    <!-- THE RED BOOK -->
+    <div class="card c-earthen full-width">
+      <div class="card-header"><h2>The Red Book</h2><div class="line"></div></div>
+      <div class="card-body">
+        <div class="red-book">
+          <div class="ledger-col">
+            <div class="ledger-heading h-shire">Leadership</div>
+            <div class="ledger-sub">Leads &amp; Senior Specialists</div>
+            {TEAM_ROSTER.leadership.map((p) => (
+              <div class="ledger-entry">
+                <div class="ledger-name">{p.name}</div>
+                <div class="ledger-title">{p.title}</div>
+              </div>
+            ))}
+          </div>
+
+          <div class="ledger-col">
+            <div class="ledger-heading h-evenstar">Guardians of the Living Platform</div>
+            <div class="ledger-sub">LLP Support</div>
+            {guardians.length === 0 && <div class="ledger-empty">No agents assigned yet.</div>}
+            {guardians.map((p) => (
+              <div class="ledger-entry">
+                <div class="ledger-name">{p.name}</div>
+                <div class="ledger-title">{p.title}</div>
+              </div>
+            ))}
+          </div>
+
+          <div class="ledger-col">
+            <div class="ledger-heading h-hearth">Wardens of the Tutor Realm</div>
+            <div class="ledger-sub">TES Support</div>
+            {wardens.length === 0 && <div class="ledger-empty">No agents assigned yet.</div>}
+            {wardens.map((p) => (
+              <div class="ledger-entry">
+                <div class="ledger-name">{p.name}</div>
+                <div class="ledger-title">{p.title}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE DRAGON'S HOARD -->
+    <div class="card c-hearth">
+      <div class="card-header"><h2>The Dragon's Hoard</h2><div class="line"></div></div>
+      <div class="card-body">
+        <div class="hoard-period">{INCENTIVES.period} Prizes</div>
+        {INCENTIVES.items.map((item) => (
+          <div class="hoard-item">
+            <div class="hoard-row">
+              <div class="hoard-name">{item.name}</div>
+              <div class="hoard-prize">{item.prize}</div>
+            </div>
+            <div class="hoard-detail">{item.detail}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- BINGO -->
+    <div class="card c-shadow">
+      <div class="card-header"><h2>Things Tutors Say</h2><div class="line"></div></div>
+      <div class="card-body">
+        <p class="bingo-pitch">
+          Five rounds. Win three out of five to claim a prize — two winners take home
+          <span class="bold">$25</span> each.
+        </p>
+        {bingoUrl ? (
+          <a class="bingo-link" href={bingoUrl} target="_blank" rel="noopener">Play Bingo →</a>
+        ) : (
+          <div class="bingo-todo">Set <code>bingoUrl</code> in <code>src/config/site.ts</code> to enable this link.</div>
+        )}
+      </div>
+    </div>
+
+    <!-- TALES TOLD AT THE GREEN DRAGON -->
+    <div class="card c-twilight full-width">
+      <div class="card-header"><h2>Tales Told at the Green Dragon</h2><div class="line"></div></div>
+      <div class="card-body">
+        <div class="tales-meta">Round {SUPERLATIVES.round} — Superlative Winners</div>
+        <div class="tales-prompt">{SUPERLATIVES.prompt}</div>
+        {SUPERLATIVES.winners.length > 0 ? (
+          <div class="tales-grid">
+            {SUPERLATIVES.winners.map((w) => (
+              <div class="tale-badge">
+                <div class="tale-text">“{w.tale}”</div>
+                <div class="tale-winner">{w.name}</div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="tales-empty">
+            Tallying in progress. Once a round closes, fill in <code>SUPERLATIVES.winners</code> in
+            <code>src/config/team.ts</code> and rebuild.
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</Shell>

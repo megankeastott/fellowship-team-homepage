@@ -1,0 +1,72 @@
+---
+import Shell from '../layouts/Shell.astro';
+import PageHeading from '../components/PageHeading.astro';
+import DocContent from '../components/DocContent.astro';
+import Icon from '../components/Icon.astro';
+import {
+  ROUTES,
+  getRoute,
+  routeUrl,
+  HUB_CHILD_DESCRIPTIONS,
+  type DocRoute,
+  type HubRoute,
+} from '../config/site';
+import { getDocContent } from '../lib/googleDocs';
+
+export async function getStaticPaths() {
+  return ROUTES.filter((r) => r.kind === 'doc' || r.kind === 'hub').map((route) => ({
+    params: { slug: route.slug },
+    props: { route },
+  }));
+}
+
+const { route } = Astro.props as { route: DocRoute | HubRoute };
+
+let content = null;
+if (route.kind === 'doc') {
+  content = await getDocContent(route.docKey);
+}
+
+const parent = route.kind === 'doc' && route.parent ? getRoute(route.parent) : null;
+
+const children =
+  route.kind === 'hub'
+    ? route.children
+        .map((slug) => getRoute(slug))
+        .filter((r): r is DocRoute => !!r && r.kind === 'doc')
+    : [];
+---
+<Shell title={route.title} activeSlug={route.slug}>
+  {parent && (
+    <div class="breadcrumb">
+      <a href={routeUrl(parent.slug)}>← Back to {parent.title}</a>
+    </div>
+  )}
+
+  <PageHeading title={route.title} />
+
+  {route.kind === 'doc' && content && <DocContent content={content} />}
+
+  {route.kind === 'hub' && (
+    <div class="grid">
+      {(route as HubRoute).sectionAsset && (
+        <div class="section-indicator">
+          <span class="sec-icon"><Icon name={(route as HubRoute).sectionAsset} /></span>
+          <span class="section-title">Choose Your Path</span>
+          <span class="section-line"></span>
+        </div>
+      )}
+      {children.map((child) => (
+        <a class={`card hub-card c-${child.color ?? 'shire'} full-width`} href={routeUrl(child.slug)}>
+          <div class="card-header">
+            <h2>{child.title} <span class="arrow">→</span></h2>
+            <div class="line"></div>
+          </div>
+          {HUB_CHILD_DESCRIPTIONS[child.slug] && (
+            <div class="card-body"><p>{HUB_CHILD_DESCRIPTIONS[child.slug]}</p></div>
+          )}
+        </a>
+      ))}
+    </div>
+  )}
+</Shell>

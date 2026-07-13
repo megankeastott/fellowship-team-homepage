@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Shire — Team Hub</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #121a0e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    font-family: 'Crimson Text', serif;
+    color: #d4cba9;
+  }
+
+  /* ── Image Dividers ── */
+  .img-divider { text-align: center; margin: 28px 0; line-height: 0; grid-column: 1 / -1; }
+  .img-divider img { max-width: 400px; width: 60%; opacity: 0.35; filter: drop-shadow(0 0 4px rgba(138,112,48,0.15)); }
+  .img-divider-sm img { max-width: 280px; width: 40%; }
+
+  /* ── Vine Edge Strip ── */
+  .vine-edge { position: fixed; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, transparent 0%, rgba(90,128,56,0.3) 15%, rgba(90,128,56,0.6) 30%, rgba(140,192,122,0.4) 50%, rgba(90,128,56,0.6) 70%, rgba(90,128,56,0.3) 85%, transparent 100%); z-index: 100; }
+  .vine-edge::after { content:''; position:absolute; bottom:-4px; left:0; right:0; height:4px; background:linear-gradient(to bottom, rgba(90,128,56,0.15), transparent); }
+
+  /* ── Smoke Wisps ── */
+  .smoke-container { position: absolute; top: -30px; left: 12px; width: 30px; height: 40px; pointer-events: none; overflow: visible; }
+  .smoke-wisp { position: absolute; bottom: 0; width: 6px; height: 6px; border-radius: 50%; background: rgba(180,160,120,0.12); filter: blur(3px); animation: smokeRise 4s ease-out infinite; }
+  .smoke-wisp:nth-child(2) { left: 8px; animation-delay: 1.3s; animation-duration: 3.5s; }
+  .smoke-wisp:nth-child(3) { left: 4px; animation-delay: 2.6s; animation-duration: 4.5s; }
+  @keyframes smokeRise { 0% { opacity: 0; transform: translateY(0) translateX(0) scale(1); } 10% { opacity: 0.6; } 50% { opacity: 0.3; transform: translateY(-20px) translateX(4px) scale(1.5); } 100% { opacity: 0; transform: translateY(-40px) translateX(-3px) scale(2.5); } }
+
+  /* ── Section icon sizing ── */
+  .section-indicator .sec-icon { height: 44px; filter: drop-shadow(0 0 6px rgba(212,176,96,0.3)); }
+  .section-indicator .sec-icon-glow { height: 44px; animation: candleFlicker 3s ease-in-out infinite; }
+
+  /* ── Roster sub-divider ── */
+  .roster-divider-wrap { text-align: center; margin: 32px 0 14px; }
+  .roster-divider-wrap img { max-width: 300px; width: 50%; opacity: 0.3; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; }
+
+  /* ── Firefly Canvas ── */
+  canvas#fireflies { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .container { width: 100%; max-width: 1100px; position: relative; z-index: 1; }
+
+  /* ── Page Heading ── */
+  .page-heading { text-align: center; margin: 20px 0 10px; }
+  .page-heading h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #d4b060;
+    text-shadow: 0 0 16px rgba(212,176,96,0.25);
+  }
+  .page-heading .page-sub {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #8a9e70;
+    margin-top: 4px;
+  }
+
+  /* ── Section Indicators ── */
+  .section-indicator { display: flex; align-items: center; gap: 14px; margin: 48px 0 22px; grid-column: 1 / -1; }
+  .section-indicator:first-child { margin-top: 0; }
+  .section-indicator img { height: 52px; filter: drop-shadow(0 0 6px rgba(212,176,96,0.3)); }
+  .candle-img { animation: candleFlicker 3s ease-in-out infinite; }
+  @keyframes candleFlicker { 0%,100% { filter: drop-shadow(0 0 4px rgba(212,176,96,0.3)); } 25% { filter: drop-shadow(0 0 10px rgba(212,176,96,0.5)) drop-shadow(0 0 20px rgba(200,140,40,0.2)); } 50% { filter: drop-shadow(0 0 6px rgba(212,176,96,0.35)); } 75% { filter: drop-shadow(0 0 12px rgba(212,176,96,0.55)) drop-shadow(0 0 25px rgba(200,140,40,0.25)); } }
+  .section-title { font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #8a7a55; white-space: nowrap; }
+  .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(138,112,48,0.3), transparent); }
+
+  /* ═══════════════════════════════════════════
+     SHARED PARCHMENT SURFACE — used everywhere
+     ═══════════════════════════════════════════ */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+  .card {
+    position: relative;
+    border: none;
+    border-radius: 2px;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    transform: rotate(-0.3deg);
+    background: none;
+  }
+  .card:nth-child(even) { transform: rotate(0.4deg); }
+  .card.full-width { transform: rotate(0.15deg); }
+  .card.full-width:nth-child(even) { transform: rotate(-0.2deg); }
+  .card::before, .card::after { display: none; }
+
+  .full-width { grid-column: 1 / -1; }
+
+  .card-inner {
+    position: relative;
+    background: linear-gradient(170deg, rgba(180,160,120,0.10) 0%, rgba(160,140,100,0.07) 30%, rgba(140,120,80,0.10) 70%, rgba(120,100,60,0.08) 100%);
+    border: 1px solid rgba(140,120,80,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .card-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,140,100,0.018) 2px, rgba(160,140,100,0.018) 3px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(140,120,80,0.008) 40px, rgba(140,120,80,0.008) 41px),
+      radial-gradient(ellipse at 30% 20%, rgba(180,160,120,0.05), transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgba(140,120,80,0.04), transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .card-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 40px rgba(60,40,20,0.3), inset 0 0 80px rgba(30,20,10,0.15);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Shared nail-head spec — reused by every parchment surface */
+  .nail-tl, .nail-tr {
+    position: absolute;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 32%, rgba(180,165,135,0.6) 0%, rgba(130,110,75,0.5) 30%, rgba(80,60,35,0.6) 70%, rgba(50,35,18,0.5) 100%);
+    border: 1px solid rgba(60,42,20,0.5);
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5), inset 0 1px 1px rgba(200,180,140,0.2);
+  }
+  .nail-tl { top: 8px; left: 10px; }
+  .nail-tr { top: 8px; right: 10px; }
+  /* Smaller variant for compact parchment surfaces (tale-badges, quote-cards, incentive-extras) */
+  .nail-sm.nail-tl, .nail-sm.nail-tr { width: 12px; height: 12px; }
+  .nail-sm.nail-tl { top: 6px; left: 8px; }
+  .nail-sm.nail-tr { top: 6px; right: 8px; }
+
+  /* Realm header colors */
+  .c-shire   { border-color: transparent; }
+  .c-hearth  { border-color: transparent; }
+  .c-evenstar { border-color: transparent; }
+  .c-earthen { border-color: transparent; }
+  .c-shadow  { border-color: transparent; }
+  .c-twilight { border-color: transparent; }
+  .c-shire .card-header h2    { color:#8cc07a; }
+  .c-hearth .card-header h2   { color:#d4b060; }
+  .c-evenstar .card-header h2 { color:#80b8b0; }
+  .c-earthen .card-header h2  { color:#c8a068; }
+  .c-shadow .card-header h2   { color:#c07060; }
+  .c-twilight .card-header h2 { color:#a898c0; }
+
+  .card-header {
+    padding: 14px 18px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(140,120,80,0.12);
+    background: none;
+    position: relative;
+    z-index: 3;
+    text-align: center;
+  }
+  .card-header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .card-header .line { display: none; }
+
+  .card-body {
+    padding: 16px 18px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #c0b890;
+    flex: 1;
+    position: relative;
+    z-index: 3;
+  }
+  .card-body::before { display: none; }
+  .card-body p { margin-bottom: 10px; }
+  .card-body p:last-child { margin-bottom: 0; }
+
+  .full-width .card-body.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+
+  .label { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin: 8px 0 4px; }
+  .label-shire    { color:#8cc07a; }
+  .label-hearth   { color:#d4b060; }
+  .label-evenstar { color:#80b8b0; }
+  .label-earthen  { color:#c8a068; }
+  .label-shadow   { color:#c07060; }
+  .label-twilight { color:#a898c0; }
+
+  .divider { border:none; border-top:1px solid rgba(138,112,48,0.15); margin:12px 0; }
+  .bold { font-weight:bold; color:#e0dcc0; }
+  .italic { font-style:italic; color:#908868; }
+
+  /* ── Roster: Ledger Style ── */
+  .ledger { border: 1px solid rgba(138,112,48,0.25); border-radius: 4px; overflow: hidden; position: relative; background: rgba(138,112,48,0.03); }
+  .ledger::before, .ledger::after { content:''; position:absolute; width:8px; height:8px; z-index:3; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(180,160,120,0.5), rgba(100,80,50,0.6)); box-shadow: inset 0 1px 1px rgba(255,240,200,0.3), 0 1px 2px rgba(0,0,0,0.4); }
+  .ledger::before { top:6px; left:6px; }
+  .ledger::after  { top:6px; right:6px; }
+  .ledger-body { position: relative; display: grid; grid-template-columns: 1fr 1fr; }
+  .ledger-body::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(160,140,100,0.008) 3px, rgba(160,140,100,0.008) 4px), radial-gradient(ellipse at 20% 50%, rgba(160,140,100,0.02), transparent 70%), radial-gradient(ellipse at 80% 30%, rgba(120,100,60,0.015), transparent 60%); pointer-events: none; z-index: 0; }
+  .ledger-body::after { content: ''; position: absolute; top: 10px; bottom: 10px; left: 50%; width: 1px; background: rgba(138,112,48,0.15); pointer-events: none; z-index: 1; }
+  .ledger-row { display: flex; align-items: center; padding: 9px 18px; border-bottom: 1px solid rgba(138,112,48,0.06); transition: background 0.15s ease; position: relative; z-index: 2; }
+  .ledger-row:hover { background: rgba(138,112,48,0.04); }
+  .ledger-row:nth-child(4n+3), .ledger-row:nth-child(4n+4) { background: rgba(138,112,48,0.02); }
+  .ledger-row:nth-child(4n+3):hover, .ledger-row:nth-child(4n+4):hover { background: rgba(138,112,48,0.05); }
+  .ledger-row .lr-name { font-family: 'Cinzel', serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; color: #d4cba9; transition: color 0.2s ease; }
+  .ledger-row:hover .lr-name { color: #e8e0c0; }
+  .ledger-row .lr-sep { color: #908868; margin: 0 4px; font-weight: 400; }
+  .ledger-row .lr-title { font-family: 'Crimson Text', serif; font-style: italic; font-size: 0.95rem; color: #908868; transition: opacity 0.2s ease; }
+  .ledger-row:hover .lr-title { opacity: 0.8; }
+
+  /* ── Superlative Badges (Tales) ── */
+  .tale-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .tale-badge {
+    position: relative;
+    background: linear-gradient(170deg, rgba(180,160,120,0.10) 0%, rgba(160,140,100,0.07) 30%, rgba(140,120,80,0.10) 70%, rgba(120,100,60,0.08) 100%);
+    border: 1px solid rgba(140,120,80,0.2);
+    border-radius: 2px;
+    padding: 24px 16px 16px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .tale-badge::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,140,100,0.018) 2px, rgba(160,140,100,0.018) 3px),
+      radial-gradient(ellipse at 30% 20%, rgba(180,160,120,0.05), transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgba(140,120,80,0.04), transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .tale-badge::after {
+    content: '';
+    position: absolute; inset: 0;
+    box-shadow: inset 0 0 30px rgba(60,40,20,0.25);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .tale-badge > * { position: relative; z-index: 3; }
+
+  .tale-badge .tale-award {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .tale-badge .tale-name {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #d4cba9;
+  }
+  .tale-badge .tale-quote {
+    font-size: 0.78rem;
+    color: #908868;
+    margin-top: 8px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  /* Realm color only on the award name */
+  .tb-shire    .tale-award { color: #8cc07a; }
+  .tb-hearth   .tale-award { color: #d4b060; }
+  .tb-evenstar .tale-award { color: #80b8b0; }
+  .tb-earthen  .tale-award { color: #c8a068; }
+  .tb-shadow   .tale-award { color: #c07060; }
+  .tb-twilight .tale-award { color: #a898c0; }
+
+  /* ── Meme Carousel ── */
+  .carousel-wrap {
+    position: relative;
+    background: linear-gradient(170deg, rgba(180,160,120,0.10) 0%, rgba(160,140,100,0.07) 30%, rgba(140,120,80,0.10) 70%, rgba(120,100,60,0.08) 100%);
+    border: 1px solid rgba(140,120,80,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .carousel-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,140,100,0.018) 2px, rgba(160,140,100,0.018) 3px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(140,120,80,0.008) 40px, rgba(140,120,80,0.008) 41px),
+      radial-gradient(ellipse at 30% 20%, rgba(180,160,120,0.05), transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgba(140,120,80,0.04), transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .carousel-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    box-shadow: inset 0 0 40px rgba(60,40,20,0.3);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .carousel-wrap > * { position: relative; z-index: 3; }
+
+  .carousel-viewport { position: relative; width: 100%; overflow: hidden; }
+  .carousel-track { display: flex; transition: transform 0.4s ease; }
+  .carousel-slide { min-width: 100%; display: flex; flex-direction: column; align-items: center; padding: 24px 48px 16px; }
+  .carousel-slide img { max-width: 100%; max-height: 380px; object-fit: contain; border-radius: 4px; display: block; }
+  .carousel-caption { text-align: center; padding: 12px 0 4px; }
+  .carousel-caption .meme-title { font-family: 'Crimson Text', serif; font-size: 1.05rem; font-weight: 600; color: #d4cba9; line-height: 1.4; margin-bottom: 3px; }
+  .carousel-caption .meme-credit { font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: #908868; opacity: 0.7; }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(120,100,60,0.15);
+    border: 1px solid rgba(140,120,80,0.3);
+    color: #c8a068;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .carousel-btn:hover { background: rgba(140,120,80,0.28); border-color: rgba(140,120,80,0.55); color: #e0dcc0; }
+  .carousel-btn-prev { left: 12px; }
+  .carousel-btn-next { right: 12px; }
+  .carousel-dots { display: flex; justify-content: center; gap: 8px; padding: 10px 0 14px; }
+  .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(140,120,80,0.2); border: 1px solid rgba(140,120,80,0.3); cursor: pointer; transition: background 0.2s ease; }
+  .carousel-dot.active { background: #c8a068; border-color: #c8a068; }
+  .carousel-counter { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.1em; color: rgba(160,140,100,0.5); text-align: center; padding-bottom: 12px; }
+
+  /* ── Poll ── */
+  .poll-bar-group { display: flex; flex-direction: column; gap: 10px; }
+  .poll-row { display: flex; align-items: center; gap: 12px; }
+  .poll-label { font-family: 'Crimson Text', serif; font-size: 0.95rem; font-weight: 600; color: #c0b890; min-width: 140px; text-align: right; }
+  .poll-track { flex: 1; height: 10px; background: rgba(255,255,255,0.04); border-radius: 5px; overflow: hidden; }
+  .poll-fill { height: 100%; border-radius: 5px; transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .poll-fill-hearth { background: #8a7030; }
+  .poll-count { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: #908868; min-width: 55px; text-align: left; }
+  .poll-row.poll-winner .poll-count { color: #d4b060; font-weight: 700; }
+
+  /* ── Quote Board ── */
+  .quote-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .quote-card {
+    position: relative;
+    background: linear-gradient(170deg, rgba(180,160,120,0.10) 0%, rgba(160,140,100,0.07) 30%, rgba(140,120,80,0.10) 70%, rgba(120,100,60,0.08) 100%);
+    border: 1px solid rgba(140,120,80,0.2);
+    border-radius: 2px;
+    padding: 24px 18px 16px;
+    overflow: hidden;
+  }
+  .quote-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,140,100,0.018) 2px, rgba(160,140,100,0.018) 3px),
+      radial-gradient(ellipse at 30% 20%, rgba(180,160,120,0.05), transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgba(140,120,80,0.04), transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .quote-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    box-shadow: inset 0 0 30px rgba(60,40,20,0.25);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .quote-card > * { position: relative; z-index: 3; }
+  .quote-card .quote-text { font-family: 'Crimson Text', serif; font-size: 1.05rem; font-style: italic; line-height: 1.7; color: #c0b890; margin-bottom: 10px; }
+  .quote-card .quote-attr { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; }
+  .qc-shire    .quote-attr { color: #8cc07a; }
+  .qc-hearth   .quote-attr { color: #d4b060; }
+  .qc-evenstar .quote-attr { color: #80b8b0; }
+  .qc-earthen  .quote-attr { color: #c8a068; }
+  .qc-shadow   .quote-attr { color: #c07060; }
+  .qc-twilight .quote-attr { color: #a898c0; }
+
+  /* ── Dragon's Hoard (Team Incentive Program) ── */
+  .incentive-wrap {
+    position: relative;
+    background: linear-gradient(170deg, rgba(180,160,120,0.10) 0%, rgba(160,140,100,0.07) 30%, rgba(140,120,80,0.10) 70%, rgba(120,100,60,0.08) 100%);
+    border: 1px solid rgba(140,120,80,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .incentive-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,140,100,0.018) 2px, rgba(160,140,100,0.018) 3px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(140,120,80,0.008) 40px, rgba(140,120,80,0.008) 41px),
+      radial-gradient(ellipse at 30% 20%, rgba(180,160,120,0.05), transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgba(140,120,80,0.04), transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .incentive-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    box-shadow: inset 0 0 40px rgba(60,40,20,0.3), inset 0 0 80px rgba(30,20,10,0.15);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .incentive-wrap > * { position: relative; z-index: 3; }
+
+  .incentive-header {
+    padding: 14px 18px 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(140,120,80,0.12);
+  }
+  .incentive-header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #d4b060;
+  }
+  .incentive-body { padding: 18px 22px 20px; font-size: 1.05rem; line-height: 1.8; color: #c0b890; }
+  .incentive-body p { margin-bottom: 10px; }
+  .incentive-body p:last-child { margin-bottom: 0; }
+
+  .hoard-drawing {
+    border: 1px solid rgba(138,112,48,0.35);
+    background: rgba(138,112,48,0.05);
+    border-radius: 2px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .hoard-drawing .drawing-date { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.15em; color: #d4b060; display: block; margin-bottom: 6px; }
+  .hoard-drawing .drawing-prize { font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.1em; color: #e0dcc0; }
+  .hoard-drawing .drawing-split { font-size: 0.85rem; color: #908868; margin-top: 6px; }
+
+  .incentive-extras { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px; }
+  .incentive-extra {
+    position: relative;
+    background: linear-gradient(170deg, rgba(180,160,120,0.10) 0%, rgba(160,140,100,0.07) 30%, rgba(140,120,80,0.10) 70%, rgba(120,100,60,0.08) 100%);
+    border: 1px solid rgba(140,120,80,0.2);
+    border-radius: 2px;
+    padding: 24px 16px 16px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .incentive-extra::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,140,100,0.018) 2px, rgba(160,140,100,0.018) 3px),
+      radial-gradient(ellipse at 30% 20%, rgba(180,160,120,0.05), transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgba(140,120,80,0.04), transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .incentive-extra::after {
+    content: '';
+    position: absolute; inset: 0;
+    box-shadow: inset 0 0 30px rgba(60,40,20,0.25);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .incentive-extra > * { position: relative; z-index: 3; }
+  .incentive-extra .ie-icon { margin-bottom: 8px; }
+  .incentive-extra .ie-title { font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+  .incentive-extra .ie-desc { font-family: 'Crimson Text', serif; font-size: 0.9rem; line-height: 1.55; color: #a09878; }
+  .ie-shire    .ie-title { color: #8cc07a; }
+  .ie-hearth   .ie-title { color: #d4b060; }
+  .ie-evenstar .ie-title { color: #80b8b0; }
+  .ie-earthen  .ie-title { color: #c8a068; }
+  .ie-shadow   .ie-title { color: #c07060; }
+  .ie-twilight .ie-title { color: #a898c0; }
+
+  /* ── Office Hours link ── */
+  .office-link { display: inline-block; border: 1px solid; border-radius: 4px; padding: 10px 20px; text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; }
+
+  /* ── Footer ── */
+  .footer-text { text-align: center; font-family: 'Crimson Text', serif; font-style: italic; font-size: 0.95rem; color: rgba(160,180,130,0.5); padding: 0 20px 30px; margin-top: 10px; }
+
+</style>
+</head>
+<body>
+
+<canvas id="fireflies"></canvas>
+<div class="vine-edge"></div>
+
+<div class="container">
+
+  <div class="page-heading">
+    <h1>The Shire</h1>
+    <div class="page-sub">&#8212; one team to find them, one team to help them all &#8212;</div>
+  </div>
+
+  <!-- ═══ OFFICE HOURS ═══ -->
+  <div class="section-indicator">
+    <div style="position:relative;display:inline-block;">
+      <img class="sec-icon-glow" src="https://i.imgur.com/jslbRTo.png" alt="Lantern">
+      <div class="smoke-container"><div class="smoke-wisp"></div><div class="smoke-wisp"></div><div class="smoke-wisp"></div></div>
+    </div>
+    <span class="section-title">Council Chambers</span>
+    <span class="section-line"></span>
+  </div>
+
+  <div class="grid">
+    <div class="card c-earthen">
+      <div class="card-inner"><span class="nail-tl"></span><span class="nail-tr"></span>
+        <div class="card-header"><h2>Tuesday</h2></div>
+        <div class="card-body" style="text-align:center;">
+          <p style="font-family:'Cinzel',serif;font-size:1rem;color:#c8a068;letter-spacing:0.08em;margin-bottom:4px;">4:00 &#8211; 5:00 PM EST</p>
+          <p style="font-size:0.85rem;color:#908868;margin-bottom:12px;">3:00 &#8211; 4:00 PM CST</p>
+          <a href="https://meet.google.com/hrq-snwv-bjt" class="office-link" style="color:#c8a068;border-color:rgba(122,90,48,0.4);background:rgba(122,90,48,0.08);">Join Council &#8594;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card c-evenstar">
+      <div class="card-inner"><span class="nail-tl"></span><span class="nail-tr"></span>
+        <div class="card-header"><h2>Thursday</h2></div>
+        <div class="card-body" style="text-align:center;">
+          <p style="font-family:'Cinzel',serif;font-size:1rem;color:#80b8b0;letter-spacing:0.08em;margin-bottom:4px;">2:00 &#8211; 3:00 PM EST</p>
+          <p style="font-size:0.85rem;color:#908868;margin-bottom:12px;">1:00 &#8211; 2:00 PM CST</p>
+          <a href="https://meet.google.com/uua-cqaw-ata" class="office-link" style="color:#80b8b0;border-color:rgba(74,120,120,0.4);background:rgba(74,120,120,0.08);">Join Council &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TEAM INCENTIVE PROGRAM ═══ -->
+  <div class="section-indicator">
+    <img src="https://i.imgur.com/u4SC2da.png" alt="Tome">
+    <span class="section-title">The Dragon's Hoard</span>
+    <span class="section-line"></span>
+  </div>
+
+  <div class="incentive-wrap">
+    <span class="nail-tl"></span><span class="nail-tr"></span>
+    <div class="incentive-header"><h2>Team Incentive Program</h2></div>
+    <div class="incentive-body">
+      <p>We're launching something exciting, and <span class="bold">YOU</span> have the chance to win. Here's how it works: every week our team hits <span class="bold">ALL</span> of our goals, every agent earns one entry into a monthly prize drawing. The more weeks we crush it together, the more chances you have to win.</p>
+
+      <div class="hoard-drawing">
+        <span class="drawing-date">MAY DRAWING &#8212; MAY 29</span>
+        <div class="drawing-prize">5 Payroll Bonuses of $50 Each</div>
+        <p class="drawing-split">2 for Tutor Support &#183; 2 for Platform Support &#183; 1 for BUCA/Course Ops</p>
+      </div>
+
+      <p>Additional bonuses or extra raffle entries may be awarded for stellar moments. We'll also host contests throughout the month for additional chances and prizes. This is a <span class="bold">TEAM</span> effort. Questions? Drop them in chat or reach out directly.</p>
+
+      <div class="incentive-extras">
+        <div class="incentive-extra ie-evenstar">
+          <span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span>
+          <div class="ie-icon"><img src="https://i.imgur.com/fNOsDGD.png" alt="" style="height:28px;filter:drop-shadow(0 0 3px rgba(128,184,176,0.3));"></div>
+          <div class="ie-title">Team Superlatives</div>
+          <div class="ie-desc">Superlative winners earn 1 extra raffle entry each round.</div>
+        </div>
+        <div class="incentive-extra ie-shire">
+          <span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span>
+          <div class="ie-icon"><img src="https://i.imgur.com/ZZljfTP.png" alt="" style="height:28px;filter:drop-shadow(0 0 3px rgba(140,192,122,0.3));"></div>
+          <div class="ie-title">Bingo</div>
+          <div class="ie-desc">Win 3 of 5 rounds for $25. Two winners possible.</div>
+          <span style="display:inline-block;margin-top:8px;font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:#8cc07a;opacity:0.6;">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="img-divider"><img src="https://i.imgur.com/TNqQ1ZA.png" alt=""></div>
+
+  <!-- ═══ MEET THE FELLOWSHIP — ROSTER ═══ -->
+  <div class="section-indicator">
+    <img class="sec-icon" src="https://i.imgur.com/qQoxF1V.png" alt="Hobbit Door">
+    <span class="section-title">The Fellowship Roster</span>
+    <span class="section-line"></span>
+  </div>
+
+  <div style="text-align:center;margin-bottom:14px;"><span class="label label-evenstar">Guardians of the Living Platform</span></div>
+  <div class="ledger"><div class="ledger-body">
+    <div class="ledger-row"><span class="lr-name">Abigail Leon</span><span class="lr-sep">&#8212;</span><span class="lr-title">Keeper of Lost Threads</span></div>
+    <div class="ledger-row"><span class="lr-name">Bianca Correia</span><span class="lr-sep">&#8212;</span><span class="lr-title">Warden of the Watch</span></div>
+    <div class="ledger-row"><span class="lr-name">Gabrielli Nascimento</span><span class="lr-sep">&#8212;</span><span class="lr-title">Ranger of the Signal Fires</span></div>
+    <div class="ledger-row"><span class="lr-name">Janerys Gonzalez</span><span class="lr-sep">&#8212;</span><span class="lr-title">Herald of Good Tidings</span></div>
+    <div class="ledger-row"><span class="lr-name">Kareel DeLeon</span><span class="lr-sep">&#8212;</span><span class="lr-title">Phantom of the Queue</span></div>
+    <div class="ledger-row"><span class="lr-name">Liam Grunewald</span><span class="lr-sep">&#8212;</span><span class="lr-title">Keeper of the Hearthfire</span></div>
+    <div class="ledger-row"><span class="lr-name">Luciana Zaracho</span><span class="lr-sep">&#8212;</span><span class="lr-title">Scribe of Mischief</span></div>
+    <div class="ledger-row"><span class="lr-name">Marvin Beltre</span><span class="lr-sep">&#8212;</span><span class="lr-title">Captain of the Third Company</span></div>
+    <div class="ledger-row"><span class="lr-name">Raquel de Noronha</span><span class="lr-sep">&#8212;</span><span class="lr-title">Herbalist of Bag End</span></div>
+    <div class="ledger-row"><span class="lr-name">Rusking Gonzalez</span><span class="lr-sep">&#8212;</span><span class="lr-title">Lamplighter of the Shire</span></div>
+    <div class="ledger-row"><span class="lr-name">Victor Faria</span><span class="lr-sep">&#8212;</span><span class="lr-title">Delver of Deep Places</span></div>
+  </div></div>
+
+  <div class="roster-divider-wrap">
+    <img src="https://i.imgur.com/1gL7gIb.png" alt="">
+    <span class="label label-earthen">Wardens of the Tutor Realm</span>
+  </div>
+
+  <div class="ledger"><div class="ledger-body">
+    <div class="ledger-row"><span class="lr-name">Andro Bristol</span><span class="lr-sep">&#8212;</span><span class="lr-title">Marshal of the Mark</span></div>
+    <div class="ledger-row"><span class="lr-name">Arthur Paiva</span><span class="lr-sep">&#8212;</span><span class="lr-title">Bard of the Green Dragon</span></div>
+    <div class="ledger-row"><span class="lr-name">Beatriz Vinas</span><span class="lr-sep">&#8212;</span><span class="lr-title">Riddlemaster of Bree</span></div>
+    <div class="ledger-row"><span class="lr-name">Conor O'Brien</span><span class="lr-sep">&#8212;</span><span class="lr-title">Stone-Tongue of the North</span></div>
+    <div class="ledger-row"><span class="lr-name">Dalia Agramonte</span><span class="lr-sep">&#8212;</span><span class="lr-title">Night-Watcher of the Tower</span></div>
+    <div class="ledger-row"><span class="lr-name">Deivid Zatti</span><span class="lr-sep">&#8212;</span><span class="lr-title">Swiftfoot of the Queue</span></div>
+    <div class="ledger-row"><span class="lr-name">Giovanna Capanema</span><span class="lr-sep">&#8212;</span><span class="lr-title">Steward of Celebrations</span></div>
+    <div class="ledger-row"><span class="lr-name">Jo&#227;o Pimenta</span><span class="lr-sep">&#8212;</span><span class="lr-title">First Warden of the Dawn Shift</span></div>
+    <div class="ledger-row"><span class="lr-name">Mariefaye Lat</span><span class="lr-sep">&#8212;</span><span class="lr-title">Tinker of the Shire</span></div>
+    <div class="ledger-row"><span class="lr-name">Marilia Brito</span><span class="lr-sep">&#8212;</span><span class="lr-title">Sunday's Sentinel</span></div>
+    <div class="ledger-row"><span class="lr-name">Nhadinne MenaYema</span><span class="lr-sep">&#8212;</span><span class="lr-title">Steward of Many Councils</span></div>
+    <div class="ledger-row"><span class="lr-name">Noelia Rojas</span><span class="lr-sep">&#8212;</span><span class="lr-title">Shield-Maiden of Escalations</span></div>
+    <div class="ledger-row"><span class="lr-name">Rebeca Gardi&#233;</span><span class="lr-sep">&#8212;</span><span class="lr-title">Spinner of Tales</span></div>
+    <div class="ledger-row"><span class="lr-name">Yalena Godinez</span><span class="lr-sep">&#8212;</span><span class="lr-title">Collector of Melodies</span></div>
+    <div class="ledger-row"><span class="lr-name">Yulennys Medina</span><span class="lr-sep">&#8212;</span><span class="lr-title">Steadfast of the Shire</span></div>
+  </div></div>
+
+  <!-- ═══ TALES TOLD AT THE GREEN DRAGON ═══ -->
+  <div class="section-indicator">
+    <div style="position:relative;display:inline-block;">
+      <img class="sec-icon" src="https://i.imgur.com/fNOsDGD.png" alt="Mug">
+      <div class="smoke-container"><div class="smoke-wisp"></div><div class="smoke-wisp"></div><div class="smoke-wisp"></div></div>
+    </div>
+    <span class="section-title">Tales Told at the Green Dragon</span>
+    <span class="section-line"></span>
+  </div>
+
+  <div class="tale-grid">
+    <div class="tale-badge tb-earthen"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Accidentally<br>Mute &amp; Continue Talking</div><div class="tale-name">Rebeca Gardi&#233;</div><div class="tale-quote">"pretends to be shocked"</div></div>
+    <div class="tale-badge tb-evenstar"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Have<br>47 Browser Tabs Open</div><div class="tale-name">Giovanna Capanema</div><div class="tale-quote">"A princess in a labyrinth of tabs, trying to find which one is making a sound."</div></div>
+    <div class="tale-badge tb-hearth"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Respond<br>With a Meme / GIF</div><div class="tale-name">Luciana Zaracho</div><div class="tale-quote">12 votes. Unanimous. The team called it before voting started.</div></div>
+    <div class="tale-badge tb-shire"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Turn a Quick<br>Question Into an Hour-Long Adventure</div><div class="tale-name">Raquel de Noronha</div><div class="tale-quote">"I'm so sorry for everybody I 'quick-question' on a daily basis."</div></div>
+  </div>
+
+  <div class="img-divider img-divider-sm"><img src="https://i.imgur.com/1gL7gIb.png" alt=""></div>
+
+  <div class="tale-grid">
+    <div class="tale-badge tb-twilight"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Still Be<br>Typing 5 Minutes Later</div><div class="tale-name">Gus Duran</div><div class="tale-quote">"The G. Either a novel or a confusing one-liner." &#8212; Liam</div></div>
+    <div class="tale-badge tb-shadow"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Have a<br>Pet Appear on Camera</div><div class="tale-name">Megan Keast-Ott</div><div class="tale-quote">Queen Bellatrix always makes an appearance. 8 votes.</div></div>
+    <div class="tale-badge tb-earthen"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Accidentally<br>Close All Their Tabs</div><div class="tale-name">Erika Sanchez</div><div class="tale-quote">"I thought I was still talking to Megan until I realized everything had closed out."</div></div>
+    <div class="tale-badge tb-evenstar"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Win<br>a Reality TV Show</div><div class="tale-name">Luciana Zaracho &amp; Jo&#227;o Pimenta</div><div class="tale-quote">TIE! "The people's sweetheart" meets BBB energy. 3 votes each.</div></div>
+  </div>
+
+  <div class="img-divider img-divider-sm"><img src="https://i.imgur.com/1gL7gIb.png" alt=""></div>
+
+  <div class="tale-grid">
+    <div class="tale-badge tb-shadow"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Accidentally<br>Send a Message to the Wrong Chat</div><div class="tale-name">Marvin Beltre</div><div class="tale-quote">"Honestly that's me, it has already happened to me couple of times."</div></div>
+    <div class="tale-badge tb-shire"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Adopt<br>Every Stray Animal They See</div><div class="tale-name">Dalia Agramonte</div><div class="tale-quote">Runner-up Raquel: "My children were all literally picked up from a sidewalk."</div></div>
+    <div class="tale-badge tb-hearth"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Have the Most<br>Chaotic Desktop / Homescreen</div><div class="tale-name">Kareel DeLeon</div><div class="tale-quote">"Guilty." &#8212; Kareel, self-declaring before anyone else could.</div></div>
+    <div class="tale-badge tb-twilight"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Survive on<br>Coffee Alone for an Entire Shift</div><div class="tale-name">Jo&#227;o Pimenta</div><div class="tale-quote">The LoD runs on pure caffeine. 4 votes.</div></div>
+  </div>
+
+  <div class="img-divider img-divider-sm"><img src="https://i.imgur.com/1gL7gIb.png" alt=""></div>
+
+  <div class="tale-grid">
+    <div class="tale-badge tb-earthen"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Laugh at Their<br>Own Joke Before Finishing It</div><div class="tale-name">Liam Grunewald &amp; Jo&#227;o Pimenta</div><div class="tale-quote">TIE! "So many great jokes" &#8212; Raquel. "Maybe he starts laughing even before starting to tell the joke" &#8212; Beatriz on Jo&#227;o.</div></div>
+    <div class="tale-badge tb-evenstar"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Accidentally<br>Join the Wrong Meeting</div><div class="tale-name">Beatriz Vinas</div><div class="tale-quote">4 votes. Runner-up Marilia nominated herself too. "Me too" &#8212; Marilia.</div></div>
+    <div class="tale-badge tb-twilight"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Have a Theme Song<br>Playing in Their Head at All Times</div><div class="tale-name">Arthur Paiva</div><div class="tale-quote">4 votes. "You'll find him in the music thread every Sunday." &#8212; Erika.</div></div>
+    <div class="tale-badge tb-shadow"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Cry<br>During a Disney Movie</div><div class="tale-name">Raquel de Noronha</div><div class="tale-quote">"Just THINKING about Dumbo, Brother Bear, Bambi OMG." 5 votes. Undisputed champion.</div></div>
+  </div>
+
+  <div class="img-divider img-divider-sm"><img src="https://i.imgur.com/1gL7gIb.png" alt=""></div>
+
+  <div class="tale-grid">
+    <div class="tale-badge tb-shire"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Make You Laugh<br>During a Rough Shift</div><div class="tale-name">Luciana Zaracho</div><div class="tale-quote">3 votes. "Duh" &#8212; Arthur. She always manages to!</div></div>
+    <div class="tale-badge tb-evenstar"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Survive<br>a Zombie Apocalypse</div><div class="tale-name">No Clear Victor</div><div class="tale-quote">5-way split: Noelia, Mariefaye, Rusking, Conor, and Deivid each got one vote. We're all doomed.</div></div>
+    <div class="tale-badge tb-hearth"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Remember<br>Your Birthday</div><div class="tale-name">Giovanna Capanema</div><div class="tale-quote">3 votes. "She remembered mine" &#8212; Erika. The fellowship's unofficial calendar.</div></div>
+    <div class="tale-badge tb-earthen"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Disappear and Come<br>Back With a Wild Story</div><div class="tale-name">Raquel de Noronha &amp; Deivid Zatti</div><div class="tale-quote">TIE! "Literally the wildest stories" &#8212; Arthur on Raquel. "Hands down" &#8212; Megan on Deivid. 2 votes each.</div></div>
+  </div>
+
+  <div class="img-divider img-divider-sm"><img src="https://i.imgur.com/1gL7gIb.png" alt=""></div>
+
+  <div class="tale-grid">
+    <div class="tale-badge tb-twilight"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Name Their Pet<br>After a Movie/Series Character</div><div class="tale-name">Arthur, Jo&#227;o &amp; Raquel</div><div class="tale-quote">Three-way tie. 1 vote each. Written by Rebeca. Megan: "Done, multiple times."</div></div>
+    <div class="tale-badge tb-shadow"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Forget They Should<br>Have Taken Their Break</div><div class="tale-name">Bianca, Yalena &amp; Gabrielli</div><div class="tale-quote">Three-way tie. 1 vote each. Yalena's one-word response: "girl..."</div></div>
+    <div class="tale-badge tb-earthen"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Raise Their<br>Voice When Arguing</div><div class="tale-name">Rebeca, Andro &amp; Jo&#227;o</div><div class="tale-quote">Three-way tie. Jo&#227;o: "I'M SO NOT A VOICE RAISER" &#8212; sent in all caps.</div></div>
+    <div class="tale-badge tb-evenstar"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="tale-award">Most Likely to Eat Fruit<br>Then Also Eat the Candy</div><div class="tale-name">Yulennys Medina</div><div class="tale-quote">2 votes. "How did you know?" &#8212; Yulennys. "The postpartum is tough" &#8212; Giovanna.</div></div>
+  </div>
+
+  <!-- ═══ SCROLLS OF MISCHIEF ═══ -->
+  <div class="section-indicator">
+    <img class="sec-icon" src="https://i.imgur.com/7VdlgsC.png" alt="Quill">
+    <span class="section-title">Scrolls of Mischief</span>
+    <span class="section-line"></span>
+  </div>
+
+  <div class="carousel-wrap">
+    <span class="nail-tl"></span><span class="nail-tr"></span>
+    <div class="carousel-viewport">
+      <button class="carousel-btn carousel-btn-prev" onclick="carouselNav(-1)">&#8249;</button>
+      <button class="carousel-btn carousel-btn-next" onclick="carouselNav(1)">&#8250;</button>
+      <div class="carousel-track" id="memeTrack">
+        <div class="carousel-slide"><img src="https://i.imgur.com/n4BWV5N.jpeg" alt=""><div class="carousel-caption"><div class="meme-title">I Am Also Available for Tickets</div><div class="meme-credit">submitted by Kareel</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/b79r8pR.png" alt=""><div class="carousel-caption"><div class="meme-title">Tutor Expecting Mind-Reading Abilities from Agents</div><div class="meme-credit">submitted by Rebeca</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/5kVaTtC.png" alt=""><div class="carousel-caption"><div class="meme-title">A True Gentleman</div><div class="meme-credit">submitted by Luciana</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/sbYho9k.png" alt=""><div class="carousel-caption"><div class="meme-title">Conflicting Emotions</div><div class="meme-credit">submitted by Beatriz</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/MU5KHZH.png" alt=""><div class="carousel-caption"><div class="meme-title">And I Couldn't Help but Wonder...</div><div class="meme-credit">submitted by Luciana</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/koh7S1U.png" alt=""><div class="carousel-caption"><div class="meme-title">No Joy</div><div class="meme-credit">submitted by Rusking</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/ouJVz9s.png" alt=""><div class="carousel-caption"><div class="meme-title">Fighting AI</div><div class="meme-credit">submitted by Rusking</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/IGOn3HU.png" alt=""><div class="carousel-caption"><div class="meme-title">You Guys Can Read?</div><div class="meme-credit">submitted by Beatriz</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/xgFz9wx.png" alt=""><div class="carousel-caption"><div class="meme-title">Spooky Scary Student</div><div class="meme-credit">submitted by Megan</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/TsXyxrn.png" alt=""><div class="carousel-caption"><div class="meme-title">Love Agent, Here to Help</div><div class="meme-credit">submitted by Arthur</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/E4FqenB.png" alt=""><div class="carousel-caption"><div class="meme-title">Blissful Ignorance</div><div class="meme-credit">submitted by Luciana</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/Mq3f0Bf.png" alt=""><div class="carousel-caption"><div class="meme-title">Poetry from the Heart</div><div class="meme-credit">submitted by Arthur</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/kyLROWl.png" alt=""><div class="carousel-caption"><div class="meme-title">Fatal Lie-abetes</div><div class="meme-credit">submitted by Luciana</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/ZU0jCrC.png" alt=""><div class="carousel-caption"><div class="meme-title">What If I Told You...</div><div class="meme-credit">submitted by Rusking</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/rA3jFfT.png" alt=""><div class="carousel-caption"><div class="meme-title">Mr. Croissant Curses You</div><div class="meme-credit">submitted by Luciana</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/O2k9jxc.png" alt=""><div class="carousel-caption"><div class="meme-title">Motivational LIES</div><div class="meme-credit">submitted by Erika</div></div></div>
+        <div class="carousel-slide"><img src="https://i.imgur.com/7YtW8hC.png" alt=""><div class="carousel-caption"><div class="meme-title">It's NOT WORKING</div><div class="meme-credit">submitted by Rusking</div></div></div>
+      </div>
+    </div>
+    <div class="carousel-dots" id="memeDots"></div>
+    <div class="carousel-counter" id="memeCounter">1 / 17</div>
+  </div>
+
+  <div class="img-divider"><img src="https://i.imgur.com/1gL7gIb.png" alt=""></div>
+
+  <!-- ═══ A SHOW OF HANDS ═══ -->
+  <div class="section-indicator">
+    <img class="sec-icon" src="https://i.imgur.com/6EgjrMK.png" alt="Compass">
+    <span class="section-title">A Show of Hands</span>
+    <span class="section-line"></span>
+  </div>
+
+  <div class="grid">
+    <div class="card c-hearth full-width">
+      <div class="card-inner"><span class="nail-tl"></span><span class="nail-tr"></span>
+        <div class="card-header"><h2>Last Week's Winner</h2></div>
+        <div class="card-body">
+          <p style="margin-bottom:14px;"><span class="bold">If you could have ONE superpower?</span> &#8212; 12 respondents</p>
+          <div class="poll-bar-group">
+            <div class="poll-row poll-winner"><span class="poll-label">Teleportation</span><div class="poll-track"><div class="poll-fill poll-fill-hearth" style="width:58%"></div></div><span class="poll-count">7 votes</span></div>
+            <div class="poll-row"><span class="poll-label">Time Travel</span><div class="poll-track"><div class="poll-fill poll-fill-hearth" style="width:17%"></div></div><span class="poll-count">2 votes</span></div>
+            <div class="poll-row"><span class="poll-label">Invisibility</span><div class="poll-track"><div class="poll-fill poll-fill-hearth" style="width:0%"></div></div><span class="poll-count">0 votes</span></div>
+            <div class="poll-row"><span class="poll-label">Mind Reading</span><div class="poll-track"><div class="poll-fill poll-fill-hearth" style="width:17%"></div></div><span class="poll-count">2 votes</span></div>
+            <div class="poll-row"><span class="poll-label">Flying</span><div class="poll-track"><div class="poll-fill poll-fill-hearth" style="width:8%"></div></div><span class="poll-count">1 vote</span></div>
+          </div>
+          <p style="margin-top:14px;font-size:0.85rem;color:#908868;">Teleportation wins in a landslide. No more commutes, apparently.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card c-earthen full-width">
+      <div class="card-inner"><span class="nail-tl"></span><span class="nail-tr"></span>
+        <div class="card-header"><h2>Previous Winner</h2></div>
+        <div class="card-body">
+          <p><span class="bold">Mythical Creature Pet:</span> Dragon wins with 9 out of 17 votes. Let's assume it wouldn't eat you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ OVERHEARD AT THE PRANCING PONY ═══ -->
+  <div class="section-indicator">
+    <div style="position:relative;display:inline-block;">
+      <img class="sec-icon" src="https://i.imgur.com/gWtRr4r.png" alt="Pipe">
+      <div class="smoke-container"><div class="smoke-wisp"></div><div class="smoke-wisp"></div><div class="smoke-wisp"></div></div>
+    </div>
+    <span class="section-title">Overheard at the Prancing Pony</span>
+    <span class="section-line"></span>
+  </div>
+
+  <div class="quote-grid">
+    <div class="quote-card qc-evenstar"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"This is the skin of someone available for tickets, Bella."</div><div class="quote-attr">&#8212; Luciana Zaracho</div></div>
+    <div class="quote-card qc-earthen"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"An honest reply would be 'don't give me any tickets, don't want them' but I don't think I should say that."</div><div class="quote-attr">&#8212; Conor O'Brien</div></div>
+    <div class="quote-card qc-hearth"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"A ticket has no name... until assigned to me."</div><div class="quote-attr">&#8212; Arthur Paiva</div></div>
+    <div class="quote-card qc-twilight"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"Dear team, my fortune was read by this fortune-teller today. She said I'd get more tickets today."</div><div class="quote-attr">&#8212; Luciana Zaracho</div></div>
+    <div class="quote-card qc-shire"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"You know, this is Andro's fault. First day initiation shenanigans."</div><div class="quote-attr">&#8212; Yalena Godinez</div></div>
+    <div class="quote-card qc-shadow"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"I'm joyfully on standby for tickets, ready to swoop in whenever needed."</div><div class="quote-attr">&#8212; Janerys Gonzalez</div></div>
+    <div class="quote-card qc-earthen"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"The math ain't mathing today."</div><div class="quote-attr">&#8212; Beatriz Vinas</div></div>
+    <div class="quote-card qc-evenstar"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"I accepted a chat and I think it was a wizard, it disappeared."</div><div class="quote-attr">&#8212; Yalena Godinez</div></div>
+    <div class="quote-card qc-hearth"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"Do not attempt to leave the dancefloor."</div><div class="quote-attr">&#8212; Arthur Paiva</div></div>
+    <div class="quote-card qc-twilight"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"I mean???? They don't want to lift a finger."</div><div class="quote-attr">&#8212; Rebeca Gardi&#233;</div></div>
+    <div class="quote-card qc-shire"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"Please do not be alarmed, remain calm."</div><div class="quote-attr">&#8212; Andro Bristol</div></div>
+    <div class="quote-card qc-shadow"><span class="nail-tl nail-sm"></span><span class="nail-tr nail-sm"></span><div class="quote-text">"I'm here to steal music tastes."</div><div class="quote-attr">&#8212; Yalena Godinez</div></div>
+  </div>
+
+  <!-- ── Bottom Divider & Footer ── -->
+  <div style="text-align:center;margin:24px 0;"><img src="https://i.imgur.com/1gL7gIb.png" alt="" style="width:80%;max-width:700px;opacity:0.7;"></div>
+
+  <div class="footer-text">In a hole in the ground there lived a hobbit &#8212; and from that hole, a fellowship was forged.</div>
+
+</div>
+
+<script>
+// ── Firefly Particles ──
+(function(){
+  var c=document.getElementById('fireflies'),ctx=c.getContext('2d'),particles=[],COUNT=35;
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  var pageH=function(){return Math.max(document.documentElement.scrollHeight,window.innerHeight);};
+  for(var i=0;i<COUNT;i++){particles.push({x:Math.random()*c.width,y:Math.random()*pageH(),r:Math.random()*2+1,dx:(Math.random()-0.5)*0.25,dy:(Math.random()-0.5)*0.25,phase:Math.random()*Math.PI*2,speed:0.005+Math.random()*0.01});}
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    var t=Date.now()*0.001,scrollY=window.scrollY||window.pageYOffset,pH=pageH();
+    for(var i=0;i<particles.length;i++){
+      var p=particles[i];
+      p.x+=p.dx;p.y+=p.dy;
+      if(p.x<-20)p.x=c.width+20;if(p.x>c.width+20)p.x=-20;
+      if(p.y<-20)p.y=pH+20;if(p.y>pH+20)p.y=-20;
+      p.dx+=(Math.random()-0.5)*0.015;p.dy+=(Math.random()-0.5)*0.015;
+      p.dx=Math.max(-0.4,Math.min(0.4,p.dx));p.dy=Math.max(-0.4,Math.min(0.4,p.dy));
+      var screenY=p.y-scrollY;
+      if(screenY<-30||screenY>c.height+30)continue;
+      var alpha=0.3+0.7*((Math.sin(t*p.speed*60+p.phase)+1)/2);
+      var grd=ctx.createRadialGradient(p.x,screenY,0,p.x,screenY,p.r*10);
+      grd.addColorStop(0,'rgba(212,176,96,'+(alpha*0.3)+')');grd.addColorStop(0.3,'rgba(200,170,80,'+(alpha*0.12)+')');grd.addColorStop(0.7,'rgba(180,160,80,'+(alpha*0.03)+')');grd.addColorStop(1,'rgba(180,160,80,0)');
+      ctx.fillStyle=grd;ctx.beginPath();ctx.arc(p.x,screenY,p.r*10,0,Math.PI*2);ctx.fill();
+      var core=ctx.createRadialGradient(p.x,screenY,0,p.x,screenY,p.r*1.5);
+      core.addColorStop(0,'rgba(255,240,180,'+(alpha*0.9)+')');core.addColorStop(0.5,'rgba(240,220,150,'+(alpha*0.5)+')');core.addColorStop(1,'rgba(220,200,120,0)');
+      ctx.fillStyle=core;ctx.beginPath();ctx.arc(p.x,screenY,p.r*1.5,0,Math.PI*2);ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── Meme Carousel ──
+(function(){
+  var idx=0,track=document.getElementById('memeTrack'),slides=track.querySelectorAll('.carousel-slide'),total=slides.length,dotsWrap=document.getElementById('memeDots'),counter=document.getElementById('memeCounter');
+  for(var i=0;i<total;i++){
+    var dot=document.createElement('div');
+    dot.className='carousel-dot'+(i===0?' active':'');
+    dot.setAttribute('data-i',i);
+    dot.onclick=function(){goTo(parseInt(this.getAttribute('data-i')));};
+    dotsWrap.appendChild(dot);
+  }
+  function goTo(n){
+    idx=(n+total)%total;
+    track.style.transform='translateX(-'+(idx*100)+'%)';
+    var dots=dotsWrap.querySelectorAll('.carousel-dot');
+    for(var i=0;i<dots.length;i++){dots[i].className='carousel-dot'+(i===idx?' active':'');}
+    counter.textContent=(idx+1)+' / '+total;
+  }
+  window.carouselNav=function(dir){goTo(idx+dir);};
+  var startX=0;
+  track.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
+  track.addEventListener('touchend',function(e){var diff=startX-e.changedTouches[0].clientX;if(Math.abs(diff)>40)goTo(idx+(diff>0?1:-1));},{passive:true});
+})();
+</script>
+</body>
+</html>

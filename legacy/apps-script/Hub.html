@@ -1,0 +1,26 @@
+<div class="page-heading">
+  <h1><?= pageTitle ?></h1>
+  <div class="vine-divider"><img src="https://i.imgur.com/1gL7gIb.png" alt=""></div>
+</div>
+
+<? if (sectionAsset && sectionAsset.img) { ?>
+  <div class="section-indicator" style="grid-column: auto; max-width: 1100px; margin: 0 auto 18px;">
+    <img <? if (sectionAsset.cls) { ?>class="<?= sectionAsset.cls ?>"<? } ?> src="<?= sectionAsset.img ?>" alt="">
+    <span class="section-title">Choose Your Path</span>
+    <span class="section-line"></span>
+  </div>
+<? } ?>
+
+<div class="grid">
+  <? for (var i = 0; i < children.length; i++) { var c = children[i]; ?>
+    <a class="card c-<?= c.color ?> full-width" href="<?= c.url ?>">
+      <div class="card-header">
+        <h2><?= c.title ?> &nbsp;&rarr;</h2>
+        <div class="line"></div>
+      </div>
+      <? if (c.description) { ?>
+        <div class="card-body"><p><?= c.description ?></p></div>
+      <? } ?>
+    </a>
+  <? } ?>
+</div>

@@ -1,0 +1,12 @@
+# Netlify build configuration for The Fellowship of the Fix.
+# Astro outputs a static site to dist/. No server runtime required.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  ASTRO_TELEMETRY_DISABLED = "1"
+
+# Static 404 fallback is handled by Astro's generated 404.html.

@@ -1,0 +1,35 @@
+{
+  "sections": [
+    {
+      "title": "",
+      "assetKey": null,
+      "cards": [
+        {
+          "title": "Tutor Support Training",
+          "color": "evenstar",
+          "width": "full",
+          "bodyHtml": "<p>Core training module for tutor-side support workflows. Review during your first week and revisit periodically as processes update.</p><hr class=\"divider\"><p><span class=\"label label-evenstar\">Google Slides · Tutor Ops</span></p><p><a href=\"https://docs.google.com/presentation/d/1I-pNWF39A7U6xCBdcafOTlqraYdQ42-CKJOI1L8QGos/present?slide=id.g2cf66b16bee_0_540\" target=\"_blank\" rel=\"noopener\">Open the Tutor Support Training deck →</a></p>"
+        },
+        {
+          "title": "Platform Support Training",
+          "color": "twilight",
+          "width": "full",
+          "bodyHtml": "<p>Core training module for platform-side support workflows. Review during your first week and revisit periodically as processes update.</p><hr class=\"divider\"><p><span class=\"label label-twilight\">Google Slides · Platform Ops</span></p><p><a href=\"https://docs.google.com/presentation/d/1CSVVTfkjTymwhH0NGjaro5qKwRx7Zjyd9P4-6ZuzCJo/present?slide=id.g274bce8ed3e_0_0\" target=\"_blank\" rel=\"noopener\">Open the Platform Support Training deck →</a></p>"
+        },
+        {
+          "title": "How to Use",
+          "color": "hearth",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-hearth\">Navigation</span></p><ul><li>Click either training link above to open the deck in a new tab.</li><li>Once open, use the arrow keys (or the Slides controls) to navigate.</li><li>Press F11 or use the Slides menu to enter fullscreen presentation mode.</li></ul>"
+        },
+        {
+          "title": "Training Notes",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-shire\">Reminders</span></p><ul><li>Review both decks during your first week.</li><li>Revisit periodically as processes update.</li><li>Reach out to your Team Lead with any questions.</li></ul>"
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2026-07-14T14:20:39.496Z"
+}

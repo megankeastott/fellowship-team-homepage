@@ -94,8 +94,8 @@
 
 .person-card { border-radius: 8px; border: 1px solid transparent; margin-bottom: 10px; transition: border-color 0.15s; }
 .person-card:hover { border-color: var(--card-border); }
-.person-row { display: flex; align-items: center; gap: 12px; padding: 10px; cursor: pointer; }
-.person-medallion { width: 48px; height: 48px; object-fit: contain; border-radius: 50%; flex-shrink: 0; }
+.person-row { display: flex; align-items: center; gap: 14px; padding: 10px; cursor: pointer; }
+.person-medallion { width: 72px; height: 72px; object-fit: contain; border-radius: 50%; flex-shrink: 0; }
 .person-info { flex: 1; min-width: 0; }
 .person-name { font-family: var(--display); font-size: 1.1rem; color: var(--text-bright); }
 .person-role { font-size: 0.9rem; color: var(--text-muted); font-style: italic; }

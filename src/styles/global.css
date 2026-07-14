@@ -34,7 +34,8 @@
   --display: 'Cinzel', serif;
 }
 
-html { font-size: 17px; }
+/* Root rem — bump here to scale nearly the whole site. */
+html { font-size: 19.5px; }
 
 body {
   background:
@@ -44,7 +45,7 @@ body {
   background-attachment: fixed;
   color: var(--text);
   font-family: var(--serif);
-  line-height: 1.6;
+  line-height: 1.65;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -77,9 +78,9 @@ code {
 .container {
   position: relative;
   z-index: 1;
-  max-width: 1180px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 34px 22px 0;
+  padding: 40px 28px 0;
 }
 
 /* --- fireflies --- */
@@ -91,11 +92,11 @@ canvas#fireflies {
 /* ============================================================
    TITLE + NAV
    ============================================================ */
-.title-wrap { text-align: center; margin-bottom: 14px; position: relative; }
-.title-sigil-img { width: 52px; height: auto; display: block; margin: 0 auto 6px; opacity: 0.9; }
-.title-art { max-width: 480px; width: 82%; height: auto; display: block; margin: 0 auto; }
+.title-wrap { text-align: center; margin-bottom: 18px; position: relative; }
+.title-sigil-img { width: 60px; height: auto; display: block; margin: 0 auto 8px; opacity: 0.9; }
+.title-art { max-width: 560px; width: 88%; height: auto; display: block; margin: 0 auto; }
 .corner-fl, .corner-fr {
-  position: absolute; top: 0; width: 100px; height: auto;
+  position: absolute; top: 0; width: 118px; height: auto;
   opacity: 0.22; pointer-events: none;
   filter: drop-shadow(0 0 6px rgba(138, 112, 48, 0.15));
 }
@@ -103,18 +104,18 @@ canvas#fireflies {
 .corner-fr { right: 0; }
 .sub {
   font-family: var(--display);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--text-subtitle);
-  margin-top: 10px;
+  margin-top: 12px;
 }
 .inscription {
   font-style: italic;
   color: var(--text-muted);
-  font-size: 0.98rem;
-  margin-top: 4px;
+  font-size: 1.05rem;
+  margin-top: 6px;
 }
 .title-rule {
   width: 200px; height: 1px; margin: 14px auto 0;
@@ -123,10 +124,10 @@ canvas#fireflies {
 
 .text-nav {
   display: flex; flex-wrap: wrap; justify-content: center;
-  align-items: center; gap: 14px;
-  margin: 4px 0 6px;
+  align-items: center; gap: 16px;
+  margin: 6px 0 8px;
   font-family: var(--display);
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -136,32 +137,32 @@ canvas#fireflies {
 }
 .text-nav a:hover { color: var(--text-bright); }
 .text-nav a.current { color: var(--hearth-text); border-bottom-color: rgba(218, 183, 102, 0.6); }
-.text-nav .sep { color: rgba(146, 118, 50, 0.5); font-size: 0.6rem; }
+.text-nav .sep { color: rgba(146, 118, 50, 0.5); font-size: 0.7rem; }
 
 .flourish {
   text-align: center; color: rgba(146, 118, 50, 0.5);
-  letter-spacing: 0.5em; font-size: 0.7rem; margin: 10px 0 20px;
+  letter-spacing: 0.5em; font-size: 0.78rem; margin: 12px 0 24px;
 }
 
 /* ============================================================
    PAGE HEADING + DIVIDERS
    ============================================================ */
-.page-heading { text-align: center; margin: 8px 0 22px; }
+.page-heading { text-align: center; margin: 10px 0 26px; }
 .page-heading h1 {
   font-family: var(--display);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--hearth-text);
 }
 .page-heading .page-sub {
-  font-style: italic; color: var(--text-subtitle); margin-top: 4px; font-size: 0.95rem;
+  font-style: italic; color: var(--text-subtitle); margin-top: 6px; font-size: 1.05rem;
 }
-.leaf-divider { display: flex; justify-content: center; margin: 10px 0 0; }
-.vine-divider-img { max-width: 300px; width: 55%; height: auto; opacity: 0.55; }
+.leaf-divider { display: flex; justify-content: center; margin: 12px 0 0; }
+.vine-divider-img { max-width: 340px; width: 58%; height: auto; opacity: 0.55; }
 
-.breadcrumb { margin: 0 0 14px; font-size: 0.9rem; }
+.breadcrumb { margin: 0 0 16px; font-size: 1rem; }
 .breadcrumb a { color: var(--text-muted); border: none; }
 .breadcrumb a:hover { color: var(--hearth-text); }
 
@@ -171,7 +172,7 @@ canvas#fireflies {
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+  gap: 22px;
   align-items: start;
 }
 .full-width { grid-column: 1 / -1; }
@@ -181,14 +182,14 @@ canvas#fireflies {
   border: 1px solid var(--card-border);
   border-left-width: 3px;
   border-radius: var(--radius);
-  padding: 20px 22px;
+  padding: 24px 26px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
 }
-.card-header { margin-bottom: 12px; }
+.card-header { margin-bottom: 14px; }
 .card-header h2 {
   font-family: var(--display);
   font-weight: 700;
-  font-size: 1.12rem;
+  font-size: 1.28rem;
   letter-spacing: 0.04em;
   color: var(--text-bright);
 }
@@ -215,22 +216,22 @@ canvas#fireflies {
 /* ============================================================
    DOC BODY CONTENT
    ============================================================ */
-.card-body { font-size: 1rem; }
-.card-body p { margin: 0 0 10px; }
+.card-body { font-size: 1.05rem; }
+.card-body p { margin: 0 0 12px; }
 .card-body p:last-child { margin-bottom: 0; }
 .card-body .bold { font-weight: 600; color: var(--text-bright); }
 .card-body .italic { font-style: italic; }
 .card-body .subheading {
   font-family: var(--display);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-section);
-  margin: 16px 0 6px;
+  margin: 18px 0 8px;
 }
-.card-body ul, .card-body ol { margin: 0 0 10px 1.2em; }
-.card-body li { margin: 3px 0; }
+.card-body ul, .card-body ol { margin: 0 0 12px 1.25em; }
+.card-body li { margin: 4px 0; }
 
 .card-body hr.divider {
   border: none; height: 1px; margin: 14px 0;
@@ -255,11 +256,11 @@ canvas#fireflies {
 .label {
   display: inline-block;
   font-family: var(--display);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 999px;
   border: 1px solid currentColor;
   margin: 2px 0;
@@ -307,7 +308,7 @@ canvas#fireflies {
 }
 .section-indicator:first-child { margin-top: 0; }
 .section-indicator .sec-icon { flex-shrink: 0; display: flex; }
-.section-indicator .sec-icon img { height: 42px; width: auto; display: block; filter: drop-shadow(0 0 6px rgba(212, 176, 96, 0.28)); }
+.section-indicator .sec-icon img { height: 50px; width: auto; display: block; filter: drop-shadow(0 0 6px rgba(212, 176, 96, 0.28)); }
 .candle-img { animation: candleFlicker 3s ease-in-out infinite; }
 @keyframes candleFlicker {
   0%, 100% { filter: drop-shadow(0 0 4px rgba(212, 176, 96, 0.3)); }
@@ -317,7 +318,7 @@ canvas#fireflies {
 }
 .section-title {
   font-family: var(--display);
-  font-size: 0.8rem; font-weight: 500;
+  font-size: 0.9rem; font-weight: 500;
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--text-section); white-space: nowrap;
 }

@@ -13,20 +13,27 @@ This project replaces the original Google Apps Script web app (preserved in
 ## How it works
 
 ```
-Google Docs (editors write here)
-      │  fetched + parsed at build time
+Google Docs (company Workspace — editors write here)
+      │
+      │  Apps Script publishToGitHub()  (runs as you)
       ▼
-Astro build  ──►  static HTML  ──►  Netlify (hosting)
-      ▲
-GitHub (this repo: layout, styles, data, config)
+src/content/docs/*.json  in GitHub
+      │
+      ▼
+Astro build on Netlify  ──►  static HTML
 ```
 
-- **Content** (articles): Google Docs → see [`src/config/docs.ts`](./src/config/docs.ts)
-- **Layout / styling / structure**: this repo
-- **Team data** (leads, LOD schedule, roster, incentives): [`src/config/team.ts`](./src/config/team.ts)
-- **Site map / nav / routes**: [`src/config/site.ts`](./src/config/site.ts)
+Workspace only allows “Anyone in Varsity” for Apps Script web apps, so Netlify
+cannot pull docs anonymously. Instead Apps Script **pushes** parsed JSON into
+the repo ([`apps-script/content-api/`](./apps-script/content-api/)).
+
+- **Doc IDs**: [`src/config/docs.ts`](./src/config/docs.ts)
+- **Published content**: [`src/content/docs/`](./src/content/docs/)
+- **Team data**: [`src/config/team.ts`](./src/config/team.ts)
+- **Site map / nav**: [`src/config/site.ts`](./src/config/site.ts)
 
 For content editors, see [EDITING-GUIDE.md](./EDITING-GUIDE.md).
+For the publish bridge, see [`apps-script/content-api/README.md`](./apps-script/content-api/README.md).
 
 ---
 
@@ -56,18 +63,14 @@ legacy/              # original Apps Script files (not deployed)
 
 ## Wiring up the Google Docs
 
-The pages show a friendly "not wired up yet" placeholder until you add doc
-sources. Open [`src/config/docs.ts`](./src/config/docs.ts) and, for each page,
-set **one** of:
+Doc IDs live in [`src/config/docs.ts`](./src/config/docs.ts). To refresh article
+pages from the docs:
 
-- `docId` — the ID from a normal doc URL
-  `https://docs.google.com/document/d/`**`THIS_PART`**`/edit`
-  (the doc must be shared so **Anyone with the link** can **view**), or
-- `pubUrl` — the full **Publish to web** URL
-  (`File → Share → Publish to web` → `https://docs.google.com/document/d/e/…/pub`)
+1. Follow [`apps-script/content-api/README.md`](./apps-script/content-api/README.md)
+2. Run `publishToGitHub` in Apps Script
+3. Netlify rebuilds from the committed JSON (or trigger a deploy)
 
-Then rebuild. The parser understands the doc conventions described in
-[EDITING-GUIDE.md](./EDITING-GUIDE.md).
+Parser conventions: [EDITING-GUIDE.md](./EDITING-GUIDE.md).
 
 ---
 

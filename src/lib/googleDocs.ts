@@ -2,21 +2,19 @@
 // GOOGLE DOCS → STRUCTURED CONTENT (build-time)
 // ============================================================
 //
-// Ports the old Apps Script parseDoc()/postProcessTags() logic so it runs
-// during the Netlify build against PUBLISHED Google Docs (no Google access
-// needed at request time).
+// Company Workspace blocks anonymous Apps Script web apps, so
+// content is PUSHED by Apps Script into JSON files under
+// src/content/docs/ (see apps-script/content-api/). The Netlify
+// build reads those files — no Google access at build time.
 //
-// Doc conventions (see EDITING-GUIDE.md):
-//   Heading 1  → section       (optional trailing [icon], e.g. "News [candle]")
-//   Heading 2  → card title    (optional [color] and/or [full], e.g. "Rates [shire, full]")
-//   Heading 3  → subheading inside a card
-//   normal text, bold, italic, links, bullet & numbered lists
-//   [callout color] ... [/callout]   → highlighted box
-//   [hr]                             → divider
+// Optional fallbacks (rarely used here):
+//   DOC_CONTENT_API_URL + DOC_CONTENT_API_SECRET  → Apps Script pull
+//   public HTML export / pubUrl
 //
-// Legacy tags ([label], [macro], [inset]) are still understood so existing
-// docs keep rendering, but the editor guide only teaches the trimmed set.
+// Doc conventions (see EDITING-GUIDE.md).
 
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { parse, type HTMLElement, type Node } from 'node-html-parser';
 import { DOC_SOURCES, type DocSource } from '../config/docs';
 import { VALID_COLORS } from '../config/site';
@@ -40,11 +38,57 @@ export interface DocContent {
 }
 
 const VALID = VALID_COLORS as unknown as string[];
+const CONTENT_DIR = join(process.cwd(), 'src/content/docs');
 
-// ── Fetching ───────────────────────────────────────────────
+function apiConfigured(): boolean {
+  return !!(process.env.DOC_CONTENT_API_URL?.trim() && process.env.DOC_CONTENT_API_SECRET?.trim());
+}
 
 function isConfigured(src: DocSource | undefined): boolean {
   return !!(src && ((src.docId && src.docId.trim()) || (src.pubUrl && src.pubUrl.trim())));
+}
+
+/** Read JSON published by Apps Script into the repo. */
+function readLocalContent(docKey: string): DocContent | null {
+  const path = join(CONTENT_DIR, `${docKey}.json`);
+  if (!existsSync(path)) return null;
+  try {
+    const raw = JSON.parse(readFileSync(path, 'utf8')) as DocContent;
+    if (!Array.isArray(raw.sections)) return null;
+    return {
+      sections: raw.sections,
+      lastUpdated: raw.lastUpdated || new Date().toISOString(),
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function fetchViaAppsScript(docId: string): Promise<DocContent> {
+  const base = process.env.DOC_CONTENT_API_URL!.trim().replace(/\/$/, '');
+  const secret = process.env.DOC_CONTENT_API_SECRET!.trim();
+  const url = new URL(base);
+  url.searchParams.set('docId', docId);
+  url.searchParams.set('token', secret);
+
+  const res = await fetch(url.toString(), { redirect: 'follow' });
+  const text = await res.text();
+  let data: unknown;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    throw new Error(
+      `Apps Script returned non-JSON (HTTP ${res.status}). Workspace may block anonymous access — use the GitHub publish flow instead.`,
+    );
+  }
+
+  const obj = data as { error?: string; sections?: Section[]; lastUpdated?: string };
+  if (obj.error) throw new Error(obj.error);
+  if (!Array.isArray(obj.sections)) throw new Error('Apps Script response missing sections[].');
+  return {
+    sections: obj.sections,
+    lastUpdated: obj.lastUpdated || new Date().toISOString(),
+  };
 }
 
 async function fetchDocHtml(src: DocSource): Promise<string> {
@@ -54,12 +98,15 @@ async function fetchDocHtml(src: DocSource): Promise<string> {
 
   const res = await fetch(url, { redirect: 'follow' });
   if (!res.ok) {
+    if (res.status === 401 || res.status === 403) {
+      throw new Error(
+        `HTTP ${res.status} — company-locked doc. Run Apps Script publishToGitHub() to write src/content/docs/*.json.`,
+      );
+    }
     throw new Error(`HTTP ${res.status} fetching ${url}`);
   }
   return await res.text();
 }
-
-// ── Public API ─────────────────────────────────────────────
 
 export async function getDocContent(docKey: string): Promise<DocContent> {
   const src = DOC_SOURCES[docKey];
@@ -67,17 +114,34 @@ export async function getDocContent(docKey: string): Promise<DocContent> {
   if (!isConfigured(src)) {
     return placeholderContent(
       'Not wired up yet',
-      `This page has no Google Doc assigned. Open <code>src/config/docs.ts</code> and set a <code>docId</code> or <code>pubUrl</code> for <code>${escapeHtml(docKey)}</code>, then rebuild.`,
+      `This page has no Google Doc assigned. Open <code>src/config/docs.ts</code> and set a <code>docId</code> for <code>${escapeHtml(docKey)}</code>, then rebuild.`,
     );
   }
 
+  // 1. Preferred: JSON committed by the Apps Script publisher
+  const local = readLocalContent(docKey);
+  if (local) return local;
+
+  // 2. Optional pull via Apps Script (only works if web app is "Anyone")
+  if (apiConfigured() && src!.docId?.trim()) {
+    try {
+      return await fetchViaAppsScript(src!.docId!.trim());
+    } catch (err) {
+      return placeholderContent(
+        'Could not load the doc',
+        `No local content file yet, and the Apps Script pull failed. Run <code>publishToGitHub</code> in Apps Script (see <code>apps-script/content-api/</code>). Error: <code>${escapeHtml(String(err))}</code>`,
+      );
+    }
+  }
+
+  // 3. Public HTML fallback
   let html: string;
   try {
-    html = await fetchDocHtml(src);
+    html = await fetchDocHtml(src!);
   } catch (err) {
     return placeholderContent(
-      'Could not load the doc',
-      `The build could not read this doc. Make sure it is published / shared so "Anyone with the link" can view. Error: <code>${escapeHtml(String(err))}</code>`,
+      'Waiting for content publish',
+      `This doc is company-locked. In Apps Script, run <code>publishToGitHub</code> to write <code>src/content/docs/${escapeHtml(docKey)}.json</code>, then redeploy. Detail: <code>${escapeHtml(String(err))}</code>`,
     );
   }
 
@@ -91,7 +155,6 @@ export async function getDocContent(docKey: string): Promise<DocContent> {
   }
 }
 
-/** First N cards of the announcements doc, for the home "Latest Dispatches". */
 export async function getLatestDispatches(
   n = 4,
 ): Promise<{ title: string; color: string }[]> {
@@ -106,7 +169,6 @@ export async function getLatestDispatches(
     return [];
   }
 }
-
 // ── Parsing ────────────────────────────────────────────────
 
 function parseDocHtml(html: string): DocContent {

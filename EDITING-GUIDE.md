@@ -87,14 +87,12 @@ line:
 
 ## Publishing changes
 
-The site rebuilds from the docs — it doesn't read them live. After you edit a
-doc, the change appears once the site is rebuilt:
+Doc edits don't hit the live site until someone **publishes** them:
 
-- **Automatic:** if a scheduled rebuild or build hook is set up, it will pick up
-  changes on its next run.
-- **Manual:** in the Netlify dashboard, open the site and click
-  **Deploys → Trigger deploy → Deploy site**. A minute later the change is live.
+1. Open the Fellowship content Apps Script project
+2. Run `publishToGitHub` (select it in the function dropdown → Run)
+3. That commits fresh JSON into GitHub under `src/content/docs/`
+4. Netlify rebuilds (automatically if the repo is linked, otherwise trigger a deploy)
 
-If a page ever shows a "Could not load the doc" message, the doc's sharing was
-probably changed — make sure it's still published / shared so "Anyone with the
-link" can view it.
+If a page says “Waiting for content publish,” the JSON for that doc hasn't been
+published yet — run the step above.

@@ -1,0 +1,41 @@
+{
+  "sections": [
+    {
+      "title": "",
+      "assetKey": null,
+      "cards": [
+        {
+          "title": "LLP2 Training",
+          "color": "shire",
+          "width": "full",
+          "bodyHtml": "<p><span class=\"italic\">Two-part lesson.</span></p><p>Everything you need to know about the LLP2 launch — product overview and A/V walkthrough.</p><hr class=\"divider\"><p><span class=\"label label-shire\">Part 1 — LLP2 Launch</span></p><p><a href=\"https://www.loom.com/share/b546aecd086847f7b9b826029712931c\" target=\"_blank\" rel=\"noopener\">Watch on Loom →</a></p><p><span class=\"label label-shire\">Part 2 — LLP2 A/V</span></p><p><a href=\"https://www.loom.com/share/bd747fee25ab42c1bb97d396f23e8419\" target=\"_blank\" rel=\"noopener\">Watch on Loom →</a></p>"
+        },
+        {
+          "title": "Create a Tier 3",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>Step-by-step walkthrough of creating a Tier 3 escalation ticket.</p><p><a href=\"https://www.loom.com/share/2f9ad67ea85a48e9b7fdbba1ef04b422\" target=\"_blank\" rel=\"noopener\">Watch on Loom →</a></p>"
+        },
+        {
+          "title": "Link a Masterticket",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>How to find and link a masterticket to related support tickets.</p><p><a href=\"https://drive.google.com/file/d/1KHclz_6yW8VKdcuR-JaqO6zmmAwhR359/view\" target=\"_blank\" rel=\"noopener\">Watch on Drive →</a></p>"
+        },
+        {
+          "title": "Navigate the Knowledge Base",
+          "color": "shadow",
+          "width": "half",
+          "bodyHtml": "<p>Tips and tricks for efficiently searching and navigating the knowledge base.</p><p><a href=\"https://drive.google.com/file/d/1atO2upOrzNz-ld0kC4iVo1FkALqIbPnd/view\" target=\"_blank\" rel=\"noopener\">Watch on Drive →</a></p>"
+        },
+        {
+          "title": "How to Use Cal",
+          "color": "hearth",
+          "width": "full",
+          "bodyHtml": "<p><span class=\"italic\">Two-part lesson.</span></p><p>Complete guide to using Cal — from the basics through advanced workflows.</p><hr class=\"divider\"><p><span class=\"label label-hearth\">Part 1 — Cal Basics</span></p><p><a href=\"https://www.loom.com/share/d5ba499ff80740e0aeb584cf92a61047\" target=\"_blank\" rel=\"noopener\">Watch on Loom →</a></p><p><span class=\"label label-hearth\">Part 2 — Advanced Cal</span></p><p><a href=\"https://www.loom.com/share/cf5f501cbeec4d8285beb45bbf6239c6\" target=\"_blank\" rel=\"noopener\">Watch on Loom →</a></p>"
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2026-07-14T14:20:36.431Z"
+}

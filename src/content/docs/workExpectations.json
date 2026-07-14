@@ -1,0 +1,47 @@
+{
+  "sections": [
+    {
+      "title": "",
+      "assetKey": null,
+      "cards": [
+        {
+          "title": "Metrics: Explained",
+          "color": "evenstar",
+          "width": "full",
+          "bodyHtml": "<p>Metrics are tracked weekly and daily. Both will come with scorecards so you can always stay up to date with how you are performing throughout the week. This decision was made because the daily scorecard will show the components that make up the averaged categories, such as handle time.</p><p><span class=\"label label-evenstar\">Metric Goals &amp;amp; What They Mean</span></p><div class=\"inset-box\"><p class=\"bold\">QA Score — 90%</p><p>Leads and seniors manually review your interactions and grade them against a scorecard. This measures how well we are performing in our conversations with tutors.</p></div><div class=\"inset-box\"><p class=\"bold\">Avg Adherence — &gt;90%</p><p>Also called productive adherence — tracks your status changes. Was this agent where they were supposed to be? Discrepancies are investigated for Assembled reporting issues or agent support needs.</p></div><div class=\"inset-box\"><p class=\"bold\">Avg Acceptance — 95%</p><p>How many interactions you accepted vs. how many were sent to you. Tracks chats only.</p></div><div class=\"inset-box\"><p class=\"bold\">Avg Handle Time — Varies</p><p>How long you were in an interaction. Emails: tracked from first response to solve. Chats: begins upon assignment. LLP &amp; Tutor Chat: 15 min · TES Tickets: 10 min · LLP Tickets: 20 min.</p></div><div class=\"inset-box\"><p class=\"bold\">Solved Tickets — 95 / 100</p><p>95% of 100 tickets. You can turn your ticket count into a percentage because of how easy this metric is to calculate.</p></div><div class=\"inset-box\"><p class=\"bold\">Behavior &amp; Productive Scores — Weekly</p><p>Reflective of your metrics for the week and based on the goals above.</p></div>"
+        },
+        {
+          "title": "Ticket Handling:: Admin Hub",
+          "color": "twilight",
+          "width": "full",
+          "bodyHtml": "<p><span class=\"bold\">Moving forward, we will claim one ticket at a time.</span></p><p class=\"subheading\"><span class=\"bold\">1 — </span>Claim an Unclaimed Ticket</p><p>We should no longer be sending the first reply message in tickets. We claim them and work to solve or ask the appropriate questions in order to assist. </p><p class=\"subheading\"><span class=\"bold\">2 — </span>Set Status, Move onto Other Unclaimed or Waiting on Support Tickets</p><p>Once you have set the ticket to the appropriate status, check your previous tickets to ensure none are waiting on support. If they are, prioritize these before claiming unclaimed tickets.  \r<div class=\"callout callout-twilight\"><span class=\"label label-twilight\">Note</span> The goal is to ensure we are staying on top of all communications, new and old.</div></p>"
+        },
+        {
+          "title": "Breaks / Meals & Timing",
+          "color": "hearth",
+          "width": "half",
+          "bodyHtml": "<p>Since we track Productive Adherence, it is important to move between breaks, meals, and queue changes in a deliberate way.</p><ul><li>Put yourself into the corresponding status in Zendesk <span class=\"bold\">5 minutes prior</span> to the change — Go into Break, or Go into Meal.</li><li>If you are struggling to get out of a chat, reach out to your senior or lead so we can determine if transferring the chat to a different agent is the right call.</li></ul>"
+        },
+        {
+          "title": "Cross Team Escalations",
+          "color": "shadow",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"bold\">Under no circumstances should we ever be transferring tickets to another team.</span></p><p>If a tutor reaches out about an issue we do not handle:</p><ul><li>Get full details from the tutor on what they are experiencing.</li><li>Create a new ticket on behalf of the tutor for the correct team - many of these will be through the bat signal workflow.</li><li>Provide the tutor with the ticket ID.</li></ul><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Exceptions</span> Applicants and placement requests should still be handled by using <span class=\"bold\">#transferchat</span>. The placement team phone number is <span class=\"bold\">888-315-5816</span>.</div><p><span class=\"bold\">Returning tickets:</span> if another team sends us a ticket that is out of scope, we can send it back to them. [pending path to send client team tickets back]</p>"
+        },
+        {
+          "title": "Escalation Path",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>Utilize the work channel and LoDs prior to messaging or tagging a senior or lead. </p><p><span class=\"label label-twilight\">Order of Escalation</span></p><ul><li>Use the <span class=\"bold\">#fotf_work</span> channel <span class=\"bold\">first</span>.</li><li>@ a LoD <span class=\"bold\">second</span>.</li><li>@ a senior <span class=\"bold\">third</span>.</li><li>@ a lead <span class=\"bold\">fourth</span>.</li></ul>"
+        },
+        {
+          "title": "Staying Up to Date",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>There are several channels you should always be checking during your shift. It is mandatory to stay up to date throughout the day — this helps reduce traffic in our channels.</p><ul><li><span class=\"bold\">#fotf_work</span></li><li><span class=\"bold\">#fotf_dailies</span></li><li><span class=\"bold\">#the-fellowship-of-the-fix</span></li><li><span class=\"bold\">#queue-health-and-announcements</span></li></ul><p>Be sure to review previous messages as well — especially if you are reporting something that might be a bug.</p>"
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2026-07-14T14:20:20.035Z"
+}

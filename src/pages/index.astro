@@ -17,6 +17,7 @@ const dispatches = await getLatestDispatches(4);
 const compact = (t: string) => t.replace(/:00/g, '').replace(/\s*[–-]\s*/, '–');
 ---
 <Shell title="Home" activeSlug="home">
+  <div class="home-dash">
   <!-- NOW ON DUTY -->
   <div class="now-hero" id="now-hero">
     <div class="now-medallion-wrap">
@@ -133,6 +134,7 @@ const compact = (t: string) => t.replace(/:00/g, '').replace(/\s*[–-]\s*/, '�
         </div>
       )}
     </div>
+  </div>
   </div>
 </Shell>
 

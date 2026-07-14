@@ -39,8 +39,9 @@ html { font-size: 19.5px; }
 
 body {
   background:
-    radial-gradient(ellipse at 20% -10%, rgba(90, 128, 56, 0.06), transparent 55%),
-    radial-gradient(ellipse at 90% 0%, rgba(140, 120, 80, 0.05), transparent 45%),
+    radial-gradient(ellipse at 18% -8%, rgba(90, 128, 56, 0.09), transparent 52%),
+    radial-gradient(ellipse at 88% 8%, rgba(140, 120, 80, 0.07), transparent 48%),
+    radial-gradient(ellipse at 50% 100%, rgba(60, 40, 20, 0.18), transparent 45%),
     var(--bg);
   background-attachment: fixed;
   color: var(--text);
@@ -147,7 +148,11 @@ canvas#fireflies {
 /* ============================================================
    PAGE HEADING + DIVIDERS
    ============================================================ */
-.page-heading { text-align: center; margin: 10px 0 26px; }
+.page-heading {
+  text-align: center;
+  margin: 10px 0 28px;
+  animation: siteRise 0.65s ease both;
+}
 .page-heading h1 {
   font-family: var(--display);
   font-weight: 700;
@@ -155,6 +160,7 @@ canvas#fireflies {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--hearth-text);
+  text-shadow: 0 0 22px rgba(212, 176, 96, 0.22);
 }
 .page-heading .page-sub {
   font-style: italic; color: var(--text-subtitle); margin-top: 6px; font-size: 1.05rem;
@@ -162,7 +168,10 @@ canvas#fireflies {
 .leaf-divider { display: flex; justify-content: center; margin: 12px 0 0; }
 .vine-divider-img { max-width: 340px; width: 58%; height: auto; opacity: 0.55; }
 
-.breadcrumb { margin: 0 0 16px; font-size: 1rem; }
+.breadcrumb {
+  margin: 0 0 16px; font-size: 1rem;
+  animation: siteRise 0.55s ease both;
+}
 .breadcrumb a { color: var(--text-muted); border: none; }
 .breadcrumb a:hover { color: var(--hearth-text); }
 
@@ -178,14 +187,56 @@ canvas#fireflies {
 .full-width { grid-column: 1 / -1; }
 
 .card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  position: relative;
+  background:
+    linear-gradient(165deg,
+      rgba(42, 50, 30, 0.72) 0%,
+      rgba(24, 33, 17, 0.88) 48%,
+      rgba(18, 24, 14, 0.94) 100%);
+  border: 1px solid rgba(120, 140, 90, 0.28);
   border-left-width: 3px;
   border-radius: var(--radius);
   padding: 24px 26px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(230, 225, 198, 0.05);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  animation: siteRise 0.65s ease both;
 }
-.card-header { margin-bottom: 14px; }
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(212, 176, 96, 0.07), transparent 42%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(160, 140, 100, 0.012) 3px,
+      rgba(160, 140, 100, 0.012) 4px
+    );
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(146, 118, 50, 0.4);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(230, 225, 198, 0.07);
+}
+.grid > .card:nth-child(1) { animation-delay: 0.04s; }
+.grid > .card:nth-child(2) { animation-delay: 0.08s; }
+.grid > .card:nth-child(3) { animation-delay: 0.12s; }
+.grid > .card:nth-child(4) { animation-delay: 0.16s; }
+.grid > .card:nth-child(5) { animation-delay: 0.2s; }
+.grid > .card:nth-child(6) { animation-delay: 0.24s; }
+.grid > .card:nth-child(7) { animation-delay: 0.28s; }
+.grid > .card:nth-child(8) { animation-delay: 0.32s; }
+.grid > .card:nth-child(n+9) { animation-delay: 0.36s; }
+
+.card-header { position: relative; z-index: 1; margin-bottom: 14px; }
 .card-header h2 {
   font-family: var(--display);
   font-weight: 700;
@@ -194,9 +245,9 @@ canvas#fireflies {
   color: var(--text-bright);
 }
 .card-header .line {
-  height: 1px; margin-top: 8px;
+  height: 1px; margin-top: 10px;
   background: linear-gradient(90deg, currentColor, transparent);
-  opacity: 0.35;
+  opacity: 0.4;
 }
 
 /* realm accents on cards */
@@ -216,7 +267,7 @@ canvas#fireflies {
 /* ============================================================
    DOC BODY CONTENT
    ============================================================ */
-.card-body { font-size: 1.05rem; }
+.card-body { position: relative; z-index: 1; font-size: 1.05rem; }
 .card-body p { margin: 0 0 12px; }
 .card-body p:last-child { margin-bottom: 0; }
 .card-body .bold { font-weight: 600; color: var(--text-bright); }
@@ -235,16 +286,19 @@ canvas#fireflies {
 
 .card-body hr.divider {
   border: none; height: 1px; margin: 14px 0;
-  background: linear-gradient(90deg, transparent, rgba(146, 118, 50, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(146, 118, 50, 0.45), transparent);
 }
 
 .callout {
+  position: relative;
   border-radius: 8px;
-  border: 1px solid var(--card-border);
+  border: 1px solid rgba(120, 140, 90, 0.28);
   border-left: 3px solid var(--shire-border);
-  background: rgba(0, 0, 0, 0.2);
-  padding: 12px 14px;
-  margin: 12px 0;
+  background:
+    linear-gradient(135deg, rgba(0, 0, 0, 0.22), rgba(40, 36, 20, 0.18));
+  padding: 14px 16px;
+  margin: 14px 0;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.08);
 }
 .callout-shire    { border-left-color: var(--shire-border); }
 .callout-hearth   { border-left-color: var(--hearth-border); }
@@ -264,6 +318,7 @@ canvas#fireflies {
   border-radius: 999px;
   border: 1px solid currentColor;
   margin: 2px 0;
+  background: rgba(0, 0, 0, 0.18);
 }
 .label-shire { color: var(--shire-text); }
 .label-hearth { color: var(--hearth-text); }
@@ -294,8 +349,9 @@ canvas#fireflies {
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.22);
   border: 1px solid var(--card-border);
-  padding: 10px 14px;
+  padding: 12px 16px;
   margin: 12px 0;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 /* ============================================================
@@ -303,12 +359,16 @@ canvas#fireflies {
    ============================================================ */
 .section-indicator {
   grid-column: 1 / -1;
-  display: flex; align-items: center; gap: 12px;
-  margin: 30px 0 6px;
+  display: flex; align-items: center; gap: 14px;
+  margin: 34px 0 8px;
+  animation: siteRise 0.6s ease both;
 }
 .section-indicator:first-child { margin-top: 0; }
 .section-indicator .sec-icon { flex-shrink: 0; display: flex; }
-.section-indicator .sec-icon img { height: 50px; width: auto; display: block; filter: drop-shadow(0 0 6px rgba(212, 176, 96, 0.28)); }
+.section-indicator .sec-icon img {
+  height: 50px; width: auto; display: block;
+  filter: drop-shadow(0 0 8px rgba(212, 176, 96, 0.32));
+}
 .candle-img { animation: candleFlicker 3s ease-in-out infinite; }
 @keyframes candleFlicker {
   0%, 100% { filter: drop-shadow(0 0 4px rgba(212, 176, 96, 0.3)); }
@@ -322,20 +382,34 @@ canvas#fireflies {
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--text-section); white-space: nowrap;
 }
-.section-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(146,118,50,0.35), transparent); }
+.section-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, rgba(146,118,50,0.45), transparent);
+}
 
 /* ============================================================
    HUB (choose-a-path landing)
    ============================================================ */
 .hub-card {
   display: block; text-decoration: none; border-bottom: none;
-  transition: transform 0.15s, border-color 0.15s;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.hub-card:hover { transform: translateY(-2px); }
+.hub-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 176, 96, 0.42);
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.32),
+    0 0 24px rgba(212, 176, 96, 0.08);
+}
 .hub-card .card-header h2 { display: flex; justify-content: space-between; gap: 10px; }
-.hub-card .arrow { color: var(--text-muted); }
-.hub-card:hover .arrow { color: var(--hearth-text); }
+.hub-card .arrow { color: var(--text-muted); transition: color 0.15s, transform 0.15s; }
+.hub-card:hover .arrow { color: var(--hearth-text); transform: translateX(3px); }
 .hub-card p { color: var(--text); }
+
+@keyframes siteRise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ============================================================
    FOOTER (light — no giant gif)
@@ -362,5 +436,11 @@ canvas#fireflies {
 
 @media (prefers-reduced-motion: reduce) {
   canvas#fireflies { display: none; }
+  .page-heading,
+  .breadcrumb,
+  .card,
+  .section-indicator { animation: none; }
+  .card,
+  .hub-card { transition: none; }
   * { animation: none !important; transition: none !important; }
 }

@@ -1,0 +1,23 @@
+{
+  "sections": [
+    {
+      "title": "",
+      "assetKey": null,
+      "cards": [
+        {
+          "title": "Planned Time Off",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>Planning a trip? Need to just not be here for a little bit?</p><div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">Heads Up</span> Please ensure you submit these requests <span class=\"bold\">48 hours in advance.</span></div><p>All planned time off requests must be submitted in <span class=\"bold\">both ADP and Assembled</span>.</p><ul><li>In ADP, submit as <span class=\"bold\">UTO</span> (unpaid time off).</li><li>In Assembled, submit as <span class=\"bold\">PTO</span> (planned time off).</li></ul><hr class=\"divider\"><p>If you mess up your time off request or need to cancel it, you can remove the request in ADP. Once it is out of ADP, you are free to work your normal shift.</p>"
+        },
+        {
+          "title": "Unplanned Time Off",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>Emergencies happen. We understand this.</p><p><span class=\"label label-shire\">What We Expect</span></p><p>Submit an absence report through the Slack workflow:</p><ul><li>Select the appropriate reason: medical/sick, family related, weather related, internet/power outage, late, or other.</li><li>Double-check that dates are entered correctly.</li><li>For mid-shift absences, the start and end dates will be the same.</li><li>Enter the exact time away (the dropdown allows text input for accuracy).</li><li>Send a quick DM to your lead in case the workflow doesn&#39;t populate right away.</li></ul><p><span class=\"bold\">Timing requirements:</span></p><ul><li>Absences must be reported at least <span class=\"bold\">1 hour before</span> your shift begins.</li><li>If you leave mid-shift, any absence longer than <span class=\"bold\">5 minutes</span> must be submitted for the actual time missed.</li></ul><hr class=\"divider\"><p><span class=\"label label-shadow\">What We Do NOT Expect</span></p><div class=\"callout callout-shadow\">You never need to give us the details. If you&#39;re not feeling well, that&#39;s enough. If you&#39;ve had an emergency, that&#39;s all you need to say. We never expect detailed information from you.</div>"
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2026-07-14T14:20:24.237Z"
+}

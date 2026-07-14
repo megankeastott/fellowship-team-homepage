@@ -1,0 +1,83 @@
+{
+  "sections": [
+    {
+      "title": "Zendesk Knowledge",
+      "assetKey": "door",
+      "cards": [
+        {
+          "title": "Core References",
+          "color": "earthen",
+          "width": "full",
+          "bodyHtml": "<p>The two canonical references for day-to-day operations work. Bookmark both.</p><p><span class=\"label label-hearth\">Internal Portal</span></p><p><a href=\"https://vtteinternal.varsitytutors.com/hc/en-us\" target=\"_blank\" rel=\"noopener\">Knowledge Base</a> — VT Internal Help Center; all team information and articles.</p><hr class=\"divider\"><p><span class=\"label label-evenstar\">Playbook</span></p><p><a href=\"https://docs.google.com/document/d/1ZQYBujA6ES0U4cVzSLNq1ZT6ss0u6Mu8pfYd9hpnNAA/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">The Playbook</a> — comprehensive operations reference, organized by section.</p>"
+        }
+      ]
+    },
+    {
+      "title": "Additional Resources",
+      "assetKey": "quill",
+      "cards": [
+        {
+          "title": "Incentives",
+          "color": "hearth",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-hearth\">Guide</span></p><p><a href=\"https://docs.google.com/document/d/1upGu1_HQRgwbrnG2O9D8-vRximPk9mNzV1rm6WxGZI8/edit?tab=t.0#heading=h.arv2qwyrmpd8\" target=\"_blank\" rel=\"noopener\">Incentive V2 Guide</a></p>"
+        },
+        {
+          "title": "Reactivation",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-twilight\">Matrix</span></p><p><a href=\"https://docs.google.com/spreadsheets/d/15XvmdIZ4wSni81QKqcv0gYQV9L6CVRXKuwle_8lvfeo/edit?gid=0#gid=0\" target=\"_blank\" rel=\"noopener\">Tutor Reactivation Review Matrix</a></p>"
+        },
+        {
+          "title": "Rates",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-shire\">Reference</span></p><p><a href=\"https://docs.google.com/spreadsheets/d/1Sr469QMaDnYXLlMqxenlniqdFxRNvuNsnGyb6vJgZyU/edit?gid=792557734#gid=792557734\" target=\"_blank\" rel=\"noopener\">All City Rates</a></p>"
+        },
+        {
+          "title": "Invoicing",
+          "color": "shadow",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-shadow\">Process</span></p><p><a href=\"https://docs.google.com/document/d/1NbTjnq3TpzD_hn62sNd8OBDeg9rakxCR5Z3nJbwK5fo/edit?tab=t.b1hza5dbblrc#heading=h.iy0j9tad85mb\" target=\"_blank\" rel=\"noopener\">Automated Invoicing</a></p>"
+        },
+        {
+          "title": "PII Handling",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-earthen\">SOP</span></p><p><a href=\"https://docs.google.com/document/d/1hyWTHax4hxknYdodo0byxCk9h2bRqls0Ba57M36f1co/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">PII Handling SOP</a></p>"
+        },
+        {
+          "title": "VT4S",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-evenstar\">FAQ</span></p><p><a href=\"https://docs.google.com/document/d/1VP90V18TS0OWihBzd0GhitbxvrshPi2VZwOMu_wNoBs/edit?tab=t.0#heading=h.i1bonxyroalz\" target=\"_blank\" rel=\"noopener\">VT4S FAQ</a></p>"
+        },
+        {
+          "title": "Email Management",
+          "color": "hearth",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-hearth\">Policy</span></p><p><a href=\"https://docs.google.com/document/d/1tlUCkUp5WszUjBqQlUCB9HT83iny6okJYtdAaltB0mo/edit?tab=t.0#heading=h.w3rszkqvir8c\" target=\"_blank\" rel=\"noopener\">Client &amp; Student Email Management</a></p>"
+        },
+        {
+          "title": "Device Specs",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-twilight\">Technical</span></p><p><a href=\"https://docs.google.com/document/d/19VNQpCGoEvmcc3HNrBbFCrHveO2LTIIYwDKYPEHlTpc/edit?tab=t.0#heading=h.7eaicvf3ha66\" target=\"_blank\" rel=\"noopener\">Recommended Device Specs</a></p>"
+        },
+        {
+          "title": "Escalations",
+          "color": "shadow",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-shadow\">SOP</span></p><p><a href=\"https://docs.google.com/document/d/1UcDTj5HjeafvJmPgnnJeQydzpeJee-82-2FKeopDzgM/edit?tab=t.0#heading=h.pck32mcswvdi\" target=\"_blank\" rel=\"noopener\">Escalation SOP</a></p>"
+        },
+        {
+          "title": "Co-Pilot",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"label label-shire\">Guide</span></p><p><a href=\"https://docs.google.com/document/d/19FnkjhRszln8Ew9k8W2Sg7b8ZTejamGuhENhwTRFirA/edit?tab=t.0#heading=h.pqcokhphqvtu\" target=\"_blank\" rel=\"noopener\">Co-Pilot (CAL) Guide</a></p>"
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2026-07-14T14:20:33.395Z"
+}

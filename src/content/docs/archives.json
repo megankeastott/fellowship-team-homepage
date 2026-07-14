@@ -5,13 +5,55 @@
       "assetKey": null,
       "cards": [
         {
-          "title": "Coming Soon",
-          "color": "shire",
+          "title": "If a Tutor Emails You Directly → Forward, Don't Reply",
+          "color": "hearth",
           "width": "half",
-          "bodyHtml": "<p>Since a lot of changes happened, even some of our archived records are not completely irrelevant. I will be parsing through them to see if any are worth keeping. </p>"
+          "bodyHtml": "<p>The mobile app is currently showing our email addresses to tutors. This is being escalated so that only our names show.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Action</span> If a tutor emails you directly: forward the email to tutor support, do NOT respond, and mark the tutor as spam in your Gmail account.</div>"
+        },
+        {
+          "title": "Zendesk Has Been Decommissioned",
+          "color": "shadow",
+          "width": "full",
+          "bodyHtml": "<div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Effective May 30, 2026</span> Zendesk is no longer accessible. All work happens in the <span class=\"bold\">Admin Hub</span>. Do not attempt to log in to Zendesk.</div><p>If you had open Zendesk tickets that have duplicates in the Admin Hub, those have been assigned to you in the Admin Hub. Work them there.</p><p>If a Zendesk ticket had no duplicate in the Admin Hub, you will receive further instructions once the duplicated tickets have been cleared.</p>"
+        },
+        {
+          "title": "Admin Hub — How Things Work Now",
+          "color": "hearth",
+          "width": "full",
+          "bodyHtml": "<p class=\"subheading\">Opening and Working Tickets</p><ul><li>Open a ticket as a <span class=\"bold\">pop-out</span> from the ticket list, or in <span class=\"bold\">full page</span> — your choice.</li><li>Drag the corners of the public reply, internal note, and conversation thread boxes to <span class=\"bold\">expand them</span>.</li><li>When claiming an old unclaimed ticket, leave a quick internal note like <span class=\"italic\">&quot;On it&quot;</span> or <span class=\"italic\">&quot;Claimed&quot;</span> so other agents see it.</li></ul><p class=\"subheading\">Macros</p><ul><li>Some macros change the ticket status to <span class=\"bold\">&quot;Closed&quot;</span> instead of <span class=\"bold\">&quot;Solved&quot;</span>. This is intentional — it prevents tutors from replying back to argue. Change it manually before sending if you don&#39;t want the ticket closed.</li><li>Create Ticket now supports an <span class=\"bold\">internal note OR a public reply</span>, and has macro support.</li></ul><p class=\"subheading\">Unclaimed Tickets</p><ul><li>Sometimes the &quot;Claimed by&quot; column shows gibberish instead of &quot;Unclaimed.&quot; Treat those the same as Unclaimed — claim and work them.</li></ul><p class=\"subheading\">Recent Updates</p><p>You can now view your solved and closed tickets.</p><p>Ticket and LLP alert sounds can be turned on — use the audio button (it was moved to the bottom of the screen).</p><p>Auto-refresh is now active. If you were using a browser extension to refresh the queue, you can turn it off.</p>"
+        },
+        {
+          "title": "VT4S Escalation Form",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>For VT4S issues we cannot solve — session access, student behavior escalations, tutor drops, etc. — use the VT4S escalation form:</p><p><a href=\"https://qztge.share.hsforms.com/21eDsdXvvTOysTw_l3MB4wg\" target=\"_blank\" rel=\"noopener\">VT4S Escalation Form →</a></p><p>The <span class=\"bold\">#spa-vt4s-tech-cular</span> channel is no longer being used.</p>"
+        },
+        {
+          "title": "Bug: Rate Changes Page Showing V1 Incentives",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>We&#39;ve identified a bug in the <span class=\"bold\">Rate Changes page</span> on the Tutor Dashboard. It appears as if the tutor&#39;s rate should be increasing after each session (V1 incentives), but the <span class=\"bold\">V2 incentive structure</span> is in effect.</p><div class=\"callout callout-twilight\"><span class=\"label label-twilight\">Approved Verbiage</span> <span class=\"italic\">&quot;We are aware there is an issue with how the incentives are being displayed in the Rate Changes list. Incentives remain individualized by student and earned as noted on the Opportunity. Incentives are no longer earned after each individual session as of January 2026. Our Engineering Team is working to correct how incentive progress is displayed on the Rate Changes page. Please refer to the student information on your Students tab for the correct incentive progression.&quot;</span></div>"
+        },
+        {
+          "title": "V2 Incentives Decision-Making Guide",
+          "color": "hearth",
+          "width": "half",
+          "bodyHtml": "<p>A new reference document for working <span class=\"bold\">V2 incentive reviews</span> has been published. This covers how to evaluate incentive eligibility and handle common scenarios.</p><p><a href=\"https://docs.google.com/document/d/1utB_B1I8btzfSO9uOAx6IFH5STPGDIrI/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">View V2 Incentives Decision-Making Guide →</a></p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Handling Invoice Issues via Chat</span> If the tutor contacts us through chat about an invoice issue, ask them to use the <span class=\"bold\">Request Review</span> button next to the invoice. If they report the button is unavailable, let them know we will follow up via email after reviewing.</div>"
+        },
+        {
+          "title": "Payments Backlog — Working Invoices Directly",
+          "color": "twilight",
+          "width": "full",
+          "bodyHtml": "<div class=\"callout callout-twilight\"><span class=\"label label-twilight\">Temporary Process</span> Payments is backed up. We are working invoice issues directly instead of escalating for now.</div><p><span class=\"bold\">Tutor Invoicing Admin:</span> <a href=\"https://internal.varsitytutors.com/tutor-invoicing-admin\" target=\"_blank\" rel=\"noopener\">internal.varsitytutors.com/tutor-invoicing-admin</a></p><p><span class=\"label label-twilight\">Student Unassigned and Reassigned</span></p><ul><li>Incentives start over.</li><li><span class=\"bold\">DO NOT adjust the base rate</span>.</li><li>Submit a payment adjustment for the difference between base rate and what their incentivized rate should be until incentives kick in.</li><li>Use V2 criteria (impersonate and review the opportunity) — do NOT use V1.</li></ul><p>Use the <a href=\"https://docs.google.com/spreadsheets/d/1Lep8PPIRUbUM7UxSZy8xerVI6DqciC1P/\" target=\"_blank\" rel=\"noopener\">incentive lookup sheet</a> to determine if the incentive should be applied.</p><p><span class=\"label label-twilight\">Tutoring Session LookInfo Tab</span></p><ul><li>Session duration</li><li>Session recording link (anything ending in /0 means no recording)</li><li>Attending Tutor Minutes in Session</li><li>Tutor Arrival: negative = early, positive = late</li><li>Camera On %</li><li><span class=\"bold\">VT4S and BUCA sessions are NOT eligible.</span></li></ul><p><span class=\"label label-twilight\">Invoice Rounding</span></p><p>Invoices are rounded to the scheduled end time if the session ends within <span class=\"bold\">5 minutes</span> before or after the scheduled end. Decisions must follow KB criteria. No-shows and 24-hour cancellations do not count toward incentive session totals.</p><p><a href=\"https://vttutorengagement.varsitytutors.com/hc/en-us/articles/39755723623963-Earn-up-to-40-hour-The-Incremental-Pay-Bonus\" target=\"_blank\" rel=\"noopener\">View Incentive KB Article →</a></p>"
+        },
+        {
+          "title": "Client Experience V3 & LLP2 Roadmap",
+          "color": "evenstar",
+          "width": "full",
+          "bodyHtml": "<p>We&#39;ll be <span class=\"bold\">moving away from Instant Chat</span> when Client Experience V3 rolls out <span class=\"bold\">end of May</span>.</p><ul><li>All groups like BUCA, B2B ClassWallet, and the rest will move to V3.</li><li>This timeline includes all VT4S shifting to LLP2 and profile experience.</li></ul><p><span class=\"label label-evenstar\">What&amp;#39;s Live Now</span></p><p>The <span class=\"bold\">Invite a Friend</span> feature has been launched on LLP2. It works a little differently from the previous version — review the Loom walkthrough before handling related inquiries.</p>"
         }
       ]
     }
   ],
-  "lastUpdated": "2026-07-14T14:20:11.271Z"
+  "lastUpdated": "2026-07-14T22:13:05.472Z"
 }

@@ -1,0 +1,29 @@
+{
+  "sections": [
+    {
+      "title": "",
+      "assetKey": null,
+      "cards": [
+        {
+          "title": "Fraud Alerts",
+          "color": "shadow",
+          "width": "full",
+          "bodyHtml": "<p>Any current and former fraudulent behavior or tutors will be reported here. It is important to familiarize yourself with the information in this section. We have had several bad actors who caused a lot of issues for tutors and the company.</p><p><span class=\"label label-shadow\">How to Spot Fraud</span></p><ul><li><span class=\"bold\">ID on file is not the person in the profile picture.</span> Sometimes this is the tutor just being cheeky — always request a new profile picture first before escalating.</li><li><span class=\"bold\">Repeated requests for Inova access</span> — unable to pass PII verification.</li><li><span class=\"bold\">ID on file appears edited:</span> fonts look off, image is very blurry, signature is not full name.</li></ul><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Stay Vigilant</span> Fraud can be subtle. When in doubt, escalate. It is always better to flag something that turns out to be nothing than to let a bad actor slip through. If you suspect fraudulent activity, document everything and loop in your lead immediately.</div>"
+        },
+        {
+          "title": "Fake Jobs",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<p>If anyone reports they received a job offer from someone with an email address <span class=\"bold\">@varsitytutorscareers.com</span> — it&#39;s fake.</p><p><span class=\"label label-earthen\">Steps</span></p><ol><li>It&#39;s fake.</li><li>Use the macro <span class=\"bold\">Operations Support :: Fake Job Offer Response</span> to reply to them.</li><li>Thread your ticket numbers so they can be sent on to Security.</li></ol><hr class=\"divider\"><p>Advise the tutor not to engage, respond, or provide any additional information.</p>"
+        },
+        {
+          "title": "The Ann Arbor Incident",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Status: Active Threat</span> This fraudster is currently active. Do not engage.</div><p>This bad actor (<span class=\"bold\">Krishanu Bose</span>) was taking over accounts (ATO). ATO happens when a person accesses an account that is not theirs by having us reset the password or email, or by gaining access to the original tutor&#39;s email and resetting the password.</p><hr class=\"divider\"><p><span class=\"label label-twilight\">Tutor Profile</span></p><p><a href=\"https://www.varsitytutors.com/admin/tutors/880450939\" target=\"_blank\" rel=\"noopener\">Tanish Nichanamelta — view in admin</a></p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Action Required</span> If you receive a ticket from this tutor, <span class=\"bold\">do not reply, do not engage</span>. Immediately assign the ticket to Katie.</div><hr class=\"divider\"><p><span class=\"label label-twilight\">How to Identify</span></p><div class=\"callout callout-twilight\"><span class=\"label label-twilight\">ATO</span> The original tutor reaches out about strange activity on their account — for example, no longer being able to log in.</div>"
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2026-07-14T14:20:29.954Z"
+}

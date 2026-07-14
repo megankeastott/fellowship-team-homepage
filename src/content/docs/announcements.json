@@ -1,0 +1,299 @@
+{
+  "sections": [
+    {
+      "title": "Latest Dispatches",
+      "assetKey": "candle",
+      "cards": [
+        {
+          "title": "Escalated Reports — \"Reports 2026\" Tab",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<p>The MASTER Tickets spreadsheet has a new tab called &quot;Reports 2026&quot; with the issues we&#39;ve escalated. Tracking started about a month ago, so it covers the most recent reports rather than everything.</p><p>View the MASTER Tickets Spreadsheet → <a href=\"https://docs.google.com/spreadsheets/d/1rWim4Dru0l3jnnnkPKKXg83fGN9YnBEK2AvRGChSiyg/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">HERE</a></p>"
+        },
+        {
+          "title": "Always Leave an Internal Note",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>Every ticket needs an internal note — even a one-line summary of what happened. Documentation is the most heavily weighted QA category, and a ticket with no internal note is an automatic fail no matter how good the rest of the interaction was.</p><div class=\"callout callout-twilight\"><span class=\"label label-twilight\">When You Attach a Screenshot</span> Type the word &quot;screenshot&quot; in your note (for example: &quot;screenshot attached — confirmed 24HC request&quot;). Attached images do not come through when tickets are exported for QA, so a note that is only a screenshot shows up blank and you lose credit.</div>"
+        },
+        {
+          "title": "Reporting Admin Hub Issues → #tutor-admin-hub-ops-issues",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<p>Report Admin Hub problems in #tutor-admin-hub-ops-issues. Keep reporting issues even if it is the same one several times a day — more reports help show impact and get fixes prioritized.</p><p>This channel is also where you can post nice-to-have feature requests.</p><div class=\"callout callout-earthen\"><span class=\"label label-earthen\">If You Record an Issue</span> Use Loom, capture the entire screen (no cropped or single-tab recordings), and keep the browser console open and visible while you record.</div>"
+        },
+        {
+          "title": "24-Hour Cancellation Invoices",
+          "color": "shadow",
+          "width": "full",
+          "bodyHtml": "<p class=\"subheading\">How Auto-Invoicing Decides</p><p>The system decides what to invoice based on who cancels the session:</p><ul><li>If a tutor cancels → no invoice is generated.</li><li>If a client cancels → a 24-hour cancellation invoice is generated.</li><li>If a tutor joins and no student is present → a no-show invoice is generated.</li></ul><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Manual 24HC — Proof Required</span> We only enter a 24HC invoice manually when the tutor provides proof the client requested the cancellation. Proof must include the client name, contact info we can match to their account, the session date/time, and the time/date of cancellation (if not visible in VT Messages). Invoice these as an &quot;unscheduled session.&quot; No proof = no invoice.</div><p>Advise tutors: if a client wants to cancel, the client must cancel from their end to avoid invoice processing delays.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Reschedules Within 24 Hours</span> If a client reschedules a session within 24 hours of the start time, the tutor is no longer eligible for a 24HC invoice. We will not submit one, and one will not auto-generate. No exceptions.</div><p>No-show invoices are for the scheduled duration of the session. Tutors will eventually have a button to decline invoicing a client for a no-show or 24HC — no ETA on that feature yet.</p><p><span class=\"label label-shadow\">Invoice Adjustments SOP</span></p><p>A full breakdown of which invoice adjustments are and are not allowed is documented.</p><p><a href=\"https://docs.google.com/document/d/1rs5eUVIGOxSSwjMqJvfZeJ31zzm0zUwB/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">View Invoice Adjustments SOP →</a></p>"
+        },
+        {
+          "title": "VT4S Session Issues → #llp-2-issues",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>Report VT4S session problems — including session access 400 errors — in #llp-2-issues so they can be tracked and escalated.</p>"
+        },
+        {
+          "title": "Tutor Resignations — How We Process Them",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<p>We process tutor resignations ourselves in the Admin Hub.</p><p>The Tutor Requested macro has been added — it populates the instructions you need when submitting a resignation.</p><p>Send the tutor the resignation verbiage first, before you submit the resignation.</p><div class=\"callout callout-earthen\"><span class=\"label label-earthen\">When You Submit to Andrezza</span> Leave an internal note with the contract end date / 30-day notice end date. There is no dedicated queue yet, so these are worked manually, and that date is needed.</div>"
+        },
+        {
+          "title": "If a Tutor Emails You Directly → Forward, Don't Reply",
+          "color": "hearth",
+          "width": "half",
+          "bodyHtml": "<p>The mobile app is currently showing our email addresses to tutors. This is being escalated so that only our names show.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Action</span> If a tutor emails you directly: forward the email to tutor support, do NOT respond, and mark the tutor as spam in your Gmail account.</div>"
+        },
+        {
+          "title": "Group-Class Issues → Assign to Courses",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p>You can now assign tickets to the Courses team in the Admin Hub.</p><p>Send group or course issues that are outside our scope to Courses.</p>"
+        },
+        {
+          "title": "Platform Support — Email Clients from VTWA",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p>You do not have to call clients with updates on Platform Support tickets. You can email them from VTWA and the replies will come back to you.</p><p>From the ticket: click the From: line, scroll up, choose techsupport@, then choose the blank template and compose your message.</p><p>Replies arrive in the Admin Hub. This may create a new ticket that you will need to merge.</p>"
+        },
+        {
+          "title": "Platform Tickets from ClientHud → Call the Client",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>Platform Support tickets that come from the Client Success team (ClientHud) require a follow-up phone call to the client.</p><p>There is currently no way to return one of these tickets if the request is not tech-related, and the Admin Hub still does not let us create client tickets.</p>"
+        },
+        {
+          "title": "No-Show Wait Time Is 10 Minutes",
+          "color": "shadow",
+          "width": "half",
+          "bodyHtml": "<p>LLP now shows tutors in-session messaging about auto-invoicing in real time. The wait time for a no-show is 10 minutes, not 15.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">No Exceptions</span> If the tutor leaves before the full 10 minutes, they are not paid the full hour for the no-show. No adjustments.</div>"
+        },
+        {
+          "title": "Zendesk Has Been Decommissioned",
+          "color": "shadow",
+          "width": "full",
+          "bodyHtml": "<div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Effective May 30, 2026</span> Zendesk is no longer accessible. All work happens in the <span class=\"bold\">Admin Hub</span>. Do not attempt to log in to Zendesk.</div><p>If you had open Zendesk tickets that have duplicates in the Admin Hub, those have been assigned to you in the Admin Hub. Work them there.</p><p>If a Zendesk ticket had no duplicate in the Admin Hub, you will receive further instructions once the duplicated tickets have been cleared.</p>"
+        },
+        {
+          "title": "Admin Hub — How Things Work Now",
+          "color": "hearth",
+          "width": "full",
+          "bodyHtml": "<p class=\"subheading\">Opening and Working Tickets</p><ul><li>Open a ticket as a <span class=\"bold\">pop-out</span> from the ticket list, or in <span class=\"bold\">full page</span> — your choice.</li><li>Drag the corners of the public reply, internal note, and conversation thread boxes to <span class=\"bold\">expand them</span>.</li><li>When claiming an old unclaimed ticket, leave a quick internal note like <span class=\"italic\">&quot;On it&quot;</span> or <span class=\"italic\">&quot;Claimed&quot;</span> so other agents see it.</li></ul><p class=\"subheading\">Macros</p><ul><li>Some macros change the ticket status to <span class=\"bold\">&quot;Closed&quot;</span> instead of <span class=\"bold\">&quot;Solved&quot;</span>. This is intentional — it prevents tutors from replying back to argue. Change it manually before sending if you don&#39;t want the ticket closed.</li><li>Create Ticket now supports an <span class=\"bold\">internal note OR a public reply</span>, and has macro support.</li></ul><p class=\"subheading\">Unclaimed Tickets</p><ul><li>Sometimes the &quot;Claimed by&quot; column shows gibberish instead of &quot;Unclaimed.&quot; Treat those the same as Unclaimed — claim and work them.</li></ul><p class=\"subheading\">Recent Updates</p><p>You can now view your solved and closed tickets.</p><p>Ticket and LLP alert sounds can be turned on — use the audio button (it was moved to the bottom of the screen).</p><p>Auto-refresh is now active. If you were using a browser extension to refresh the queue, you can turn it off.</p>"
+        },
+        {
+          "title": "LLP Get Help — Comes as a Ticket",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>LLP Get Help no longer routes through a chat bot. Requests come in as <span class=\"bold\">tickets</span>.</p><div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">Important</span> Any reply you send goes to the tutor&#39;s profile Messages — they <span class=\"bold\">won&#39;t see it</span> during their session. <span class=\"bold\">Do not reply</span>. Your immediate action is to join the session.</div>"
+        },
+        {
+          "title": "Creating Tickets for Other Teams",
+          "color": "shire",
+          "width": "full",
+          "bodyHtml": "<p>When creating a ticket to route to another team, include these <span class=\"bold\">required fields</span>:</p><ul><li><span class=\"bold\">Subject:</span> what the tutor requested.</li><li><span class=\"bold\">Tutor UUID or Tutor ID:</span> the number at the end of the tutor&#39;s VTWA URL.</li><li><span class=\"bold\">Assigned team:</span> the team the ticket needs to be assigned to.</li><li><span class=\"bold\">Initial public message:</span> a brief description for the tutor about the request being opened.</li></ul><div class=\"callout callout-shire\"><span class=\"label label-shire\">Critical</span> Do not include internal information in the public message — it is visible to the tutor. Add internal notes <span class=\"bold\">after</span> the ticket is created.</div>"
+        },
+        {
+          "title": "Sending Working Links via Inline Code",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>Links pasted plainly in the Admin Hub may break on the tutor&#39;s end — in some cases a trailing <span class=\"bold\">&quot;&gt;&quot;</span> character is appended, returning a 404.</p><p>Workaround: use the <span class=\"bold\">Inline Code</span> feature to format the link before sending. This preserves the URL correctly. Alternative: send via canned response on the tutor&#39;s VTWA.</p>"
+        },
+        {
+          "title": "Email Signatures — Manual Add Required",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<p>The Admin Hub does not auto-add your signature to emails. Add your signature manually to each reply.</p>"
+        },
+        {
+          "title": "VT4S Escalation Form",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>For VT4S issues we cannot solve — session access, student behavior escalations, tutor drops, etc. — use the VT4S escalation form:</p><p><a href=\"https://qztge.share.hsforms.com/21eDsdXvvTOysTw_l3MB4wg\" target=\"_blank\" rel=\"noopener\">VT4S Escalation Form →</a></p><p>The <span class=\"bold\">#spa-vt4s-tech-cular</span> channel is no longer being used.</p>"
+        },
+        {
+          "title": "Subject Updates → Sourcing & Onboarding",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p>Subject updates and subject assessment questions should be transferred to <span class=\"bold\">Sourcing &amp; Onboarding</span> via the Admin Hub. Do not post in <span class=\"bold\">#transferchat</span> for these.</p>"
+        },
+        {
+          "title": "Tutor Replacement → Retention",
+          "color": "hearth",
+          "width": "half",
+          "bodyHtml": "<p>Tutor Replacement tickets go to Retention via BatSignal — do not post in #transferchat.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Required</span> Include BOTH the tutor and client URLs in the body of the BatSignal ticket. Replacements have been delayed when one or both are missing.</div><p>BatSignal is for tutor replacements only — not VT4S. VT4S tutor drops go through the VT4S escalation form.</p><p><a href=\"https://docs.google.com/document/d/1nlSMwPlWXF8Iz9gfsG0L4Veb42OxxP49dxJPIDgBwns/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">View Tutor Replacement Instructions →</a></p>"
+        },
+        {
+          "title": "ADP → Paylocity Migration",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>We will be moving off ADP and into <span class=\"bold\">Paylocity</span> in the coming weeks. Biggest change: you will be required to <span class=\"bold\">clock in and clock out daily</span>, rather than entering hours after the fact. More to come from People Ops, including training.</p>"
+        },
+        {
+          "title": "Disbursement Tickets — What We Handle vs Transfer",
+          "color": "hearth",
+          "width": "full",
+          "bodyHtml": "<p><span class=\"label label-hearth\">We Handle These Directly</span></p><ul><li>No-show invoices</li><li>24-hour cancellation invoices</li><li>VT4S TOU signing</li><li>Asking the tutor to try invoicing again</li></ul><p><span class=\"label label-hearth\">Everything Else → Transfer to Payments</span></p><p>Transfer to the Payments team via the Admin Hub.</p>"
+        },
+        {
+          "title": "No-Show Policy — Instant Sessions = 15 Minutes",
+          "color": "shadow",
+          "width": "half",
+          "bodyHtml": "<div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Policy</span> If a tutor reaches out about a no-show for an <span class=\"bold\">Instant Session</span> where the student never joined, generate an invoice for <span class=\"bold\">15 minutes only</span>.</div><p>Tutors should be compensated for their time — process these as 15-minute invoices.</p>"
+        },
+        {
+          "title": "\"Report Issue\" Renamed to \"Request Review\"",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<p>The <span class=\"bold\">Report Issue</span> button on the tutor&#39;s Earnings tab has been renamed to <span class=\"bold\">Request Review</span>. The function is the same — tutors may still be confused about what the button does.</p>"
+        },
+        {
+          "title": "Bug: Rate Changes Page Showing V1 Incentives",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>We&#39;ve identified a bug in the <span class=\"bold\">Rate Changes page</span> on the Tutor Dashboard. It appears as if the tutor&#39;s rate should be increasing after each session (V1 incentives), but the <span class=\"bold\">V2 incentive structure</span> is in effect.</p><div class=\"callout callout-twilight\"><span class=\"label label-twilight\">Approved Verbiage</span> <span class=\"italic\">&quot;We are aware there is an issue with how the incentives are being displayed in the Rate Changes list. Incentives remain individualized by student and earned as noted on the Opportunity. Incentives are no longer earned after each individual session as of January 2026. Our Engineering Team is working to correct how incentive progress is displayed on the Rate Changes page. Please refer to the student information on your Students tab for the correct incentive progression.&quot;</span></div>"
+        },
+        {
+          "title": "VT4S Rate Info — Quick Reference",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<p>VT4S base rates are based on a combination of the <span class=\"bold\">implementation type</span> and the tutor&#39;s base rate for that rate type:</p><ul><li><span class=\"bold\">Parent Assigned/Led 1:1</span> — $18/hr</li><li><span class=\"bold\">District Assigned/Led 1:1</span> — $19/hr</li><li><span class=\"bold\">District Assigned/Led 1:N</span> (small groups) — $20/hr</li></ul><p>You can find the Implementation Type on the student tab. If you see something not covered above, DM Katie with the ticket.</p>"
+        },
+        {
+          "title": "VT4S TOU Signing — We Sign Them Directly",
+          "color": "hearth",
+          "width": "full",
+          "bodyHtml": "<div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Process Change</span> We sign VT4S TOUs ourselves instead of sending a ticket. This replaces the previous macro-based process.</div><p><span class=\"bold\">For district, school, and teacher led:</span></p><ul><li>Sign the TOU as <span class=\"bold\">Varsity Tutors for Schools</span></li><li>Approve the signed TOU</li><li>Clear the ToDo on VTWA</li></ul><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Parent Led — Still Create a Ticket</span> Continue creating a ticket for <span class=\"bold\">parent led TOUs</span> and drop requests for VT4S in general — the process for these is still being worked out.</div>"
+        },
+        {
+          "title": "Join Link Refresh Rolled Back & No-Show Fix",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>The <span class=\"bold\">join link refresh has been rolled back</span> — it was causing unintended issues with the tutor&#39;s time in the session reading accurately for auto-invoicing. No ETA on when it will be re-enabled.</p><div class=\"callout callout-twilight\"><span class=\"label label-twilight\">No-Show Invoicing Bug — Resolved</span> The system was picking up the tutor&#39;s time in the session rather than the scheduled time on the calendar. Affected invoices will be <span class=\"bold\">backfilled automatically</span> — no further action needed.</div>"
+        },
+        {
+          "title": "Zero Opportunities — Subject Opt-In Prompt",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>Tutors with <span class=\"bold\">0 opportunities</span> and an <span class=\"bold\">Active-Meeting</span> status will now be prompted to opt into subjects they are pre-approved for, or to complete interviews for related subjects.</p><p>This is optional for the tutor, but it may help increase the number of opportunities they receive.</p>"
+        },
+        {
+          "title": "Unconfirmed Sessions — Advise Tutors to Join",
+          "color": "shadow",
+          "width": "full",
+          "bodyHtml": "<div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Effective May 4</span> We need to start advising tutors to <span class=\"bold\">join unconfirmed sessions</span>. Auto-invoicing should soon begin invoicing no-shows if the tutor joins, even if the session is unconfirmed.</div><p>Tutors are not contractually obligated to join unconfirmed sessions, but to make everyone&#39;s lives easier we need to start telling them to <span class=\"bold\">join and wait the full window</span>.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Session Verification Required</span> Until auto-invoicing accurately handles these, use <span class=\"bold\">#session-verification</span> more often to verify the tutor joined and process the no-show. The tutor must have joined the session for it to count.</div>"
+        },
+        {
+          "title": "V2 Incentives Decision-Making Guide",
+          "color": "hearth",
+          "width": "half",
+          "bodyHtml": "<p>A new reference document for working <span class=\"bold\">V2 incentive reviews</span> has been published. This covers how to evaluate incentive eligibility and handle common scenarios.</p><p><a href=\"https://docs.google.com/document/d/1utB_B1I8btzfSO9uOAx6IFH5STPGDIrI/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">View V2 Incentives Decision-Making Guide →</a></p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Handling Invoice Issues via Chat</span> If the tutor contacts us through chat about an invoice issue, ask them to use the <span class=\"bold\">Request Review</span> button next to the invoice. If they report the button is unavailable, let them know we will follow up via email after reviewing.</div>"
+        },
+        {
+          "title": "ANR Process — Bookmark This",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">Action Required</span> Bookmark the ANR process document. This is the current reference for how to handle ANR workflows.</div><p><a href=\"https://docs.google.com/document/d/1mi0Lv0KV_9Gsm-vutONB1Wiyrf6t-7ZTM4LfF-SUpi8/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">View ANR Process Document →</a></p>"
+        },
+        {
+          "title": "Payments Backlog — Working Invoices Directly",
+          "color": "twilight",
+          "width": "full",
+          "bodyHtml": "<div class=\"callout callout-twilight\"><span class=\"label label-twilight\">Temporary Process</span> Payments is backed up. We are working invoice issues directly instead of escalating for now.</div><p><span class=\"bold\">Tutor Invoicing Admin:</span> <a href=\"https://internal.varsitytutors.com/tutor-invoicing-admin\" target=\"_blank\" rel=\"noopener\">internal.varsitytutors.com/tutor-invoicing-admin</a></p><p><span class=\"label label-twilight\">Student Unassigned and Reassigned</span></p><ul><li>Incentives start over.</li><li><span class=\"bold\">DO NOT adjust the base rate</span>.</li><li>Submit a payment adjustment for the difference between base rate and what their incentivized rate should be until incentives kick in.</li><li>Use V2 criteria (impersonate and review the opportunity) — do NOT use V1.</li></ul><p>Use the <a href=\"https://docs.google.com/spreadsheets/d/1Lep8PPIRUbUM7UxSZy8xerVI6DqciC1P/\" target=\"_blank\" rel=\"noopener\">incentive lookup sheet</a> to determine if the incentive should be applied.</p><p><span class=\"label label-twilight\">Tutoring Session LookInfo Tab</span></p><ul><li>Session duration</li><li>Session recording link (anything ending in /0 means no recording)</li><li>Attending Tutor Minutes in Session</li><li>Tutor Arrival: negative = early, positive = late</li><li>Camera On %</li><li><span class=\"bold\">VT4S and BUCA sessions are NOT eligible.</span></li></ul><p><span class=\"label label-twilight\">Invoice Rounding</span></p><p>Invoices are rounded to the scheduled end time if the session ends within <span class=\"bold\">5 minutes</span> before or after the scheduled end. Decisions must follow KB criteria. No-shows and 24-hour cancellations do not count toward incentive session totals.</p><p><a href=\"https://vttutorengagement.varsitytutors.com/hc/en-us/articles/39755723623963-Earn-up-to-40-hour-The-Incremental-Pay-Bonus\" target=\"_blank\" rel=\"noopener\">View Incentive KB Article →</a></p>"
+        },
+        {
+          "title": "Invite-A-Friend on LLP2",
+          "color": "evenstar",
+          "width": "full",
+          "bodyHtml": "<div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">Now Live</span> Students can invite a friend to join their session as a guest. <span class=\"bold\">1:1 tutoring sessions only</span> — not group sessions or VT4S.</div><p class=\"subheading\">How It Works</p><ul><li>Only the <span class=\"bold\">student</span> can invite — tutors do not have an invite button.</li><li>Student clicks Invite → tutor receives a yes/no approval prompt.</li><li>Once approved, the student can share or email a link to their friend.</li><li>The guest sees a Terms of Use screen before joining.</li></ul><p class=\"subheading\">What to Expect</p><p>The client team will remind students to give their tutor a heads-up before the session. However, not all students will do this. Be ready for tutors asking for <span class=\"bold\">additional pay</span> or wanting to <span class=\"bold\">drop students</span> as a result of unexpected guests joining sessions.</p>"
+        }
+      ]
+    },
+    {
+      "title": "Previous Dispatches",
+      "assetKey": "tome",
+      "cards": [
+        {
+          "title": "New Feature: Guaranteed Availability",
+          "color": "shire",
+          "width": "full",
+          "bodyHtml": "<div class=\"callout callout-shire\"><span class=\"label label-shire\">Rolling Out to 5% of Tutors</span> Guaranteed Availability lets tutors mark specific time slots as open for <span class=\"bold\">instant student booking — no tutor approval required</span>. Sessions are automatically confirmed. Tutors with GA slots are shown first in the Tutor Gallery.</div><p><span class=\"bold\">Key rules to know:</span></p><ul><li>Students must book at least <span class=\"bold\">24 hours in advance</span></li><li>Booking window is limited to <span class=\"bold\">8 days from today</span></li><li>Tutors can edit or remove <span class=\"bold\">unbooked</span> slots at any time</li><li>Once a student books, the standard cancellation policy applies</li><li>Tutors can also mark time as <span class=\"bold\">Busy</span> to block off personal time</li></ul><p><a href=\"https://docs.google.com/document/d/10V06OhKSVY2ILwCpqyrb2HilJRSFEB1r/edit?rtpof=true&amp;sd=true\" target=\"_blank\" rel=\"noopener\">View the full Guaranteed Availability FAQ →</a></p><p><span class=\"label label-shire\">Escalation Guidance</span></p><ul><li><span class=\"bold\">Availability not showing in Tutor Gallery:</span> Verify the tutor has a profile picture, Personal Statement, and signed ICAs in Account Settings.</li><li><span class=\"bold\">Student can&#39;t book an available slot:</span> Confirm the session is more than 24 hours away and within the 8-day window.</li><li><span class=\"bold\">Tutor needs to cancel a booked GA session:</span> Standard tutor cancellation policy applies.</li></ul>"
+        },
+        {
+          "title": "Client Experience V3 & LLP2 Roadmap",
+          "color": "evenstar",
+          "width": "full",
+          "bodyHtml": "<p>We&#39;ll be <span class=\"bold\">moving away from Instant Chat</span> when Client Experience V3 rolls out <span class=\"bold\">end of May</span>.</p><ul><li>All groups like BUCA, B2B ClassWallet, and the rest will move to V3.</li><li>This timeline includes all VT4S shifting to LLP2 and profile experience.</li></ul><p><span class=\"label label-evenstar\">What&amp;#39;s Live Now</span></p><p>The <span class=\"bold\">Invite a Friend</span> feature has been launched on LLP2. It works a little differently from the previous version — review the Loom walkthrough before handling related inquiries.</p>"
+        },
+        {
+          "title": "Do Not Escalate Group Course / VT4S Invoices",
+          "color": "shadow",
+          "width": "full",
+          "bodyHtml": "<div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Effective Immediately</span> Both Group Courses and VT4S are still on <span class=\"bold\">manual invoicing</span>. Do not send invoice requests for either of these to Disbursements.</div><p><span class=\"bold\">Courses:</span> Add the tutor back, have them submit the invoice, then unassign the course as soon as they submit. You may need to leave a ticket in Waiting on Tutor and follow up.</p><p><span class=\"bold\">VT4S:</span> Add the student back, submit the invoice on the tutor&#39;s behalf, then remove the student right away.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Note</span> All other lines on auto-invoicing should continue to follow the standard escalation path to Disbursements when needed.</div>"
+        },
+        {
+          "title": "Star #queue-health-and-announcements",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<div class=\"callout callout-earthen\"><span class=\"label label-earthen\">Action Required</span> You <span class=\"bold\">MUST</span> star this channel. All outage, trend, and queue-related messages go here.</div><p>When we post about an outage, we expect you to <span class=\"bold\">react to the message</span>. If you post about the same issue in another channel 10 minutes later, we will assume you did not check this channel first.</p>"
+        },
+        {
+          "title": "Introduction Video Complaints → #transferchat",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>If a tutor reaches out saying their introduction video is too <span class=\"bold\">&quot;short&quot;</span> or has complaints about introduction videos, send the ticket to <span class=\"bold\">#transferchat</span>.</p><p>Do not attempt to troubleshoot or resolve these — they need to be handled by the appropriate team.</p>"
+        }
+      ]
+    },
+    {
+      "title": "Earlier Dispatches",
+      "assetKey": "tome",
+      "cards": [
+        {
+          "title": "B2B Legacy Experience — Not a Bug",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p><span class=\"bold\">B2B ClassWallet, Pro Cert, and some BUCA clients</span> are still on the Legacy Experience. This is expected.</p><p>Engineering does <span class=\"bold\">not</span> have plans to move these clients to the new experience at this time.</p><div class=\"callout callout-twilight\"><span class=\"label label-twilight\">Key Takeaway</span> What you&#39;re seeing is <span class=\"bold\">not a bug or missing functionality</span> — it&#39;s how their experience is designed. Do not submit bug reports for this.</div>"
+        },
+        {
+          "title": "Team Incentive Program",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p>Every week the team hits <span class=\"bold\">all of our goals</span>, every agent earns one entry into a monthly prize drawing.</p><div class=\"callout callout-shire\"><span class=\"label label-shire\">How to Earn Entries</span> Current month&#39;s drawing details are posted on the Team Hub. Superlative wins and Bingo entries grant additional raffle entries.</div>"
+        },
+        {
+          "title": "30-Minute Sessions Reinstated for Grade 6+",
+          "color": "hearth",
+          "width": "full",
+          "bodyHtml": "<div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Effective April 1</span> The previous restriction on 30-minute sessions for Grade 6+ has been <span class=\"bold\">suspended</span>. You <span class=\"bold\">can</span> book 30-minute sessions for Grade 6+ students, including adult learners.</div><p>If the student is K–5, continue to push tutor self-service as normal.</p>"
+        },
+        {
+          "title": "Shift Swaps Are Now Available",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>A new <span class=\"bold\">Shift Swap</span> program has been introduced.</p><ul><li>Review the <a href=\"https://docs.google.com/document/d/1pMw-84xHyk7Rc3OvuuAIczLjzQyn0i76bm1ZIQpUaEo/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">Shift Swap SOP</a> in its entirety.</li><li>You <span class=\"bold\">must complete the acknowledgement form</span> to be eligible.</li></ul><p>Reach out to Katie with any questions.</p>"
+        },
+        {
+          "title": "VT4S No-Show Rule Clarification",
+          "color": "shadow",
+          "width": "half",
+          "bodyHtml": "<p>Tutors must <span class=\"bold\">stay for the entire duration</span> of a VT4S session and bill normally, even if no students are present.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">15-Minute Rule Exception</span> The 15-minute rule does <span class=\"bold\">NOT</span> apply to VT4S sessions — <span class=\"bold\">except for Parent-Led</span>, which is permitted the 15-minute rule.</div>"
+        },
+        {
+          "title": "Tutor Referrals",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<p>Tutor referrals can be submitted through the form linked below. <span class=\"bold\">An agent must submit the form</span> — do not send this link to tutors.</p><p><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdvQAKw2vLlzJdntBlXH0liT0SdqgK-XTz_tpTjnGNXGrw34A/viewform\" target=\"_blank\" rel=\"noopener\">Submit a Tutor Referral →</a></p>"
+        },
+        {
+          "title": "LLP Hardware Specifications — Early Guidance",
+          "color": "hearth",
+          "width": "half",
+          "bodyHtml": "<p>We now have early guidance on <span class=\"bold\">hardware specifications</span> for determining if a device is suitable for LLP.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Important</span> These are <span class=\"bold\">not final or benchmarked requirements</span>. If a device may fall below specs, do <span class=\"bold\">not</span> stop troubleshooting.</div><p><a href=\"https://docs.google.com/document/d/19VNQpCGoEvmcc3HNrBbFCrHveO2LTIIYwDKYPEHlTpc/edit?tab=t.0#heading=h.7eaicvf3ha66\" target=\"_blank\" rel=\"noopener\">View LLP Hardware Specs →</a></p>"
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2026-07-14T14:20:09.464Z"
+}

@@ -5,8 +5,8 @@
       "assetKey": "candle",
       "cards": [
         {
-          "title": "Tutor IDs — Uploads Only, No Email/Ticket Submissions [hearth] >> NEW (8/3) <<",
-          "color": "shire",
+          "title": "Tutor IDs — Uploads Only, No Email/Ticket Submissions",
+          "color": "hearth",
           "width": "half",
           "bodyHtml": "<p><span class=\"bold\">Tutors are no longer allowed to submit IDs to us through email or a ticket. They must upload the ID directly through their profile using the ID verification process. If they&#39;re having trouble with that, send them to Recruitment and explain that the tutor is unable to upload their ID.</span></p>"
         },
@@ -271,5 +271,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-08-03T19:34:10.615Z"
+  "lastUpdated": "2026-08-03T19:41:15.047Z"
 }

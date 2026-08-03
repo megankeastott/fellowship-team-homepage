@@ -11,38 +11,38 @@
           "bodyHtml": "<p><span class=\"bold\">Tutors are no longer allowed to submit IDs to us through email or a ticket. They must upload the ID directly through their profile using the ID verification process. If they&#39;re having trouble with that, send them to Recruitment and explain that the tutor is unable to upload their ID.</span></p>"
         },
         {
-          "title": "Payroll Locked — All Corrections Now via Paylocity [earthen] >> NEW (8/3) <<",
-          "color": "shire",
+          "title": "Payroll Locked — All Corrections Now via Paylocity",
+          "color": "earthen",
           "width": "half",
           "bodyHtml": "<p><span class=\"bold\"><span class=\"label label-earthen\">Payroll Lock</span> July time is now locked for payroll processing. All future corrections must be submitted in Paylocity — they&#39;ll be flagged for daily review.</span></p><p><span class=\"bold\"><p class=\"subheading\">Paylocity and Meal Breaks</p> Paylocity is quirky about meal breaks paired with MTO/VTO. Use Start/End Lunch as follows:</span></p><ul><li><span class=\"bold\">If your MTO/VTO runs consecutive to your meal (example: meal is 1–2pm, MTO is 2–3pm) — Start Lunch at 1pm, End Lunch at 3pm\r</span></li><li><span class=\"bold\">If your MTO/VTO does NOT extend your meal, clock out instead (and clock back in when you return, if it&#39;s not the end of your shift)\r</span></li></ul><p><span class=\"bold\"><div class=\"callout callout-earthen\"><span class=\"label label-earthen\">Heads Up</span> Katie is OOO this week and back in office Monday, August 10.</div></span></p>"
         },
         {
-          "title": "Agent Statuses — Start Using Them [shire] >> NEW (8/3) <<",
+          "title": "Agent Statuses — Start Using Them",
           "color": "shire",
           "width": "half",
           "bodyHtml": "<p><span class=\"bold\">Start using the agent statuses now — they don&#39;t drive anything yet, but get in the habit. An LoD status will be added shortly.</span></p>"
         },
         {
-          "title": "QA Reviews & 1:1s — Don't Wait [evenstar] >> NEW (8/3) <<",
-          "color": "shire",
+          "title": "QA Reviews & 1:1s — Don't Wait",
+          "color": "evenstar",
           "width": "half",
           "bodyHtml": "<p><span class=\"bold\">1:1s are being scheduled. Review your QAs in a timely manner — scores from several weeks back will not be adjusted.</span></p>"
         },
         {
-          "title": "Reschedule Friction SOP — Rollout Complete [twilight, full] >> NEW (8/3), completed-rollout note <<",
-          "color": "shire",
-          "width": "half",
+          "title": "Reschedule Friction SOP — Rollout Complete",
+          "color": "twilight",
+          "width": "full",
           "bodyHtml": "<p><span class=\"bold\"><span class=\"label label-twilight\">Rollout Recap</span> Additional friction was introduced for tutors attempting to reschedule their first session with a new student. The rollout started at 25% (7/28) and expanded to 500 tutors by end of week.</span></p><p><span class=\"bold\"><div class=\"callout callout-twilight\"><span class=\"label label-twilight\">Reference</span> The SOP is documented here:</span><a href=\"https://docs.google.com/document/d/1L1x5AfwJcU159BSfY-dDNfLqiUVtEL0TYMzyVvvN0M0/edit\" target=\"_blank\" rel=\"noopener\"><span class=\"bold\"> Reschedule Friction SOP</span></a><span class=\"bold\">. The mandatory acknowledgment form has closed — no further action needed unless you were told otherwise directly.</div></span></p>"
         },
         {
-          "title": "QA Scorecards — View Previous Week [shire] >> NEW (last week) <<",
+          "title": "QA Scorecards — View Previous Week",
           "color": "shire",
           "width": "half",
           "bodyHtml": "<p><span class=\"bold\">You can now view the previous week&#39;s scorecards on your QA.</span></p>"
         },
         {
-          "title": "Member Services — Transfer Opportunity [evenstar] >> NEW (last week) <<",
-          "color": "shire",
+          "title": "Member Services — Transfer Opportunity",
+          "color": "evenstar",
           "width": "half",
           "bodyHtml": "<p><span class=\"bold\">Check your email for a message about an opportunity to transfer into Member Services. One of the available roles includes a monthly bonus opportunity, and there may also be opportunities for extra hours (not guaranteed). Reach out with questions.</span></p>"
         },
@@ -271,5 +271,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-08-03T19:41:15.047Z"
+  "lastUpdated": "2026-08-03T19:44:14.469Z"
 }

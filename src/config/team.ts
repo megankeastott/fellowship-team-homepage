@@ -99,10 +99,11 @@ export const LOD_SCHEDULE: ScheduleDay[] = [
     day: 'Tuesday',
     color: 'evenstar',
     slots: [
-      { time: '07:00 – 10:00', agent: 'Andrezza', agentKey: 'andrezza' },
-      { time: '10:00 – 13:00', agent: 'Erika', agentKey: 'erika' },
-      { time: '13:00 – 15:00', agent: 'Joao', agentKey: 'joao' },
-      { time: '15:00 – 18:00', agent: 'Andro', agentKey: 'andro' },
+      { time: '07:00 – 09:00', agent: 'Andrezza', agentKey: 'andrezza' },
+      { time: '09:00 – 11:00', agent: 'Erika', agentKey: 'erika' },
+      { time: '11:00 – 13:00', agent: 'Joao', agentKey: 'joao' },
+      { time: '13:00 – 15:00', agent: 'Andro', agentKey: 'andro' },
+      { time: '15:00 – 18:00', agent: 'Janerys', agentKey: 'janerys' },
       { time: '18:00 – 21:00', agent: 'Lu', agentKey: 'lu' },
     ],
   },
@@ -113,7 +114,8 @@ export const LOD_SCHEDULE: ScheduleDay[] = [
       { time: '07:00 – 11:00', agent: 'Erika', agentKey: 'erika' },
       { time: '11:00 – 14:00', agent: 'Andro', agentKey: 'andro' },
       { time: '14:00 – 16:00', agent: 'Lu', agentKey: 'lu' },
-      { time: '16:00 – 21:00', agent: 'Andrezza', agentKey: 'andrezza' },
+      { time: '16:00 – 18:00', agent: 'Janerys', agentKey: 'janerys' },
+      { time: '18:00 – 21:00', agent: 'Andrezza', agentKey: 'andrezza' },
     ],
   },
   {
@@ -121,19 +123,21 @@ export const LOD_SCHEDULE: ScheduleDay[] = [
     color: 'hearth',
     slots: [
       { time: '07:00 – 10:00', agent: 'Erika', agentKey: 'erika' },
-      { time: '10:00 – 14:00', agent: 'Andrezza', agentKey: 'andrezza' },
-      { time: '14:00 – 17:00', agent: 'Lu', agentKey: 'lu' },
-      { time: '17:00 – 21:00', agent: 'Andro', agentKey: 'andro' },
+      { time: '10:00 – 12:00', agent: 'Andrezza', agentKey: 'andrezza' },
+      { time: '12:00 – 15:00', agent: 'Janerys', agentKey: 'janerys' },
+      { time: '15:00 – 18:00', agent: 'Lu', agentKey: 'lu' },
+      { time: '18:00 – 21:00', agent: 'Andro', agentKey: 'andro' },
     ],
   },
   {
     day: 'Friday',
     color: 'earthen',
     slots: [
-      { time: '07:00 – 11:00', agent: 'Erika', agentKey: 'erika' },
-      { time: '11:00 – 14:00', agent: 'Joao', agentKey: 'joao' },
-      { time: '14:00 – 17:00', agent: 'Lu', agentKey: 'lu' },
-      { time: '17:00 – 21:00', agent: 'Gus', agentKey: 'gus' },
+      { time: '07:00 – 10:00', agent: 'Erika', agentKey: 'erika' },
+      { time: '10:00 – 13:00', agent: 'Joao', agentKey: 'joao' },
+      { time: '13:00 – 16:00', agent: 'Lu', agentKey: 'lu' },
+      { time: '16:00 – 19:00', agent: 'Janerys', agentKey: 'janerys' },
+      { time: '19:00 – 21:00', agent: 'Gus', agentKey: 'gus' },
     ],
   },
   {
@@ -142,8 +146,9 @@ export const LOD_SCHEDULE: ScheduleDay[] = [
     fullWidth: true,
     slots: [
       { time: '07:00 – 10:00', agent: 'Gus', agentKey: 'gus' },
-      { time: '10:00 – 14:00', agent: 'Joao', agentKey: 'joao' },
-      { time: '14:00 – 18:00', agent: 'Lu', agentKey: 'lu' },
+      { time: '10:00 – 13:00', agent: 'Joao', agentKey: 'joao' },
+      { time: '13:00 – 16:00', agent: 'Lu', agentKey: 'lu' },
+      { time: '16:00 – 18:00', agent: 'Janerys', agentKey: 'janerys' },
       { time: '18:00 – 21:00', agent: 'Erika', agentKey: 'erika' },
     ],
   },
@@ -157,6 +162,7 @@ export const AGENT_COLORS: Record<string, string> = {
   andro: '#c07060',
   gus: '#8e9680',
   lu: '#d4a0b0',
+  janerys: '#7a9bc0',
 };
 
 export const AGENT_MEDALLIONS: Record<string, string> = {

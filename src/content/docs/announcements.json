@@ -38,7 +38,7 @@
           "title": "Reschedule Friction SOP — Rollout Complete",
           "color": "twilight",
           "width": "full",
-          "bodyHtml": "<p><span class=\"bold\"><span class=\"label label-twilight\">Rollout Recap</span> Additional friction was introduced for tutors attempting to reschedule their first session with a new student. The rollout started at 25% (7/28) and expanded to 500 tutors by end of week.</span></p><p><span class=\"bold\"><div class=\"callout callout-twilight\"><span class=\"label label-twilight\">Reference</span> The SOP is documented here: Reschedule Friction SOP. The mandatory acknowledgment form has closed — no further action needed unless you were told otherwise directly.</div></span></p>"
+          "bodyHtml": "<p><span class=\"bold\"><span class=\"label label-twilight\">Rollout Recap</span> Additional friction was introduced for tutors attempting to reschedule their first session with a new student. The rollout started at 25% (7/28) and expanded to 500 tutors by end of week.</span></p><p><span class=\"bold\"><div class=\"callout callout-twilight\"><span class=\"label label-twilight\">Reference</span> The SOP is documented here: </span><a href=\"https://docs.google.com/document/u/0/d/1L1x5AfwJcU159BSfY-dDNfLqiUVtEL0TYMzyVvvN0M0/edit\" target=\"_blank\" rel=\"noopener\"><span class=\"bold\">Reschedule Friction SOP</span></a><span class=\"bold\">. The mandatory acknowledgment form has closed — no further action needed unless you were told otherwise directly.</div></span></p>"
         },
         {
           "title": "Session Lookup — New Admin Hub Tool",
@@ -301,5 +301,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-08-17T18:00:53.283Z"
+  "lastUpdated": "2026-08-26T21:12:36.295Z"
 }

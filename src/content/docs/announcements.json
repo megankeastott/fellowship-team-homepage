@@ -8,7 +8,7 @@
           "title": "Work Block Priority Change — CHAT+T vs LLP1+T",
           "color": "hearth",
           "width": "full",
-          "bodyHtml": "<p><span class=\"label label-hearth\">Immediate Change — Please Acknowledge</span> Effective immediately, we&#39;re changing work block priorities:</p><p>If your work block shows CHAT+T, your primary focus is LLP. In between LLP/PS requests, you can work TES tickets. If you&#39;re working a TES ticket and an LLP comes in, claim the LLP immediately — no exceptions.</p><p>If your work block shows LLP1+T, your primary focus is now TES tickets. Only step in to assist with LLPs if we&#39;re backed up and additional support is needed.</p><p>LOD: use @everyone in the Health channel only if all primary LLP agents are already tied up with LLPs and additional support is needed. A message sent without @everyone is meant for the agents currently assigned to LLP.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Please Acknowledge</span> Everyone, please confirm you&#39;ve read and understand this change.</div>"
+          "bodyHtml": "<p><span class=\"label label-hearth\">Immediate Change — Please Acknowledge</span> Effective immediately, we&#39;re changing work block priorities:</p><p>If your work block shows LLP1+T, your primary focus is LLP. In between LLP/PS requests, you can work TES tickets. If you&#39;re working a TES ticket and an LLP comes in, claim the LLP immediately — no exceptions.</p><p>If your work block showsCHAT+T, your primary focus is now TES tickets. Only step in to assist with LLPs if we&#39;re backed up and additional support is needed.</p><p>LOD: use @everyone in the Health channel only if all primary LLP agents are already tied up with LLPs and additional support is needed. A message sent without @everyone is meant for the agents currently assigned to LLP.</p>"
         },
         {
           "title": "TQI Verification Step Added — First Session Reschedule/Cancel SOP",
@@ -43,5 +43,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-09-09T17:17:00.705Z"
+  "lastUpdated": "2026-09-09T17:41:22.077Z"
 }

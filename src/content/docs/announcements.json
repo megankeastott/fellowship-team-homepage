@@ -5,6 +5,42 @@
       "assetKey": "candle",
       "cards": [
         {
+          "title": "Auto-Assign Is Live — CSO Ticketing",
+          "color": "hearth",
+          "width": "full",
+          "bodyHtml": "<p><span class=\"label label-hearth\">Stop Manually Claiming CSO Ticketing Tickets</span> Starting 9/22, CSO Ticketing tickets are auto-assigned — up to 15 Waiting for Support tickets per agent (Waiting on Tutor tickets don&#39;t count toward that max).</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Keep Your Status Accurate</span> Auto Assign routes based on your status. Keep it accurate all day long — work block, breaks, meals, and Offline at EOS — or Auto Assign will keep routing tickets to you even when you&#39;re not actually working.</div><p>Live Requests (LLP) are still manually claimed by the next available agent for now; Auto Assign for those is coming in Phase 2.</p><p>Note: the &quot;claim tickets,&quot; &quot;cherry-picking,&quot; and &quot;check the queue for unclaimed tickets&quot; guidance in the Ticket Workflow &amp; Expectations card now applies to Live Requests only.</p>"
+        },
+        {
+          "title": "Okta MFA — Action Required by 9/30",
+          "color": "hearth",
+          "width": "full",
+          "bodyHtml": "<p><span class=\"label label-hearth\">Action Required</span> Enable Okta Verify or Google Authenticator as your Okta MFA by September 30th. On that date, SMS will no longer be offered as an MFA method for Okta, and you risk being locked out of Okta entirely if you haven&#39;t switched over.</p><p><span class=\"label label-hearth\">Setup Instructions</span> Okta Verify Setup Guide → | Google Authenticator Setup Guide →</p><p>Questions or issues: post in #support-it-all-employees or submit an IT ticket through the IT Service Desk.</p>"
+        },
+        {
+          "title": "Payroll Support Moving to HR Jira Help Desk",
+          "color": "earthen",
+          "width": "half",
+          "bodyHtml": "<p>As of 9/25, all payroll questions go through the HR Jira Help Desk using the Payroll ticket type — not email.</p><div class=\"callout callout-earthen\"><span class=\"label label-earthen\">Email Transition</span> Emails to payroll@varsitytutors.com will auto-create a ticket, and all replies will come through Jira, not email. Internal emails to payroll@ will keep working through 10/25 — after that they&#39;ll bounce with instructions to submit a ticket instead.</div><p>Bookmark the link below and use it for all payroll requests going forward so nothing gets lost and you can track yours from start to finish.</p><p><span class=\"label label-earthen\">New Link</span> Payroll Help Desk →</p>"
+        },
+        {
+          "title": "Waiting on Tutor — 24-Hour Manual-Solve Threshold",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>Email tickets sitting in Waiting on Tutor for more than 24 hours with no response from the tutor can be solved directly — add an internal note (for example: &quot;Ticket solved after more than 24 hours with no response from tutor&quot;) and solve it.</p><div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">Not the Same as the 5-Day Auto-Close</span> This is different from the system&#39;s automatic Closed-after-Solved timer (see the &quot;Closed vs. Solved&quot; card below). The 24 hours here is when you can proactively solve a stale Waiting on Tutor ticket yourself; the 5 days is how long a Solved ticket sits before the system moves it to Closed on its own.</div>"
+        },
+        {
+          "title": "ClientHUD Replies Are Live",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>Public Reply now works directly on ClientHUD tickets — you can respond to the client straight from the ticket.</p><div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">Still Not Supported</span> We still can&#39;t create new tickets for clients, and we can&#39;t reply through LLP Client chat — the client&#39;s account doesn&#39;t receive those messages, so nothing sent there is visible to them. Tier 3 client tickets are unchanged: since we can&#39;t create tickets for the client directly, keep using the test tutor account.</div>"
+        },
+        {
+          "title": "Overlapping/Multiple First-Session Bookings — Known Bug",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>Engineering is aware of an issue where tutors submit more than one option for a first session and all of them get scheduled. A ticket has been filed; no ETA yet.</p><p><span class=\"label label-twilight\">What to Do</span></p><p>Double-check whether the tutor has confirmed the intended session time with the client — encourage them to reach out if they haven&#39;t.</p><p>If the client isn&#39;t responding, remove all sessions except the one that&#39;s actually wanted.</p><p>Let the tutor know this is a known, reported issue.</p><p>If a client gets charged for one of the extra sessions, report it right away.</p>"
+        },
+        {
           "title": "Closed vs. Solved — Don't Manually Close Tickets",
           "color": "shadow",
           "width": "full",
@@ -20,13 +56,13 @@
           "title": "Auto-QA Temporarily Paused",
           "color": "shadow",
           "width": "half",
-          "bodyHtml": "<p>Auto-QA is temporarily down due to an API key issue. QA reviews will resume once this is resolved — no action needed on your end in the meantime.</p>"
+          "bodyHtml": "<p>Auto-QA is temporarily down due to an API key issue. QA reviews will resume once this is resolved — no action needed on your end in the meantime.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Manual QA Returning</span> Manual QA is coming back next week. In the meantime, expect some spot-checking this week. LoDs are being trained to QA as well, so daily feedback will continue.</div>"
         },
         {
-          "title": "Work Block Priority Change — CHAT+T vs LLP1+T",
+          "title": "Work Block Priority Change — CHAT+T vs LLP+T",
           "color": "hearth",
           "width": "full",
-          "bodyHtml": "<p><span class=\"label label-hearth\">Immediate Change — Please Acknowledge</span> Effective immediately, we&#39;re changing work block priorities:</p><p>If your work block shows LLP1+T, your primary focus is LLP. In between LLP/PS requests, you can work TES tickets. If you&#39;re working a TES ticket and an LLP comes in, claim the LLP immediately — no exceptions.</p><p>If your work block shows CHAT+T, your primary focus is now TES tickets. Only step in to assist with LLPs if we&#39;re backed up and additional support is needed.</p><p>LOD: use @everyone in the Health channel only if all primary LLP agents are already tied up with LLPs and additional support is needed. A message sent without @everyone is meant for the agents currently assigned to LLP.</p>"
+          "bodyHtml": "<p><span class=\"label label-hearth\">Immediate Change — Please Acknowledge</span> Effective immediately, we&#39;re changing work block priorities:</p><p>If your work block shows LLP+T, your primary focus is LLP. In between LLP/PS requests, you can work TES tickets. If you&#39;re working a TES ticket and an LLP comes in, claim the LLP immediately — no exceptions.</p><p>If your work block shows CHAT+T, your primary focus is now TES tickets. Only step in to assist with LLPs if we&#39;re backed up and additional support is needed.</p><p>LOD: use @everyone in the Health channel only if all primary LLP agents are already tied up with LLPs and additional support is needed. A message sent without @everyone is meant for the agents currently assigned to LLP.</p>"
         },
         {
           "title": "TQI Verification Step Added — First Session Reschedule/Cancel SOP",
@@ -74,7 +110,7 @@
           "title": "Agent Statuses — Start Using Them",
           "color": "shire",
           "width": "half",
-          "bodyHtml": "<p>Start using the agent statuses now — they don&#39;t drive anything yet, but get in the habit. An LoD status will be added shortly.</p><p><span class=\"label label-shire\">Two Quick Tips</span> Don&#39;t close Admin Index when you step away for lunch — it will boot your status offline. Mute the tab if you don&#39;t want to hear the notification sound, and unmute when you&#39;re back.</p><p>A fix has been deployed for the bug where refreshing or re-entering the URL could drop your status to offline. Keep flagging it in the team channel if you still see it happening.</p>"
+          "bodyHtml": "<p>Start using the agent statuses now — they don&#39;t drive anything yet, but get in the habit. An LoD status will be added shortly.</p><div class=\"callout callout-shire\"><span class=\"label label-shire\">Status Dropdown Updated</span> &quot;Available&quot; has been removed from the status dropdown. Use CHAT+T or LLP+T depending on your scheduled work block (see the Work Block Priority Change card). There&#39;s also a Busy status — do not select it for any reason — and a Tier 3 status for scheduled Tier 3 blocks.</div><p><span class=\"label label-shire\">Two Quick Tips</span> Don&#39;t close Admin Index when you step away for lunch — it will boot your status offline. Mute the tab if you don&#39;t want to hear the notification sound, and unmute when you&#39;re back.</p><p>A fix has been deployed for the bug where refreshing or re-entering the URL could drop your status to offline. Keep flagging it in the team channel if you still see it happening.</p>"
         },
         {
           "title": "Time Off & Call Outs — Paylocity Only",
@@ -128,7 +164,7 @@
           "title": "Ticket Workflow & Expectations",
           "color": "hearth",
           "width": "full",
-          "bodyHtml": "<p class=\"subheading\">Where and How We Work</p> Work out of the CSO Ticketing tab. All Platform Support and Tutor Support tickets are grouped here. Claim the next available ticket and work tickets in the order they come in. Cherry-picking is not permitted. Claim one or two tickets at a time — five at most, and that should not be often. Solve or answer a ticket, check the queue for new unclaimed tickets, and repeat.</p><p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">LLP Is the Exception</span> LLP takes priority. Pause your email and chat tickets to accept a live LLP session as quickly as possible. &gt;&gt; UPDATE &lt;&lt; Cross-training on Platform Support and LLP is now complete for all agents — we operate as one team, with no more &quot;TES agents&quot; vs. &quot;LLP agents&quot; split. If an LLP comes in and you&#39;re not actively troubleshooting another LLP session, claim it. No exceptions. Once LLP demand is covered, return to working tickets.</div><p><p class=\"subheading\">Expectations</p> Work a minimum of 75 tickets per week (seasonal adjustment).</p><p>Handle times should be 5 minutes or less for non-live work. Handle times are now tracked.</p><p>Take a fair share of both Platform Support and Tutor Support — do not avoid one queue.</p><p>UPDATE (8/3) — Daily Workflow Reminders &lt;&lt; Check for unclaimed tickets → reply FULLY (these are not chats — we don&#39;t send a first response only) → review any Waiting on Support tickets in your queue → reply → check for unclaimed tickets again</p><p>Watch your handle time — use the clock. If you have too many tabs open, close a few; if you get distracted mid-ticket, try an external timer to remind you to check back</p><p>Work oldest to newest</p><p><p class=\"subheading\">Track Yourself</p> You can track your own progress on the Leaderboard in the Admin Hub, under the Support tab. It defaults to Week to Date. To see today, set a custom date range with today&#39;s date as the start and end, and filter by your name. Your metrics aren&#39;t hidden from you — use them to prepare for your 1:1s.</p>"
+          "bodyHtml": "<p class=\"subheading\">Where and How We Work</p> Work out of the CSO Ticketing tab. All Platform Support and Tutor Support tickets are grouped here.</p><p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">See Auto-Assign Card Above</span> CSO Ticketing tickets are now auto-assigned instead of manually claimed — see the &quot;Auto-Assign Is Live&quot; card at the top of this page. The claiming guidance just below now applies to Live Requests only.</div><p>Claim the next available ticket and work tickets in the order they come in. Cherry-picking is not permitted. Claim one or two tickets at a time — five at most, and that should not be often. Solve or answer a ticket, check the queue for new unclaimed tickets, and repeat.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">LLP Is the Exception</span> LLP takes priority. Pause your email and chat tickets to accept a live LLP session as quickly as possible. &gt;&gt; UPDATE &lt;&lt; Cross-training on Platform Support and LLP is now complete for all agents — we operate as one team, with no more &quot;TES agents&quot; vs. &quot;LLP agents&quot; split. If an LLP comes in and you&#39;re not actively troubleshooting another LLP session, claim it. No exceptions. Once LLP demand is covered, return to working tickets.</div><p><p class=\"subheading\">Expectations</p> Work a minimum of 75 tickets per week (seasonal adjustment).</p><p>Handle times should be 5 minutes or less for non-live work. Handle times are now tracked.</p><p>Take a fair share of both Platform Support and Tutor Support — do not avoid one queue.</p><p>UPDATE (8/3) — Daily Workflow Reminders &lt;&lt; Check for unclaimed tickets → reply FULLY (these are not chats — we don&#39;t send a first response only) → review any Waiting on Support tickets in your queue → reply → check for unclaimed tickets again</p><p>Watch your handle time — use the clock. If you have too many tabs open, close a few; if you get distracted mid-ticket, try an external timer to remind you to check back</p><p>Work oldest to newest</p><p><p class=\"subheading\">Track Yourself</p> You can track your own progress on the Leaderboard in the Admin Hub, under the Support tab. It defaults to Week to Date. To see today, set a custom date range with today&#39;s date as the start and end, and filter by your name. Your metrics aren&#39;t hidden from you — use them to prepare for your 1:1s.</p>"
         },
         {
           "title": "We No Longer Work in a Chat Environment",
@@ -355,5 +391,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-09-16T20:22:30.144Z"
+  "lastUpdated": "2026-09-28T19:19:13.191Z"
 }

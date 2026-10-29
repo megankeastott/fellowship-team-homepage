@@ -8,13 +8,91 @@
           "title": "First Response Is Back — Send One on Every Ticket",
           "color": "hearth",
           "width": "full",
-          "bodyHtml": "<p><span class=\"label label-hearth\">Effective Now</span> First response time is returning to our service metrics. Go back to sending a first response on tickets instead of waiting to reply in full — a macro for this is in the works.</p><p>Note: this reverses the earlier &quot;reply FULLY, don&#39;t send a first-response-only&quot; guidance in the Ticket Workflow &amp; Expectations card below.</p>"
+          "bodyHtml": "<p><span class=\"label label-hearth\">Effective Now</span> First response time is returning to our service metrics. Go back to sending a first response on tickets instead of waiting to reply in full — a macro for this is in the works.</p><p>Note: this reverses the earlier &quot;reply FULLY, don&#39;t send a first-response-only&quot; guidance in the Ticket Workflow &amp; Expectations card below.</p><p><span class=\"label label-hearth\">How to Triage Your First Response</span></p><p>Heavy-lift ticket (student removals, BatSignals, etc.): send a quick acknowledgment — &quot;Thank you for reaching out to Varsity Tutors! My name is ____. Please allow me some time to complete your request for ____.&quot; — then move to the next ticket before committing to the longer one.</p><p>Needs more info (for example, which students to remove): ask your clarifying question and move on.</p><p>No real work needed (automatic email replies, etc.): reply fully and solve it right away.</p><p>Also: work your queue oldest to newest — sort by created date to keep things in order.</p>"
         },
         {
           "title": "Auto-Assign Is Live — CSO Ticketing & LLP",
           "color": "hearth",
           "width": "full",
           "bodyHtml": "<p><span class=\"label label-hearth\">Stop Manually Claiming Tickets</span> Starting 9/22, CSO Ticketing tickets are auto-assigned — up to 15 Waiting for Support tickets per agent (Waiting on Tutor tickets don&#39;t count toward that max).</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Keep Your Status Accurate</span> Auto Assign routes based on your status. Keep it accurate all day long — work block, breaks, meals, and Offline at EOS — or Auto Assign will keep routing tickets to you even when you&#39;re not actually working.</div><p><span class=\"label label-hearth\">Phase 2 Live — LLP Auto-Assign</span> As of 9/29, LLP auto-assign is live as well. If you&#39;re on a CHAT+T block and a waiting LLP comes in, you no longer need to manually grab it from Live Support Requests — switch your status to LLP+T and the waiting LLP will be automatically assigned to you.</p><p>Note: the &quot;claim tickets,&quot; &quot;cherry-picking,&quot; and &quot;check the queue for unclaimed tickets&quot; guidance in the Ticket Workflow &amp; Expectations card no longer applies — both ticket types are now auto-assigned.</p>"
+        },
+        {
+          "title": "Team Update — Katie Has Left the Company",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p>Katie Rosenhamer McCormick is no longer with the company. Megan remains everyone&#39;s point of contact for questions, concerns, or anything else you need.</p>"
+        },
+        {
+          "title": "Daylight Saving Time Ends 11/1 — Check Your Local Start Time",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>Daylight Saving Time ends in most of the US on Sunday, November 1, 2026 at 2:00 AM local time. Schedules are based on St. Louis, MO (Central Time) — your scheduled shift time in St. Louis time stays the same, but if your local time zone doesn&#39;t shift the same way, your local start time may change.</p><p><span class=\"label label-evenstar\">How to Check</span> Use a time zone converter, set the date to November 2 (or your next shift after the change), enter your scheduled shift time in the St. Louis field, and check the corresponding time for your location.</p><p>Double-check your start times for shifts beginning Sunday, November 1st onward. Questions or help calculating your adjusted time — reach out to Misha or post in the scheduling channel.</p>"
+        },
+        {
+          "title": "LOD Agent Status Management — New Feature",
+          "color": "hearth",
+          "width": "half",
+          "bodyHtml": "<p>LODs can now change your status directly when additional coverage is needed, primarily for LLP. You&#39;ll get an on-screen notification when this happens.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Do Not Switch Yourself Back</span> If an LOD moves you to LLP+T, it means LLP volume is high and more coverage is needed. Stay available for LLP support until volume is under control — the LOD will switch you back to your previous status once it&#39;s no longer needed.</div><p>LODs can also use this feature to correct a status someone forgot to update for EOS, Break, or Meal.</p>"
+        },
+        {
+          "title": "MA/NJ Tutor Contract Reduction — New Required Macros",
+          "color": "shadow",
+          "width": "full",
+          "bodyHtml": "<p>We&#39;re reducing the number of tutors contracted in Massachusetts (MA) and New Jersey (NJ). New macros have been added to the Admin Hub for this.</p><p><span class=\"label label-shadow\">The Short Version</span></p><p>Tutors can work out their current contract if they have active students.</p><p>Tutors in MA/NJ will no longer receive new students or opportunities.</p><p>Tutors with an address in these states cannot reactivate.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Update the Macro to Match Their State</span> You must update the macro to reflect the tutor&#39;s correct state — the pink banner may or may not appear, so review the account carefully either way. This works the same as our existing no-contract states; these are just the required macros for MA/NJ specifically.</div><p>Take the confirmation quiz to confirm you&#39;ve read and understand this change (link shared in Slack).</p>"
+        },
+        {
+          "title": "Platform Support: Outbound Call Expectations",
+          "color": "hearth",
+          "width": "full",
+          "bodyHtml": "<p>Before placing an outbound call to a client, check with the LOD on shift to make sure there&#39;s enough coverage for live LLP requests.</p><p><span class=\"label label-hearth\">The Process</span></p><p>Check with your LOD before calling — they&#39;ll review LLP volume and coverage to approve or hold off.</p><p>Once approved, place the call and troubleshoot the issue.</p><p>If the call approaches 15 minutes without a resolution, offer to escalate to Tier 3.</p><p>If the client or tutor asks for a specific callback time, explain we can&#39;t guarantee that exact time — if it&#39;s their only option, escalate to Tier 3 instead.</p><p>A broad availability window (for example, &quot;anytime before 5pm EST&quot;) is not a reason to escalate — coordinate with your LOD and call within that window; no need to follow up to pin down an exact time.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Non-Negotiable</span> Always change your status to SBO when placing an outbound call, and always add the FLEX call link to the ticket to document the interaction.</div>"
+        },
+        {
+          "title": "Status Timing — No Early Breaks/Meals, Report Auto-Assign Issues",
+          "color": "shadow",
+          "width": "half",
+          "bodyHtml": "<p>Don&#39;t move into break or meal status early — the only exception is End of Shift (EOS). This has always been the rule, including for closers: if you&#39;re closing shift, log off exactly when your shift ends rather than going offline early.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Report Auto-Assign Problems Immediately</span> If something isn&#39;t working — like LLP Auto-Assign not routing tickets to you during a scheduled coverage window — report it right away rather than letting it go unnoticed. Repeated unreported issues will start being tracked as a behavioral concern.</div>"
+        },
+        {
+          "title": "New Ticket Notification Badges — Coming Soon",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p>A new feature is coming to Tutor Admin to help you stay on top of tickets needing attention, visible throughout Tutor Admin:</p><p>Waiting for Support badge — shows how many tickets are waiting on an agent response.</p><p>URGENT badge — flags high-priority tickets, especially from ClientHUD.</p><div class=\"callout callout-shire\"><span class=\"label label-shire\">Treat Urgent as Urgent</span> URGENT tickets should be a &quot;drop what you&#39;re doing&quot; situation — they should never sit in the queue while lower-priority tickets get worked first.</div><p>We&#39;ll share another update once this is released.</p>"
+        },
+        {
+          "title": "New Tutor Experience Rolling Out",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p>A new tutor experience is rolling out — things may be in different places compared to the old one. When a tutor needs help finding something on their dashboard, try impersonating them to see the new layout and guide them accurately.</p>"
+        },
+        {
+          "title": "New LLP2 Layout & Features (Including Doodle)",
+          "color": "shire",
+          "width": "half",
+          "bodyHtml": "<p>A new LLP2 layout and set of functions, including Doodle, is rolling out shortly. Keep an eye out for spikes in issues or anything breaking and report what you see.</p>"
+        },
+        {
+          "title": "Whiteboard Not Connecting — Brazil ISP Issue",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>Some internet providers in Brazil are blocking the connection to the whiteboard, affecting students or LLP agents in Brazil. Workaround: use a VPN set to the US or another country to resolve the connection issue.</p>"
+        },
+        {
+          "title": "Client Assessment Popup Blocking Homepage — Known Issue",
+          "color": "twilight",
+          "width": "half",
+          "bodyHtml": "<p>Some clients are reaching out because an assessment is popping up instead of their usual homepage. This is being escalated. For now, have them complete the assessment so they can get into their profile — one workaround that seems to help permanently is entering all student info, then selecting &quot;Not right now&quot; when asked about adding 1:1 tutoring.</p>"
+        },
+        {
+          "title": "Merge Tickets Carefully — Read the Tutor's Request First",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>Before merging tickets, make sure you&#39;ve actually read the tutor&#39;s request on each one. A tutor may have another open ticket that isn&#39;t the same issue — merging unrelated tickets can bury a separate request.</p>"
+        },
+        {
+          "title": "Exclusive Opportunity Issues — Who to Tag",
+          "color": "evenstar",
+          "width": "half",
+          "bodyHtml": "<p>If a tutor reaches out because they can&#39;t accept an exclusive opportunity, or a student wasn&#39;t assigned after they accepted, tag Camila Cardoso or Bianca Krutzsch in #transferchat. Only tag Bianca on Fridays and Saturdays.</p>"
         },
         {
           "title": "Urgent LLP Status Flip from Platform Support Tickets — Not a Bug",
@@ -59,10 +137,10 @@
           "bodyHtml": "<p>Email tickets sitting in Waiting on Tutor for more than 24 hours with no response from the tutor can be solved directly — add an internal note (for example: &quot;Ticket solved after more than 24 hours with no response from tutor&quot;) and solve it.</p><div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">Not the Same as the 5-Day Auto-Close</span> This is different from the system&#39;s automatic Closed-after-Solved timer (see the &quot;Closed vs. Solved&quot; card below). The 24 hours here is when you can proactively solve a stale Waiting on Tutor ticket yourself; the 5 days is how long a Solved ticket sits before the system moves it to Closed on its own.</div>"
         },
         {
-          "title": "ClientHUD Replies Are Live",
+          "title": "ClientHUD & Client Tickets — Full Update",
           "color": "evenstar",
-          "width": "half",
-          "bodyHtml": "<p>Public Reply now works directly on ClientHUD tickets — you can respond to the client straight from the ticket.</p><div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">Still Not Supported</span> We still can&#39;t create new tickets for clients, and we can&#39;t reply through LLP Client chat — the client&#39;s account doesn&#39;t receive those messages, so nothing sent there is visible to them. Tier 3 client tickets are unchanged: since we can&#39;t create tickets for the client directly, keep using the test tutor account.</div><div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">Missing Client Email → Send It Back</span> If a ClientHUD escalation comes in without the client&#39;s email address, we can&#39;t reply in that same ticket — send it back rather than trying to work around it. All communication should stay in Admin Hub.</div>"
+          "width": "full",
+          "bodyHtml": "<p>Public Reply works directly on ClientHUD tickets — you can respond to the client straight from the ticket. We can also now create real tickets for clients: in Create Ticket, switch the Tutor/Client toggle to Client, enter their email, and write your message — attachments and screenshots work too.</p><div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">Copy the Email Carefully</span> The system doesn&#39;t validate the client&#39;s email yet, so copy/paste it directly from VTWA or ClientHUD rather than typing it.</div><p><span class=\"label label-evenstar\">Missing Client Email — Mostly Resolved</span> The bug causing missing client emails on ClientHUD BatSignal tickets has been fixed — new tickets should come in with the email attached. If you still see one missing, report it with the ticket link.</p><div class=\"callout callout-evenstar\"><span class=\"label label-evenstar\">If You Still Hit a Missing Email</span> Don&#39;t send a BatSignal or canned email. Use Create Ticket to make a real client ticket instead, and merge the original ClientHUD ticket into it if you can. If merge isn&#39;t working, link the new ticket in internal notes and solve the original — either way, add a Public Reply to the original referencing the new ticket before solving it, so your metrics reflect a response.</div><p><span class=\"label label-evenstar\">Tier 3 Client Tickets — Workaround Retired</span> Since client ticket creation is fully working, we no longer use the test tutor account for Tier 3 client tickets. Create them directly using the Client toggle. The SOP has been updated to reflect this — if Tier 3 receives one created the old way, they&#39;ll send it back to be resubmitted correctly.</p><p>We still can&#39;t reply through LLP Client chat — the client&#39;s account doesn&#39;t receive those messages, so nothing sent there is visible to them.</p>"
         },
         {
           "title": "Overlapping/Multiple First-Session Bookings — Known Bug",
@@ -83,10 +161,10 @@
           "bodyHtml": "<p><span class=\"label label-hearth\">Follow the Full Process</span> Please make sure to follow the Tier 3 SOP when escalating tickets to the T3 queue — several recent tickets have skipped Step 2 for tutor escalations.</p><p>When creating the new Tier 3 ticket, first send this as a public reply to the tutor: &quot;Hello, this is to confirm that I&#39;ve forwarded your issue to our Tier 3 team. You will be contacted within 24 hours through this new ticket.&quot;</p><p>Once the ticket is created and the public reply sent, add all troubleshooting details, findings, and additional info as internal notes.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">New Macro</span> Use the &quot;Tier 3 first response&quot; macro to send that public reply (tutor-facing only for now).</div><p>If you need a refresher, the SOP is on the KB: fellowship-kb.netlify.app/a/gen-012</p>"
         },
         {
-          "title": "Auto-QA Temporarily Paused",
+          "title": "Auto-QA Is Back",
           "color": "shadow",
           "width": "half",
-          "bodyHtml": "<p>Auto-QA is temporarily down due to an API key issue. QA reviews will resume once this is resolved — no action needed on your end in the meantime.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Manual QA Returning</span> Manual QA is coming back next week. In the meantime, expect some spot-checking this week. LoDs are being trained to QA as well, so daily feedback will continue.</div>"
+          "bodyHtml": "<p>Auto-QA has returned and scoring has resumed as normal.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Disagree With a Score?</span> Leave a comment on your scorecard — the LLM can make mistakes, so flag anything that looks off.</div>"
         },
         {
           "title": "Work Block Priority Change — CHAT+T vs LLP+T",
@@ -344,7 +422,7 @@
           "title": "Disbursement Tickets — What We Handle vs Transfer",
           "color": "hearth",
           "width": "full",
-          "bodyHtml": "<p><span class=\"label label-hearth\">We Handle These Directly</span></p><p>No-show invoices</p><p>24-hour cancellation invoices</p><p>VT4S TOU signing</p><p>Asking the tutor to try invoicing again</p><p><span class=\"label label-hearth\">Everything Else → Transfer to Payments</span> Transfer to the Payments team via the Admin Hub.</p>"
+          "bodyHtml": "<p><span class=\"label label-hearth\">We Handle These Directly</span></p><p>No-show invoices</p><p>24-hour cancellation invoices</p><p>VT4S TOU signing</p><p>Asking the tutor to try invoicing again</p><p><span class=\"label label-hearth\">Everything Else → Transfer to Payments</span> Transfer to the Payments team via the Admin Hub.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Temporary — Send All to Disbursements</span> As of 10/21, Disbursements has low ticket volume — for now, send ALL disbursement-related tickets their way rather than just the categories above. We&#39;ll update this card again once things go back to normal.</div>"
         },
         {
           "title": "\"Report Issue\" Renamed to \"Request Review\"",
@@ -421,5 +499,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-10-06T17:49:57.645Z"
+  "lastUpdated": "2026-10-29T20:03:52.259Z"
 }

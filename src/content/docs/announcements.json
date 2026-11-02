@@ -8,7 +8,7 @@
           "title": "First Response Is Back — Send One on Every Ticket",
           "color": "hearth",
           "width": "full",
-          "bodyHtml": "<p><span class=\"label label-hearth\">Effective Now</span> First response time is returning to our service metrics. Go back to sending a first response on tickets instead of waiting to reply in full — a macro for this is in the works.</p><p>Note: this reverses the earlier &quot;reply FULLY, don&#39;t send a first-response-only&quot; guidance in the Ticket Workflow &amp; Expectations card below.</p><p><span class=\"label label-hearth\">How to Triage Your First Response</span></p><p>Heavy-lift ticket (student removals, BatSignals, etc.): send a quick acknowledgment — &quot;Thank you for reaching out to Varsity Tutors! My name is ____. Please allow me some time to complete your request for ____.&quot; — then move to the next ticket before committing to the longer one.</p><p>Needs more info (for example, which students to remove): ask your clarifying question and move on.</p><p>No real work needed (automatic email replies, etc.): reply fully and solve it right away.</p><p>Also: work your queue oldest to newest — sort by created date to keep things in order.</p>"
+          "bodyHtml": "<p><span class=\"label label-hearth\">Effective Now</span> First response time is returning to our service metrics. Go back to sending a first response on tickets instead of waiting to reply in full.</p><p>Note: this reverses the earlier &quot;reply FULLY, don&#39;t send a first-response-only&quot; guidance in the Ticket Workflow &amp; Expectations card below.</p><p><span class=\"label label-hearth\">How to Triage Your First Response</span></p><p>Heavy-lift ticket (student removals, BatSignals, etc.): send a quick acknowledgment — &quot;Thank you for reaching out to Varsity Tutors! My name is ____. Please allow me some time to complete your request for ____.&quot; — then move to the next ticket before committing to the longer one.</p><p>Needs more info (for example, which students to remove): ask your clarifying question and move on.</p><p>No real work needed (automatic email replies, etc.): reply fully and solve it right away.</p><p>Also: work your queue oldest to newest — sort by created date to keep things in order.</p>"
         },
         {
           "title": "Auto-Assign Is Live — CSO Ticketing & LLP",
@@ -47,10 +47,10 @@
           "bodyHtml": "<p>Before placing an outbound call to a client, check with the LOD on shift to make sure there&#39;s enough coverage for live LLP requests.</p><p><span class=\"label label-hearth\">The Process</span></p><p>Check with your LOD before calling — they&#39;ll review LLP volume and coverage to approve or hold off.</p><p>Once approved, place the call and troubleshoot the issue.</p><p>If the call approaches 15 minutes without a resolution, offer to escalate to Tier 3.</p><p>If the client or tutor asks for a specific callback time, explain we can&#39;t guarantee that exact time — if it&#39;s their only option, escalate to Tier 3 instead.</p><p>A broad availability window (for example, &quot;anytime before 5pm EST&quot;) is not a reason to escalate — coordinate with your LOD and call within that window; no need to follow up to pin down an exact time.</p><div class=\"callout callout-hearth\"><span class=\"label label-hearth\">Non-Negotiable</span> Always change your status to SBO when placing an outbound call, and always add the FLEX call link to the ticket to document the interaction.</div>"
         },
         {
-          "title": "Status Timing — No Early Breaks/Meals, Report Auto-Assign Issues",
+          "title": "Status Timing — 5 Minute Rule, Report Auto-Assign Issues",
           "color": "shadow",
           "width": "half",
-          "bodyHtml": "<p>Don&#39;t move into break or meal status early — the only exception is End of Shift (EOS). This has always been the rule, including for closers: if you&#39;re closing shift, log off exactly when your shift ends rather than going offline early.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Report Auto-Assign Problems Immediately</span> If something isn&#39;t working — like LLP Auto-Assign not routing tickets to you during a scheduled coverage window — report it right away rather than letting it go unnoticed. Repeated unreported issues will start being tracked as a behavioral concern.</div>"
+          "bodyHtml": "<p>Do not go offline 5 minutes before the end of your shift if you are closing shift. This applies to LLP folks, since you handle live interactions. This has always been the rule. During the day, switching to offline/meal 5 minutes prior is fine. However, we have always expected closers to log off when their shift ends. This goes back to phones and ZD chats.</p><div class=\"callout callout-shadow\"><span class=\"label label-shadow\">Report Auto-Assign Problems Immediately</span> If something isn&#39;t working — like LLP Auto-Assign not routing tickets to you during a scheduled coverage window — report it right away rather than letting it go unnoticed. Repeated unreported issues will start being tracked as a behavioral concern.</div>"
         },
         {
           "title": "New Ticket Notification Badges — Coming Soon",
@@ -499,5 +499,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-10-29T20:03:52.259Z"
+  "lastUpdated": "2026-11-02T01:51:01.728Z"
 }

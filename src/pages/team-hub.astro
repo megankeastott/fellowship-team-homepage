@@ -2,89 +2,131 @@
 import Shell from '../layouts/Shell.astro';
 import PageHeading from '../components/PageHeading.astro';
 import '../styles/team-hub.css';
-import { TEAM_ROSTER, INCENTIVES, SUPERLATIVES } from '../config/team';
+import { TEAM_ROSTER, SUPERLATIVES, AGENT_MEDALLIONS, OFFICE_HOURS } from '../config/team';
 import { EXTERNAL } from '../config/site';
 
-const guardians = TEAM_ROSTER.fellowship.filter((p) => p.team === 'guardians');
-const wardens = TEAM_ROSTER.fellowship.filter((p) => p.team === 'wardens');
+const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name);
+const guardians = TEAM_ROSTER.fellowship.filter((p) => p.team === 'guardians').sort(byName);
+const wardens = TEAM_ROSTER.fellowship.filter((p) => p.team === 'wardens').sort(byName);
+const leads = TEAM_ROSTER.leadership.filter((p) => p.title.startsWith('Team Lead'));
+const seniors = TEAM_ROSTER.leadership.filter((p) => !p.title.startsWith('Team Lead'));
+const medallionFor = (name: string) => AGENT_MEDALLIONS[name.split(' ')[0].toLowerCase()];
+const sharedTitle = (members: { title: string }[]) =>
+  members.length > 0 && members.every((m) => m.title === members[0].title) ? members[0].title : '';
+const supportTeams = [
+  { heading: 'Guardians of the Living Platform', sub: 'LLP Support', realm: 'evenstar', members: guardians },
+  { heading: 'Wardens of the Tutor Realm', sub: 'TES Support', realm: 'hearth', members: wardens },
+].map((t) => ({ ...t, title: sharedTitle(t.members) }));
+const hasLod = TEAM_ROSTER.fellowship.some((p) => p.lod);
 const bingoUrl = EXTERNAL.bingoUrl?.trim();
+const superlatives = SUPERLATIVES.categories.map((c) => {
+  const tally = [...c.tally].sort((a, b) => b.votes - a.votes || a.name.localeCompare(b.name));
+  const total = tally.reduce((sum, t) => sum + t.votes, 0);
+  const top = tally[0]?.votes ?? 0;
+  return { ...c, tally, total, top };
+});
 ---
 <Shell title="The Shire — Team Hub" activeSlug="team-hub">
   <PageHeading title="The Shire — Team Hub" />
 
   <div class="grid">
+    {OFFICE_HOURS.length > 0 && (
+      <div class="card c-evenstar full-width">
+        <div class="card-header"><h2>Office Hours</h2><div class="line"></div></div>
+        <div class="card-body">
+          <ul class="oh-list">
+            {OFFICE_HOURS.map((oh) => (
+              <li>
+                <a class="oh-slot" href={oh.url} target="_blank" rel="noopener">
+                  <span class="oh-day">{oh.day}</span>
+                  <span class="oh-time">{oh.time}</span>
+                  <span class="oh-join">Join Google Meet →</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )}
+
     <!-- THE RED BOOK -->
     <div class="card c-earthen full-width">
       <div class="card-header"><h2>The Red Book</h2><div class="line"></div></div>
       <div class="card-body">
-        <div class="red-book">
-          <div class="ledger-col">
-            <div class="ledger-heading h-shire">Leadership</div>
-            <div class="ledger-sub">Leads &amp; Senior Specialists</div>
-            {TEAM_ROSTER.leadership.map((p) => (
-              <div class="ledger-entry">
-                <div class="ledger-name">{p.name}</div>
-                <div class="ledger-title">{p.title}</div>
-              </div>
-            ))}
+        <section class="rb-leadership" aria-labelledby="rb-leadership-heading">
+          <h3 id="rb-leadership-heading" class="rb-heading h-shire">Leadership</h3>
+          <div class="rb-leader-groups">
+            {[{ label: 'Team Leads', people: leads }, { label: 'Senior Specialists', people: seniors }].map((group) =>
+              group.people.length > 0 && (
+                <div class="rb-leader-group">
+                  <div class="rb-group-label">{group.label}</div>
+                  <ul class="rb-leaders">
+                    {group.people.map((p) => {
+                      const medallion = medallionFor(p.name);
+                      return (
+                        <li class="rb-leader">
+                          {medallion ? (
+                            <img class="rb-medallion" src={medallion} alt="" loading="lazy" />
+                          ) : (
+                            <span class="rb-medallion rb-initial" aria-hidden="true">{p.name.charAt(0)}</span>
+                          )}
+                          <div>
+                            <div class="rb-name">{p.name}</div>
+                            <div class="rb-title">{p.title}</div>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )
+            )}
           </div>
+        </section>
 
-          <div class="ledger-col">
-            <div class="ledger-heading h-evenstar">Guardians of the Living Platform</div>
-            <div class="ledger-sub">LLP Support</div>
-            {guardians.length === 0 && <div class="ledger-empty">No agents assigned yet.</div>}
-            {guardians.map((p) => (
-              <div class="ledger-entry">
-                <div class="ledger-name">{p.name}</div>
-                <div class="ledger-title">{p.title}</div>
+        <div class="rb-teams">
+          {supportTeams.map((t) => (
+            <section class={`rb-team rb-${t.realm}`} aria-label={`${t.heading} — ${t.sub}`}>
+              <h3 class="rb-heading">{t.heading}</h3>
+              <div class="rb-team-meta">
+                <span class="rb-sub">{t.title ? `${t.sub} · ${t.title}s` : t.sub}</span>
+                <span class="rb-count">{t.members.length} {t.members.length === 1 ? 'member' : 'members'}</span>
               </div>
-            ))}
-          </div>
-
-          <div class="ledger-col">
-            <div class="ledger-heading h-hearth">Wardens of the Tutor Realm</div>
-            <div class="ledger-sub">TES Support</div>
-            {wardens.length === 0 && <div class="ledger-empty">No agents assigned yet.</div>}
-            {wardens.map((p) => (
-              <div class="ledger-entry">
-                <div class="ledger-name">{p.name}</div>
-                <div class="ledger-title">{p.title}</div>
-              </div>
-            ))}
-          </div>
+              {t.members.length === 0 ? (
+                <div class="ledger-empty">No agents assigned yet.</div>
+              ) : (
+                <ul class="rb-members">
+                  {t.members.map((p) => (
+                    <li>
+                      <span class="rb-member-name">
+                        {p.name}
+                        {p.lod && <span class="rb-lod" title="LoD"><span class="sr-only">(LoD)</span></span>}
+                      </span>
+                      {!t.title && <span class="rb-member-title">{p.title}</span>}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
         </div>
-      </div>
-    </div>
-
-    <!-- THE DRAGON'S HOARD -->
-    <div class="card c-hearth">
-      <div class="card-header"><h2>The Dragon's Hoard</h2><div class="line"></div></div>
-      <div class="card-body">
-        <div class="hoard-period">{INCENTIVES.period} Prizes</div>
-        {INCENTIVES.items.map((item) => (
-          <div class="hoard-item">
-            <div class="hoard-row">
-              <div class="hoard-name">{item.name}</div>
-              <div class="hoard-prize">{item.prize}</div>
-            </div>
-            <div class="hoard-detail">{item.detail}</div>
-          </div>
-        ))}
+        {hasLod && (
+          <p class="rb-legend"><span class="rb-lod" aria-hidden="true"></span> LoD</p>
+        )}
       </div>
     </div>
 
     <!-- BINGO -->
-    <div class="card c-shadow">
+    <div class="card c-shadow full-width">
       <div class="card-header"><h2>Things Tutors Say</h2><div class="line"></div></div>
       <div class="card-body">
-        <p class="bingo-pitch">
-          Five rounds. Win three out of five to claim a prize — two winners take home
-          <span class="bold">$25</span> each.
-        </p>
         {bingoUrl ? (
           <a class="bingo-link" href={bingoUrl} target="_blank" rel="noopener">Play Bingo →</a>
         ) : (
-          <div class="bingo-todo">Set <code>bingoUrl</code> in <code>src/config/site.ts</code> to enable this link.</div>
+          <div class="bingo-soon">
+            <span class="label label-shadow">Coming Soon</span>
+            <p>New bingo cards are being drawn up. Check back soon.</p>
+          </div>
         )}
       </div>
     </div>
@@ -93,23 +135,34 @@ const bingoUrl = EXTERNAL.bingoUrl?.trim();
     <div class="card c-twilight full-width">
       <div class="card-header"><h2>Tales Told at the Green Dragon</h2><div class="line"></div></div>
       <div class="card-body">
-        <div class="tales-meta">Round {SUPERLATIVES.round} — Superlative Winners</div>
-        <div class="tales-prompt">{SUPERLATIVES.prompt}</div>
-        {SUPERLATIVES.winners.length > 0 ? (
-          <div class="tales-grid">
-            {SUPERLATIVES.winners.map((w) => (
-              <div class="tale-badge">
-                <div class="tale-text">“{w.tale}”</div>
-                <div class="tale-winner">{w.name}</div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div class="tales-empty">
-            Tallying in progress. Once a round closes, fill in <code>SUPERLATIVES.winners</code> in
-            <code>src/config/team.ts</code> and rebuild.
-          </div>
-        )}
+        <div class="tales-meta">Superlatives — Current Tally</div>
+        {SUPERLATIVES.status && <div class="tales-prompt">{SUPERLATIVES.status}</div>}
+        <ul class="tales-grid">
+          {superlatives.map((c) => (
+            <li class="tale-badge">
+              <div class="tale-text">{c.title}</div>
+              <div class="tale-total">{c.total} {c.total === 1 ? 'vote' : 'votes'}</div>
+              {c.tally.length > 0 ? (
+                <ol class="tale-tally">
+                  {c.tally.map((t) => {
+                    const leading = c.top > 0 && t.votes === c.top;
+                    return (
+                      <li class={leading ? 'is-leading' : undefined}>
+                        <span>
+                          {t.name}
+                          {leading && <span class="sr-only"> (leading)</span>}
+                        </span>
+                        <span class="tale-votes">{t.votes}</span>
+                      </li>
+                    );
+                  })}
+                </ol>
+              ) : (
+                <div class="tales-empty">No nominations yet.</div>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </div>

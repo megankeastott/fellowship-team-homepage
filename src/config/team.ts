@@ -2,7 +2,7 @@
 // TEAM DATA — edit here, then rebuild to update the site.
 // ============================================================
 // This holds the hard-coded content that used to live in Code.gs:
-// team leads, the LOD schedule, the roster, incentives, and superlatives.
+// team leads, the LOD schedule, the roster, and superlatives.
 
 import type { RealmColor } from './site';
 
@@ -178,6 +178,8 @@ export interface RosterMember {
   name: string;
   title: string;
   team?: 'guardians' | 'wardens';
+  // Set to true to show the LoD lantern next to this person in the Red Book.
+  lod?: boolean;
 }
 
 export const TEAM_ROSTER: {
@@ -187,52 +189,54 @@ export const TEAM_ROSTER: {
   leadership: [
     { name: 'Megan Keast-Ott', title: 'Team Lead — Tutor Support' },
     { name: 'Gus Duran', title: 'Team Lead — Platform Support' },
-    { name: 'Andrezza Ribeiro', title: 'Senior Operations Support Specialist' },
-    { name: 'Erika Sanchez', title: 'Senior Operations Support Specialist' },
+    { name: 'Andrezza Ribeiro', title: 'Senior — Tutor Support' },
+    { name: 'Erika Sanchez', title: 'Senior — Platform Support' },
   ],
   fellowship: [
-    { name: 'Joao Pimenta', title: 'Operations Support Specialist', team: 'guardians' },
-    { name: 'Luciana Zaracho', title: 'Operations Support Specialist', team: 'wardens' },
-    { name: 'Bianca Correia', title: 'Operations Support Specialist', team: 'wardens' },
-    { name: 'Marvin Beltre', title: 'Operations Support Specialist', team: 'wardens' },
-    { name: 'Yulennys Medina', title: 'Operations Support Specialist', team: 'wardens' },
-    { name: 'Rusking Gonzalez', title: 'Operations Support Specialist', team: 'wardens' },
-    { name: 'Nhadinne MenaYema', title: 'Operations Support Specialist', team: 'wardens' },
-    { name: 'Giovanna Capanema', title: 'Operations Support Specialist', team: 'wardens' },
-    { name: 'Rebeca Gardie', title: 'Operations Support Specialist', team: 'wardens' },
-    { name: 'Deivid Zatti', title: 'Operations Support Specialist', team: 'wardens' },
-    { name: 'Mariefaye Lat', title: 'Operations Support Specialist', team: 'wardens' },
+    // LLP Support — Guardians of the Living Platform
+    { name: 'Abigail Leon', title: 'Operations Support Specialist', team: 'guardians' },
+    { name: 'Bianca Correia', title: 'Operations Support Specialist', team: 'guardians' },
+    { name: 'Gabrielli Nascimento', title: 'Operations Support Specialist', team: 'guardians' },
+    { name: 'Janerys Gonzalez', title: 'Operations Support Specialist', team: 'guardians', lod: true },
+    { name: 'Kareel DeLeon', title: 'Operations Support Specialist', team: 'guardians' },
+    { name: 'Luciana Zaracho', title: 'Operations Support Specialist', team: 'guardians', lod: true },
+    { name: 'Marvin Beltre', title: 'Operations Support Specialist', team: 'guardians' },
+    { name: 'Raquel de Noronha', title: 'Operations Support Specialist', team: 'guardians' },
+    { name: 'Rusking Gonzalez', title: 'Operations Support Specialist', team: 'guardians' },
+    { name: 'Victor Faria', title: 'Operations Support Specialist', team: 'guardians' },
+
+    // TES Support — Wardens of the Tutor Realm
+    { name: 'Andro Bristol', title: 'Operations Support Specialist', team: 'wardens', lod: true },
+    { name: 'Arthur Paiva', title: 'Operations Support Specialist', team: 'wardens' },
     { name: 'Beatriz Vinas', title: 'Operations Support Specialist', team: 'wardens' },
+    { name: "Conor O'Brien", title: 'Operations Support Specialist', team: 'wardens' },
     { name: 'Dalia Agramonte', title: 'Operations Support Specialist', team: 'wardens' },
+    { name: 'Joao Pimenta', title: 'Operations Support Specialist', team: 'wardens', lod: true },
+    { name: 'Mariefaye Lat', title: 'Operations Support Specialist', team: 'wardens' },
+    { name: 'Marilia Brito', title: 'Operations Support Specialist', team: 'wardens' },
+    { name: 'Nhadinne MenaYema', title: 'Operations Support Specialist', team: 'wardens' },
+    { name: 'Yulennys Medina', title: 'Operations Support Specialist', team: 'wardens' },
   ],
 };
 
-export const INCENTIVES: {
-  period: string;
-  items: { name: string; prize: string; detail: string }[];
-} = {
-  period: 'Monthly',
-  items: [
-    {
-      name: 'End-of-Month Raffle',
-      prize: '$50',
-      detail:
-        'Drawn from raffle entries earned across the month. Extra entries come from Bingo wins and superlative nominations.',
-    },
-    {
-      name: 'Things Tutors Say — Bingo',
-      prize: '$25 × 2 winners',
-      detail: 'Five rounds. Win three out of five to claim a prize.',
-    },
-  ],
-};
+// Office hours shown at the top of the Team Hub. Times are Central (CST).
+export const OFFICE_HOURS: { day: string; time: string; url: string }[] = [
+  { day: 'Tuesday', time: '3:00 – 4:00 PM CST', url: 'https://meet.google.com/hrq-snwv-bjt' },
+  { day: 'Thursday', time: '1:00 – 2:00 PM CST', url: 'https://meet.google.com/uua-cqaw-ata' },
+];
 
+// Superlatives tally. To record a vote, add the person to that category's
+// `tally` (e.g. { name: 'Andro', votes: 1 }) or bump their `votes` number.
+// The leader in each category is highlighted automatically.
 export const SUPERLATIVES: {
-  round: number;
-  prompt: string;
-  winners: { tale: string; name: string }[];
+  status: string;
+  categories: { title: string; tally: { name: string; votes: number }[] }[];
 } = {
-  round: 4,
-  prompt: 'Round 4 — nominated by the team via Slack thread.',
-  winners: [],
+  status: 'Nominations open soon in the team channel.',
+  categories: [
+    { title: 'Most likely to fall asleep during a movie', tally: [] },
+    { title: 'Most likely to stay calm when everything is on fire', tally: [] },
+    { title: 'Most likely to win trivia night', tally: [] },
+    { title: 'Most likely to start a random dance party', tally: [] },
+  ],
 };

@@ -44,7 +44,7 @@ src/
   config/
     site.ts        # routes, nav, external links
     docs.ts        # which Google Doc feeds each page   ← wire up doc IDs here
-    team.ts        # leads, LOD schedule, roster, incentives, superlatives
+    team.ts        # leads, LOD schedule, roster, superlatives
   lib/
     googleDocs.ts  # build-time fetch + parse of published Google Docs
   layouts/
@@ -120,5 +120,5 @@ Edit [`src/config/team.ts`](./src/config/team.ts) and rebuild:
 - `TEAM_LEADS` — leads & senior specialists (bios, medallions, links)
 - `LOD_SCHEDULE` — the weekly Leader-on-Duty rotation
 - `TEAM_ROSTER` — the Red Book roster on the Team Hub
-- `INCENTIVES` / `SUPERLATIVES` — Dragon's Hoard & Green Dragon sections
+- `SUPERLATIVES` — Green Dragon superlatives tally
 - `EXTERNAL.bingoUrl` in `src/config/site.ts` — the Bingo link

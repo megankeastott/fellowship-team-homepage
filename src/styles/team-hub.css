@@ -169,6 +169,19 @@
 }
 .tale-badge { display: flex; flex-direction: column; }
 .tale-text { font-style: italic; color: var(--text-bright); font-size: 1.05rem; line-height: 1.4; min-height: 2.8em; }
+.tale-winner {
+  margin-top: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(175, 158, 198, 0.35);
+  background: rgba(95, 79, 119, 0.18);
+  color: var(--text-bright); font-weight: 600; font-size: 1rem;
+}
+.tale-winner-label {
+  font-family: var(--display); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--twilight-text);
+  margin-right: 4px;
+}
 .tale-total {
   font-family: var(--display); font-size: 0.72rem; font-weight: 700;
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--twilight-text);

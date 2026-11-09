@@ -23,8 +23,10 @@ const superlatives = SUPERLATIVES.categories.map((c) => {
   const tally = [...c.tally].sort((a, b) => b.votes - a.votes || a.name.localeCompare(b.name));
   const total = tally.reduce((sum, t) => sum + t.votes, 0);
   const top = tally[0]?.votes ?? 0;
-  return { ...c, tally, total, top };
+  const leaders = top > 0 ? tally.filter((t) => t.votes === top) : [];
+  return { ...c, tally, total, top, leaders };
 });
+const leaderWord = SUPERLATIVES.closed ? 'winner' : 'leading';
 ---
 <Shell title="The Shire — Team Hub" activeSlug="team-hub">
   <PageHeading title="The Shire — Team Hub" />
@@ -135,12 +137,21 @@ const superlatives = SUPERLATIVES.categories.map((c) => {
     <div class="card c-twilight full-width">
       <div class="card-header"><h2>Tales Told at the Green Dragon</h2><div class="line"></div></div>
       <div class="card-body">
-        <div class="tales-meta">Superlatives — Current Tally</div>
+        <div class="tales-meta">Superlatives — {SUPERLATIVES.closed ? 'Results' : 'Current Tally'}</div>
         {SUPERLATIVES.status && <div class="tales-prompt">{SUPERLATIVES.status}</div>}
         <ul class="tales-grid">
           {superlatives.map((c) => (
             <li class="tale-badge">
               <div class="tale-text">{c.title}</div>
+              {SUPERLATIVES.closed && c.leaders.length > 0 && (
+                <div class="tale-winner">
+                  {c.leaders.length === 1 ? (
+                    <><span class="tale-winner-label">Winner</span> {c.leaders[0].name}</>
+                  ) : (
+                    <span class="tale-winner-label">{c.leaders.length}-way tie</span>
+                  )}
+                </div>
+              )}
               <div class="tale-total">{c.total} {c.total === 1 ? 'vote' : 'votes'}</div>
               {c.tally.length > 0 ? (
                 <ol class="tale-tally">
@@ -150,7 +161,7 @@ const superlatives = SUPERLATIVES.categories.map((c) => {
                       <li class={leading ? 'is-leading' : undefined}>
                         <span>
                           {t.name}
-                          {leading && <span class="sr-only"> (leading)</span>}
+                          {leading && <span class="sr-only"> ({leaderWord})</span>}
                         </span>
                         <span class="tale-votes">{t.votes}</span>
                       </li>

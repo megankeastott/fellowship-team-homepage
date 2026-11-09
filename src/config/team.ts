@@ -229,15 +229,47 @@ export const OFFICE_HOURS: { day: string; time: string; url: string }[] = [
 // Superlatives tally. To record a vote, add the person to that category's
 // `tally` (e.g. { name: 'Andro', votes: 1 }) or bump their `votes` number.
 // The leader in each category is highlighted automatically.
+// Set `closed: true` once voting ends to label the leaders as winners.
 export const SUPERLATIVES: {
   status: string;
+  closed: boolean;
   categories: { title: string; tally: { name: string; votes: number }[] }[];
 } = {
-  status: 'Nominations open soon in the team channel.',
+  status: 'Nominated by the team in Slack.',
+  closed: true,
   categories: [
-    { title: 'Most likely to fall asleep during a movie', tally: [] },
-    { title: 'Most likely to stay calm when everything is on fire', tally: [] },
-    { title: 'Most likely to win trivia night', tally: [] },
-    { title: 'Most likely to start a random dance party', tally: [] },
+    {
+      title: 'Most likely to fall asleep during a movie',
+      tally: [
+        { name: 'Marvin Beltre', votes: 2 },
+        { name: 'Gus Duran', votes: 1 },
+        { name: 'Raquel de Noronha', votes: 1 },
+      ],
+    },
+    {
+      title: 'Most likely to stay calm when everything is on fire',
+      tally: [
+        { name: 'Megan Keast-Ott', votes: 3 },
+        { name: 'Rusking Gonzalez', votes: 1 },
+      ],
+    },
+    {
+      title: 'Most likely to win trivia night',
+      tally: [
+        { name: 'Arthur Paiva', votes: 1 },
+        { name: 'Beatriz Vinas', votes: 1 },
+        { name: 'Luciana Zaracho', votes: 1 },
+        { name: 'Yulennys Medina', votes: 1 },
+      ],
+    },
+    {
+      title: 'Most likely to start a random dance party',
+      tally: [
+        { name: 'Kareel DeLeon', votes: 2 },
+        { name: 'Dalia Agramonte', votes: 1 },
+        { name: 'Erika Sanchez', votes: 1 },
+        { name: 'Raquel de Noronha', votes: 1 },
+      ],
+    },
   ],
 };
